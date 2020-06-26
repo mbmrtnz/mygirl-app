@@ -4,7 +4,7 @@
 <p>yung nasa loob ng <b>[ ]</b> yung pinaka input, tapos yung name nyan nakadeclare dun sa loob ng child comp</p>
 <p><b>toChild</b> naman yung pangalan dito sa parent comp</p>
 <div style="border: 1px solid red;">
-	<app-sample-child [sampleInput]="toChild" (sampleOutput)="fromChild=$event"></app-sample-child>
+	<app-sample-child [sampleInput]="toChild" (sampleOutput)="myFunction($event)"></app-sample-child>
 </div>
 
 <p>dito naman dinisplay ko yung galing sa child component</p>
@@ -12,3 +12,5 @@
 <p>then nung nagbato, nilagay ko lang kung ano mang binato dun sa <b>fromChild</b> na variable na dito naman declared sa parent comp</p>
 <p>then pag dinisplay ko dito ngayon yung <b>fromChild</b></p>
 <p><u>{{ fromChild }}</u></p>
+
+<!-- <input [name]="" onchange="$event" (click)="onClick()" (change)="myFunction()" (focus)="onFocus()" (blur)="onBlur()"> -->
