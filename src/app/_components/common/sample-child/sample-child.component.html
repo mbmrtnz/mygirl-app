@@ -1,0 +1,39 @@
+<p>sa loob ng child, dinisplay ko lang yung pinasa galing sa parent comp</p>
+<p>ito yung galing sa parent <b>sampleInput</b> yung name ng variable tapos dito declared yan sa child, check mo sa ts, nakadeclare as <b>@Input()</b></p>
+<p><u>{{ sampleInput.attr1 }}</u></p>
+<button (click)="onClick()">Test</button>
+
+<div *ngFor="let product of obj.productArr">
+	<div style="border: 4px solid blue">
+		<p>{{ 'Product name: ' +  product.name }}</p>
+		<p>{{ 'Size: ' + product.sizeName }}</p>
+		<p>{{ 'Price: ' + product.price }}</p>
+		<p>{{ 'Topping: ' + product.obj2?.topping }}</p>
+		<!-- <ng-container *ngFor="let obj of product.obj2">
+			<p>{{ obj }}</p>
+		</ng-container> -->
+	</div>
+</div>
+
+<!-- MYGIRL_REF_CODE
+
+identifier				code    description
+MILKTEA_SIZES			S 		Small
+MILKTEA_SIZES			M  		Medium
+MILKTEA_SIZES			L 		Large
+
+SELECT *
+  FROM MYGIRL_REF_CODE
+ WHERE IDENTIFIER = 'MILKTEA_SIZES'
+
+PRODUCT_TBL
+CD001
+MILKTEA A
+S
+100
+
+PRODUCT_TBL MYGIRL_REF_CODE
+SELECT a.PRODUCT_CD, a.PRODUCT_NAME, a.SIZE_CD, b.DESCRIPTION
+  FROM PRODUCT_TBL a, MYGIRL_REF_CODE b
+ WHERE a.SIZE_CD = b.CODE
+   AND b.IDENTIFIER = 'MILKTEA_SIZES' -->
