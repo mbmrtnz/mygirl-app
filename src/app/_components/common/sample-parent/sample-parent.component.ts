@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class SampleParentComponent implements OnInit {
 
   toChild = {
-  	attr1: "Test 1",
+  	attr1: "Test 1123",
   	attr2: "Test 2"
   };
 

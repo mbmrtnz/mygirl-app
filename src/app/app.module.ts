@@ -12,6 +12,9 @@ import { AboutComponent } from './_components/about/about.component';
 import { ModalComponent } from './_components/common/modal/modal.component';
 import { SampleParentComponent } from './_components/common/sample-parent/sample-parent.component';
 import { SampleChildComponent } from './_components/common/sample-child/sample-child.component';
+import { ShoplistComponent } from './_components/common/shoplist/shoplist.component';
+import { AnnouncementComponent } from './_components/common/announcement/announcement.component';
+import { ShopComponent } from './_components/shop/shop.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { SampleChildComponent } from './_components/common/sample-child/sample-c
     AboutComponent,
     ModalComponent,
     SampleParentComponent,
-    SampleChildComponent
+    SampleChildComponent,
+    ShoplistComponent,
+    AnnouncementComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,

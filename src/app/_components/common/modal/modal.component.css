@@ -1,0 +1,11 @@
+/*Modal css*/
+div.large-Modal .modal-dialog{
+  height:  0px !important; 
+  width: 0px !important;; 
+  margin: auto;
+  position: absolute;
+  top:100;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
