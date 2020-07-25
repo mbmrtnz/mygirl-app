@@ -24,24 +24,28 @@ export class ModalComponent implements OnInit, OnDestroy {
     mdlTitle: ""                                        DEFAULT: null
 
   */
+
   @ViewChild('content', null) test: any;
 
   @Input() modalSize: string = "modal-size";
   @Input() btnTitle: string = "Open Modal from Child";
   @Input() disabled: boolean = false;
   @Output() modalOpened: EventEmitter<Object> = new EventEmitter<Object>();
-  
+  @Input() myInput: any = null;
+
   content: EventEmitter<Object> = new EventEmitter<Object>();
   modalRef: NgbModalRef;
   mdlOptions: any;
 
+  fromShopList: any = {};
   constructor(private ms: NgbModal) { }
 
   ngOnInit() {
   	this.mdlOptions = {
       centered: true, 
       backdrop: 'static', 
-      windowClass : this.modalSize
+      windowClass : this.modalSize,
+   
   	}
   }
 
@@ -51,7 +55,7 @@ export class ModalComponent implements OnInit, OnDestroy {
     }
   }
 
-  openMdl(content?) {
+  openMdl(content?) { 
   	this.modalRef = this.ms.open(this.test, this.mdlOptions);
   	this.modalOpened.emit();
   }
@@ -60,5 +64,6 @@ export class ModalComponent implements OnInit, OnDestroy {
   	this.modalRef.dismiss();
     this.modalRef = undefined;
   }
+
 
 }

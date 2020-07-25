@@ -1,4 +1,4 @@
-<p>sa loob ng child, dinisplay ko lang yung pinasa galing sa parent comp</p>
+ <p>sa loob ng child, dinisplay ko lang yung pinasa galing sa parent comp</p>
 <p>ito yung galing sa parent <b>sampleInput</b> yung name ng variable tapos dito declared yan sa child, check mo sa ts, nakadeclare as <b>@Input()</b></p>
 <p><u>{{ sampleInput.attr1 }}</u></p>
 <button (click)="onClick()">Test</button>
@@ -9,9 +9,9 @@
 		<p>{{ 'Size: ' + product.sizeName }}</p>
 		<p>{{ 'Price: ' + product.price }}</p>
 		<p>{{ 'Topping: ' + product.obj2?.topping }}</p>
-		<!-- <ng-container *ngFor="let obj of product.obj2">
+		<ng-container *ngFor="let obj of product.obj2">
 			<p>{{ obj }}</p>
-		</ng-container> -->
+		</ng-container>
 	</div>
 </div>
 
