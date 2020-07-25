@@ -15,16 +15,14 @@
                             <li [ngClass]="{'active': category==='MyGirl'}" (click)="category='MyGirl'" (click)="FilterData()"   data-filter=".MG">MyGirl</li>
                         </ul>
                     </div>
-                </div>
-            </div>
-            <div class="row featured__filter">
+                        <div class="row featured__filter">
 	                <div *ngFor="let milktea of obj.productSample" [ngClass]="'col-lg-3 col-md-4 col-sm-6 mix '+milktea.category_code">
 	                    <div class="featured__item">
 	                        <div class="featured__item__pic set-bg"   [ngStyle]="{'background-image': 'url('+ milktea.imgpath +')'}">
 	                            <ul class="featured__item__pic__hover">
 	                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
 	                                <li><a (click)="LoginModal.openMdl()"><i class="fa fa-retweet"></i></a></li>
-	                                <li><a (click)="SLModal.openMdl(milktea.id)" (click)="SelectItem(milktea.id)"  ><i class="fa fa-shopping-cart"></i></a></li>
+	                                <li><a (click)="SLModal.openMdl(milktea.id)" (click)="selectItem(milktea.id)"  ><i class="fa fa-shopping-cart"></i></a></li>
 	                            </ul>
 	                        </div>
 	                        <div class="featured__item__text">
@@ -37,11 +35,15 @@
 	            
             </div>
         </div>
+     </div>
+  </div>
+
     </section>
+
 
 <app-modal #SLModal class="d-none" >
   <div header>
-   <h5 class="modal-title" id="exampleModalLabel">Your Shopping Cart</h5> 
+   <h5 class="modal-title" id="exampleModalLabel">Your Shopping Cart {{TotalPrice}}</h5> 
     </div>
     <div body style="min-width: 100px !important;">             
       <table class="table table-image">
@@ -58,18 +60,18 @@
           <tbody>
             <tr>
               <td class="w-25">
-                <img   *ngIf="myInput" [src]="myInput[0].imgpath" class="img-fluid img-thumbnail" alt="Milktea Image">
+                <img  [attr.src]="myInput.imgpath" class="img-fluid img-thumbnail" alt="Milktea Image">
               </td>
-              <td *ngIf="myInput">{{myInput[0].title}} </td>
-              <td *ngIf="myInput">{{myInput[0].price}} </td>
+              <td *ngIf="myInput">{{myInput.title}} </td>
+              <td *ngIf="myInput">{{myInput.price}} </td>
               <td class="qty">
                 <div class="input-group">
-                    <input *ngIf="value!=0" type="button"  value="-" class="button-minus" (click)="MinCart(value)" data-field="quantity">
-                    <input type="number" step="1" max="" [(ngModel)]="value" (change)="ManualAdd(value)" name="quantity" class="quantity-field">
-                    <input type="button" value="+" class="button-plus" data-field="quantity" (click)="AddCart(value)">
+                    <input [disabled]="value.quantity == 0" type="button"  value="-" class="button-minus" (click)="quantityCalc('min')" data-field="quantity">
+                    <input type="number" step="1" max="" [ngModel]="value?.quantity" (ngModelChange)="value.quantity=$event" (change)="quantityCalc('man')" name="quantity" class="quantity-field">
+                    <input type="button" value="+" class="button-plus" data-field="quantity" (click)="quantityCalc('add')">
                 </div>
               </td>
-              <td *ngIf="TotalPrice">{{TotalPrice}}</td>
+              <td *ngIf="value.price">{{value.price}}</td>
             
             </tr>
           </tbody>
@@ -81,7 +83,7 @@
     <div footer class="w-100 text-center">
      <div class="modal-footer border-top-0 d-flex justify-content-between">
         <button type="button" class="btn btn-secondary" (click)="SLModal.closeMdl()" >Close</button>
-        <button type="button" class="btn btn-success">Checkout</button>
+        <button type="button" class="btn btn-success" (click)="quantityCalc('submitOrder')">Add to Cart</button>
       </div>
     </div>
 </app-modal> 

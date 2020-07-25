@@ -29,9 +29,9 @@
                 <div class="header__cart">
                     <ul>
                         <li><a><i class="fas fa-heart"></i> <span>1</span></a></li>
-                        <li><a (click)="cartMdl.openMdl()"><i class="fas fa-shopping-cart"></i> <span>3</span></a></li>
+                        <li><a (click)="cartMdl.openMdl()" (click)="openCart()"><i class="fas fa-shopping-cart"></i> <span>{{orderList?.length}}</span></a></li>
                     </ul>
-                    <div class="header__cart__price">item: <span>$150.00</span></div>
+                    <div class="header__cart__price">Price: <span>{{orderList[orderList.length-1]?.itemGrandTotal}}</span></div>
                 </div>
             </div>
         </div>
@@ -44,12 +44,49 @@
 <router-outlet></router-outlet>
 
 <app-modal #cartMdl class="d-none">
-  <div header>Cart</div>
-  <div body style="min-width: 600px; border: 1px solid red;">             
-    <p>Ito yung fucking cart mo motherfucker.</p>
-  </div>
-  <div footer class="w-100 text-center">
-    <button type="button" (click)="sampleFunction()"><a>Check out</a></button>
-    <button type="button" (click)="cartMdl.closeMdl()"><a>Close</a></button>
-  </div>
+  <div header style="max-width: 50% !important;">
+   <h5 class="modal-title" id="exampleModalLabel">Your Shopping Cart {{TotalPrice}}</h5> 
+    </div>
+    <div body >             
+      <table class="table table-image">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Product</th>
+              <th scope="col">Price</th>
+              <th scope="col">Qty</th>
+              <th scope="col">Total</th>
+           
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let custOrders of orderList;">
+              <td class="w-25">
+                <img  [attr.src]="custOrders.itemPath" class="img-fluid img-thumbnail" alt="Milktea Image">
+              </td>
+               <td >{{custOrders.itemTitle}} </td> 
+              <td >{{custOrders.itemPrice}} </td>
+              <td class="qty">
+                <div class="input-group">
+                    <input [disabled]="custOrders.itemTotal == 0" type="button"  value="-" class="button-minus" (click)="service.quantityCal('min')" data-field="quantity">
+                    <input type="number" step="1" max="" [ngModel]="custOrders.itemTotal" (ngModelChange)="custOrders.itemTotal=$event" (change)="service.quantityCal('man')" name="quantity" class="quantity-field">
+                    <input type="button" value="+" class="button-plus" data-field="quantity" (click)="service.quantityCal('add')">
+                </div>
+              </td>
+              <td >{{custOrders.itemTotalPrice}}</td>
+            
+            </tr>
+          </tbody>
+        </table> 
+
+         <div class="d-flex justify-content-end">
+          <h5>Total: <span class="price text-success" >{{orderList[orderList.length-1]?.itemGrandTotal}}</span></h5>
+        </div>
+    </div>
+    <div footer class="w-100 text-center">
+     <div class="modal-footer border-top-0 d-flex justify-content-between">
+        <button type="button" class="btn btn-secondary" (click)="cartMdl.closeMdl()" >Close</button>
+        <button type="button" class="btn btn-success" (click)="quantityCalc('submitOrder')">Add to Cart</button>
+      </div>
+    </div>
 </app-modal>
