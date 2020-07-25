@@ -1,5 +1,6 @@
 import { Component, OnInit,Output,EventEmitter,Input,AfterViewInit, ViewChild, OnDestroy} from '@angular/core';
 import mixitup from 'mixitup';
+import { UtilService } from '../../../_services/util.service';
 
 @Component({
   selector: 'app-shoplist',
@@ -8,9 +9,19 @@ import mixitup from 'mixitup';
 })
 
 export class ShoplistComponent implements OnInit {
-  value: number = 0;
-  TotalPrice:number = 0;
-  myInput: any;
+    constructor(public event: UtilService) {
+    
+     }
+  value: any = {
+    quantity: 0,
+    price: 0
+  };
+  TotalPrice: any;
+  addCartValue: any; 
+  myInput: any = {};
+  myObject: any = {};
+  myObject2: any;
+  myObject3: any;
   obj: any = {
 
   	productSample:[
@@ -86,31 +97,32 @@ export class ShoplistComponent implements OnInit {
   FilterData() {
   	const mixer = mixitup('.featured__filter');
   }
-  SelectItem(content){
-     this.myInput = this.obj.productSample.filter(a => a.id === content);
-     console.log(this.myInput[0].id);
+  selectItem(content){
+     this.myInput = this.obj.productSample.filter(a => a.id === content)[0];
+     //console.log(this.obj.productSample.filter(a => a.id === content)[0]);
   }
-
-  constructor() {
-
+   addFunction(){
+     this.event.addFunction(this.addCartValue);
    }
 
   ngOnInit() {
     
   }
-  MinCart(ev){
-    this.value = ev-1;
-    this.TotalPrice = this.value * this.myInput[0].price;
-  }
-  AddCart(ev){
-     this.value = ev+1;
-     this.TotalPrice = this.value * this.myInput[0].price;
-    console.log(this.value);
-  }
-  ManualAdd(){
-     
-    this.TotalPrice = this.value * this.myInput[0].price;
 
-  }
+  quantityCalc(ev){
+    this.myObject = {
+      selectedItem:
+      [
+        this.myInput
+      ],
+      Id:[
+       ev
+      ],
+       quantityController:[
+        this.value.quantity
+      ]
+    }
+      this.value = this.event.quantityCal(this.myObject);
 
+  } 
 }
