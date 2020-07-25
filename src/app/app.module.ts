@@ -16,6 +16,7 @@ import { ShoplistComponent } from './_components/common/shoplist/shoplist.compon
 import { AnnouncementComponent } from './_components/common/announcement/announcement.component';
 import { ShopComponent } from './_components/shop/shop.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +40,7 @@ import { ShopComponent } from './_components/shop/shop.component';
   ],
   providers: [
     Title
+  
   ],
   bootstrap: [AppComponent]
 })
