@@ -31,6 +31,47 @@
 /* Template default CSS
 /*----------------------------------------*/
 
+.modal-content {
+    width: auto;
+    margin: auto;
+    max-width: 80%;
+    width: auto !important;
+    max-height: 60%;
+}
+
+.modal-size > .modal-dialog {
+    max-width: 80%;
+    min-width: 10%;
+    width: auto;
+    z-index: 9999 !important;
+}
+
+.modal.sm > .modal-dialog{
+    z-index: 9999 !important;
+}
+
+.success-modal-size > .modal-dialog{
+    min-width: 30%;
+    max-width: 60%;
+    z-index: 9999 !important;
+}
+
+.modal-header {
+    padding: inherit;
+    background-color: #557a95;
+    color: white;
+}
+
+.modal-title {
+    margin-left: 1%;
+    margin-top: 0.5%;
+    margin-bottom: 1%;
+}
+
+.modal-body{
+    overflow: auto;
+}
+
 html,
 body {
 	height: 100%;

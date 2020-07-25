@@ -367,11 +367,11 @@
 
 <app-modal #cartMdl class="d-none">
   <div header>Cart</div>
-    <div body style="min-width: 300px !important;">             
-      <p>Ito yung fucking cart mo motherfucker.</p>
-    </div>
-    <div footer class="w-100 text-center">
-      <button type="button" (click)="sampleFunction()"><a>Check out</a></button>
-      <button type="button" (click)="cartMdl.closeMdl()"><a>Close</a></button>
-    </div>
+  <div body style="min-width: 600px; border: 1px solid red;">             
+    <p>Ito yung fucking cart mo motherfucker.</p>
+  </div>
+  <div footer class="w-100 text-center">
+    <button type="button" (click)="sampleFunction()"><a>Check out</a></button>
+    <button type="button" (click)="cartMdl.closeMdl()"><a>Close</a></button>
+  </div>
 </app-modal>
