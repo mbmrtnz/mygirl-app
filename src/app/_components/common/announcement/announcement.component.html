@@ -1,0 +1,12 @@
+<div class='container'>
+	<div class='row'>
+		<ngb-carousel *ngIf="images">
+		    <ng-template ngbSlide *ngFor="let ads of images">
+		        <div class="picsum-img-wrapper">
+		            <img [src]="ads" alt="Random first slide">
+		        </div>
+		    </ng-template>
+		    
+		</ngb-carousel>
+	</div>
+</div>

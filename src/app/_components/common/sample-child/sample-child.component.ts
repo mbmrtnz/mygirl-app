@@ -69,6 +69,7 @@ export class SampleChildComponent implements OnInit {
 
   ngOnInit() {
   	console.log(this.productArr)
+  	console.log(this.sampleInput);
   }
 
   onClick() {

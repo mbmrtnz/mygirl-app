@@ -6,4 +6,10 @@ import { Injectable } from '@angular/core';
 export class UtilService {
 
   constructor() { }
+
+  myVal: string = "";
+
+  myFunc(str?) {
+  	console.log(str);
+  }
 }
