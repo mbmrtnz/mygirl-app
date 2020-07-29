@@ -41,11 +41,28 @@
     </div>
 </header>
 
-<router-outlet></router-outlet>
+<!-- <div>
+    <div class="row">
+        <div class="col">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div> -->
 
-<app-modal #cartMdl class="d-none">
-  <div header style="max-width: 50% !important;">
-   <h5 class="modal-title" id="exampleModalLabel">Your Shopping Cart {{TotalPrice}}</h5> 
+<div class="container-fluid" style="padding: 0 !important; margin: 0 !important;">
+    <div class="row" style="padding: 0 !important; margin: 0 !important;">
+        <div class="col-md-12">
+            <router-outlet></router-outlet>
+        </div>
+      
+    </div>
+</div>
+
+
+
+    <app-modal #cartMdl class="d-none">
+      <div header style="max-width: 50% !important;">
+       <h5 class="modal-title" id="exampleModalLabel">Your Shopping Cart {{TotalPrice}}</h5> 
     </div>
     <div body >             
       <table class="table table-image">
@@ -68,9 +85,9 @@
               <td >{{custOrders.itemPrice}} </td>
               <td class="qty">
                 <div class="input-group">
-                    <input [disabled]="custOrders.itemTotal == 0" type="button"  value="-" class="button-minus" (click)="service.quantityCal('min')" data-field="quantity">
-                    <input type="number" step="1" max="" [ngModel]="custOrders.itemTotal" (ngModelChange)="custOrders.itemTotal=$event" (change)="service.quantityCal('man')" name="quantity" class="quantity-field">
-                    <input type="button" value="+" class="button-plus" data-field="quantity" (click)="service.quantityCal('add')">
+                    <input [disabled]="custOrders.itemTotal == 0" type="button"  value="-" class="button-minus" (click)="service.additionalItems(custOrders.itemId,'min')" data-field="quantity">
+                    <input type="number" step="1" max="" [ngModel]="custOrders.itemTotal" (ngModelChange)="custOrders.itemTotal=$event" (change)="service.quantityCal('Manualadding')" name="quantity" class="quantity-field">
+                    <input type="button" value="+" class="button-plus" data-field="quantity" (click)="service.additionalItems(custOrders.itemId,'add')">
                 </div>
               </td>
               <td >{{custOrders.itemTotalPrice}}</td>

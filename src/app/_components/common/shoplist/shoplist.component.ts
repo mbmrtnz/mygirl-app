@@ -94,19 +94,16 @@ export class ShoplistComponent implements OnInit {
 
   }
 
-  FilterData() {
-  	const mixer = mixitup('.featured__filter');
-  }
+  
   selectItem(content){
      this.myInput = this.obj.productSample.filter(a => a.id === content)[0];
-     //console.log(this.obj.productSample.filter(a => a.id === content)[0]);
   }
    addFunction(){
      this.event.addFunction(this.addCartValue);
    }
 
   ngOnInit() {
-    
+  
   }
 
   quantityCalc(ev){
@@ -125,4 +122,27 @@ export class ShoplistComponent implements OnInit {
       this.value = this.event.quantityCal(this.myObject);
 
   } 
+
+
+    slides = [
+    {img: "http://placehold.it/350x150/000000"},
+    {img: "http://placehold.it/350x150/111111"},
+    {img: "http://placehold.it/350x150/333333"},
+    {img: "http://placehold.it/350x150/666666"}
+  ];
+  slideConfig = {
+  "slidesToShow": 4, 
+  "slidesToScroll": 4, 
+  dots:true,
+  autoplay:true,
+  autoplaySpeed: 3000,
+ 'responsive': [
+  { 'breakpoint': 1600, 'settings': { 'slidesToShow': 4, 'slidesToScroll': 4, } },
+  { 'breakpoint': 1000, 'settings': { 'slidesToShow': 3, 'slidesToScroll': 3, } }, 
+  { 'breakpoint': 600, 'settings': { 'slidesToShow': 1, 'slidesToScroll': 1, } } 
+  ]
+      };
+  
+  
+ 
 }

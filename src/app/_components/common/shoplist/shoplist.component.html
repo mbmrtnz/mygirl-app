@@ -1,11 +1,37 @@
-
+   
+    
 <section class="featured spad">
         <div class="container">
             <div class="row">
+
                 <div class="col-lg-12">
                     <div class="section-title">
                         <h2>Featured Product</h2>
                     </div>
+
+                    <ngx-slick-carousel class="carousel" 
+                        #slickModal="slick-carousel" 
+                        [config]="slideConfig" 
+                        
+                        >
+      <!--   <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+              <img src="{{ slide.img }}" alt="" width="100%"> -->
+
+                    <div ngxSlickItem *ngFor="let milktea of obj.productSample" [ngClass]="'col-lg-3 col-md-4 col-sm-6 mix '+milktea.category_code">
+                                            <div class="featured__item">
+                                              <div class="product__discount__item">
+                                                  <div class="product__discount__item__pic set-bg">
+                                                      <div class="featured__item__pic set-bg"   [ngStyle]="{'background-image': 'url('+ milktea.imgpath +')'}">
+                                                        <div class="product__discount__percent">Best Seller</div>
+                                                        
+                                                     </div>
+                                            </div>
+                                         </div>
+                                     </div>
+
+                            </div>
+                        </ngx-slick-carousel>
+                    
                     <div class="featured__controls">
                         <ul>
                             <li [ngClass]="{'active': category==='all'}" (click)="category='all'" (click)="FilterData()"  data-filter="*">All</li>
@@ -35,10 +61,23 @@
 	            
             </div>
         </div>
+           <div class="section-title col-md-12">
+               <h2>Know us better</h2>
+            </div>
+         <div class="col-md-4" style="max-height: 500px !important" *ngFor="let link of event.socMedLink">
+
+      <iframe  [src]="link | safe" height="700" style="border:none;overflow:hidden; width: 100%; " scrolling="yes" frameborder="1" allowTransparency="true" allow="encrypted-media">
+      </iframe></div>
      </div>
+
   </div>
 
     </section>
+
+    <!--  Pages Tab-->
+
+
+
 
 
 <app-modal #SLModal class="d-none" >

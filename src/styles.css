@@ -154,7 +154,7 @@ ol {
 
 .section-title {
 	margin-bottom: 50px;
-	text-align: center;
+	text-align: left;
 }
 
 .section-title h2 {
@@ -172,7 +172,7 @@ ol {
 	width: 80px;
 	background: #7fad39;
 	content: "";
-	margin: 0 auto;
+	
 }
 
 .set-bg {

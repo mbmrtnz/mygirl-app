@@ -5,7 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './_components/home/home.component';
 import { AboutComponent } from './_components/about/about.component';
@@ -15,7 +15,17 @@ import { SampleChildComponent } from './_components/common/sample-child/sample-c
 import { ShoplistComponent } from './_components/common/shoplist/shoplist.component';
 import { AnnouncementComponent } from './_components/common/announcement/announcement.component';
 import { ShopComponent } from './_components/shop/shop.component';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { Pipe, PipeTransform } from '@angular/core';
+import { DomSanitizer} from '@angular/platform-browser';
 
+@Pipe({ name: 'safe' })
+export class SafePipe implements PipeTransform {
+  constructor(private sanitizer: DomSanitizer) {}
+  transform(url) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+} 
 
 @NgModule({
   declarations: [
@@ -27,7 +37,9 @@ import { ShopComponent } from './_components/shop/shop.component';
     SampleChildComponent,
     ShoplistComponent,
     AnnouncementComponent,
-    ShopComponent
+    ShopComponent,
+    SafePipe
+
   ],
   imports: [
     BrowserModule,
@@ -36,7 +48,8 @@ import { ShopComponent } from './_components/shop/shop.component';
     HttpClientModule,
     NgbModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    SlickCarouselModule
   ],
   providers: [
     Title
@@ -44,4 +57,6 @@ import { ShopComponent } from './_components/shop/shop.component';
   ],
   bootstrap: [AppComponent]
 })
+
+
 export class AppModule { }
