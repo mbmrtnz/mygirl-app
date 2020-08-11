@@ -15,6 +15,16 @@ import { SampleChildComponent } from './_components/common/sample-child/sample-c
 import { ShoplistComponent } from './_components/common/shoplist/shoplist.component';
 import { AnnouncementComponent } from './_components/common/announcement/announcement.component';
 import { ShopComponent } from './_components/shop/shop.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminComponent } from './_components/admin/admin.component';
+
+// material
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+
+//primeng
+import { TableModule } from 'primeng/table';
 
 
 @NgModule({
@@ -27,7 +37,8 @@ import { ShopComponent } from './_components/shop/shop.component';
     SampleChildComponent,
     ShoplistComponent,
     AnnouncementComponent,
-    ShopComponent
+    ShopComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +47,12 @@ import { ShopComponent } from './_components/shop/shop.component';
     HttpClientModule,
     NgbModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    BrowserAnimationsModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule,
+    TableModule
   ],
   providers: [
     Title
