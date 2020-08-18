@@ -13,8 +13,10 @@ export class AnnouncementComponent implements OnInit {
     config.wrap = true;  
     config.keyboard = false;  
     config.pauseOnHover = true;  
+    config.showNavigationArrows = false;
+    config.showNavigationIndicators =false;
      }
-     images = [3, 2,1].map((n) => `/app/resources/img/Sample${n}.jpg`);
+     images = [3,2,1].map((n) => `/app/resources/img/Sample${n}.jpg`);
   ngOnInit() {
   }
 

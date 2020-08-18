@@ -18,6 +18,10 @@ import { ShopComponent } from './_components/shop/shop.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer} from '@angular/platform-browser';
+import {RadioButtonModule} from 'primeng/radiobutton';
+import {MenuItem} from 'primeng/api'; 
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -38,8 +42,8 @@ export class SafePipe implements PipeTransform {
     ShoplistComponent,
     AnnouncementComponent,
     ShopComponent,
-    SafePipe
-
+    SafePipe,
+   
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,10 @@ export class SafePipe implements PipeTransform {
     NgbModule,
     AppRoutingModule,
     RouterModule,
-    SlickCarouselModule
+    SlickCarouselModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    BrowserAnimationsModule
   ],
   providers: [
     Title

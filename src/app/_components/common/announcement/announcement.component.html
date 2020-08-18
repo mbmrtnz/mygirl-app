@@ -1,14 +1,32 @@
-<!-- <div class='container'>
-	<div class='row'> -->
-		
+<!-- <div class="container-fluid">
+		<div class="row">
+     		 <div class="col-md-12 home-image home-Settings">
+     			
+	     		  <div class="home-Text">
+		       			<h1>Indulge your tastebuds with <p class="myGirlText">MyGirl Milktea</p> </h1> 
+		       		    <h6>Our delivery service makes it easier for you to enjoy your favorites</h6>
+		       	  </div>
+	  		 </div>
+
+	   <div class="col-3 test">
+	   		 <img  src="/app/resources/img/MyGirlHome1.jpg" class="image-thumbnail">
+	   </div>
+		   <div class="col-3 test1">
+		  			test 2
+		   </div>
+		</div>
+</div>	 -->
+
+
+    	
 		<ngb-carousel *ngIf="images">
-		    <ng-template ngbSlide *ngFor="let ads of images">
-		        <div class="picsum-img-wrapper">
-		            <img [src]="ads" alt="Random first slide">
-		        </div>
+			  
+		    <ng-template ngbSlide *ngFor="let ads of images" >
+		            <img [src]="ads" alt="MyGirl PH"  width="100%" style="margin: 0px !important; padding: 0px !important; opacity: 80%;">
+		            	<div class="form-group has-warning has-feedback">
+		            		<input id="searchbox" type="text" name="searchbar">
+		            		<span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+		            	</div>
 		    </ng-template>
-		    
+		  
 		</ngb-carousel>
-		
-	<!-- </div>
-</div> -->

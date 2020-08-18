@@ -1,0 +1,38 @@
+.homeMessage{
+		width: 100%;
+}
+
+.myGirlPic{
+	 position: static;
+ 
+  height: 300px;
+  width: 300px;
+ margin-top: 20px;
+}
+.MyGirl-Happiness{
+		text-align: center;
+		margin-top: 4%;
+
+}
+.myGirlHappinesBG{
+		  background: url('/app/resources/img/BG1.jpg');
+
+}
+
+.happiness_one{
+		font-family: hero new;
+		font-size:33px;
+}
+
+
+.happiness_Two{
+		font-family: kozuka gothic pro;
+		font-size: 50px;
+}
+
+.orderNowBTN{
+		background-color: #ff1a1a;
+		color: white;
+		font-family: kozuka gothic pro;
+
+}

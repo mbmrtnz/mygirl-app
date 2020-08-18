@@ -30,6 +30,43 @@
 /*----------------------------------------*/
 /* Template default CSS
 /*----------------------------------------*/
+
+.test{
+	background-color: green;
+	border-color: blue;
+	border-style: dotted;
+		height: 100%;
+}
+.test1{
+	background-color: yellow;
+	border-color: black;
+	border-style: dotted;
+
+
+}
+.header{
+
+	top: 0;
+    z-index: 9999;
+   
+    background-color: white;
+   position: sticky;
+   
+
+}
+.home-image{
+  background: url('/app/resources/img/MyGirlHome2.jpg');
+    
+   opacity:80%;
+   height: 1000px;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+ 	position: absolute;
+ 
+}
 .modal-content {
     width: auto;
     margin: auto;
@@ -69,14 +106,6 @@
 
 .modal-body{
     overflow: auto;
-}
-
-html,
-body {
-	height: 100%;
-	font-family: "Cairo", sans-serif;
-	-webkit-font-smoothing: antialiased;
-	font-smoothing: antialiased;
 }
 
 h1,
@@ -153,7 +182,7 @@ ol {
 -----------------------*/
 
 .section-title {
-	margin-bottom: 50px;
+
 	text-align: left;
 }
 
@@ -180,11 +209,11 @@ ol {
 	background-size: cover;
 	background-position: top center;
 }
+.spad{
+	margin-top: 20px;
 
-.spad {
-	padding-top: 100px;
-	padding-bottom: 100px;
 }
+
 
 .text-white h1,
 .text-white h2,
@@ -450,6 +479,7 @@ ol {
 
 .header__logo {
 	padding: 15px 0;
+	
 }
 
 .header__logo a {
@@ -501,7 +531,7 @@ ol {
 }
 
 .header__menu ul li.active a {
-	color: #7fad39;
+	color: white;
 }
 
 .header__menu ul li:hover .header__menu__dropdown {
@@ -520,7 +550,7 @@ ol {
 
 .header__menu ul li a {
 	font-size: 14px;
-	color: #252525;
+	color: white;
 	text-transform: uppercase;
 	font-weight: 700;
 	letter-spacing: 2px;
@@ -852,13 +882,13 @@ ol {
 -----------------------*/
 
 .featured {
-	padding-top: 80px;
-	padding-bottom: 40px;
+
+	position: initial;
 }
 
 .featured__controls {
 	text-align: center;
-	margin-bottom: 50px;
+
 }
 
 .featured__controls ul li {
@@ -899,10 +929,13 @@ ol {
 }
 
 .featured__item__pic {
-	height: 270px;
+	height: 200px;
 	position: relative;
 	overflow: hidden;
 	background-position: center center;
+	border: 4px solid #000;
+	border-top-right-radius:  5px;
+	border-top-left-radius: 5px;
 }
 
 .featured__item__pic__hover {
@@ -969,6 +1002,13 @@ ol {
 .featured__item__text {
 	text-align: center;
 	padding-top: 15px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	background-color: black;
+
+}
+.listText{
+	color:red;
 }
 
 .featured__item__text h6 {
@@ -976,12 +1016,14 @@ ol {
 }
 
 .featured__item__text h6 a {
-	color: #252525;
+	color: white;
+	font-family: kozuka gothic pro;
 }
 
 .featured__item__text h5 {
 	color: #252525;
 	font-weight: 700;
+	color: white;
 }
 
 /*---------------------
@@ -3571,3 +3613,6 @@ input[type="number"] {
   -moz-appearance: textfield;
   -webkit-appearance: none;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

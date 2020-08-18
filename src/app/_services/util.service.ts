@@ -21,18 +21,41 @@ export class UtilService {
   temp: number = 0;
 	cart: any = {};
 	customerOrder: any[] =[];
-  myVal: string = "";  
-  constructor() { }
+  extraTop: any[] =[]; 
+ checked: boolean = false;
+ iceKey: any = "";
+ sizeKey: any = "";
+
+
+ cupSize: any[] =[
+ {key:'s1',name:'S'},
+ {key:'s2',name:'L' },
+ {key:'s3',name:'XL'}]
+
+
+ iceLevel: any[] = [
+ {key:'i1',name:'25%'},
+ {key:'i2',name:'50%'},
+ {key:'i3',name:'75%'},
+ {key:'i4',name:'100%'}];
+ selectecIce: any ={};
   socMedLink: string[] = ['https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fmygirlmilkteamolitoalabang%2Fphotos%2Fa.325912167938878%2F606446139885478%2F%3Ftype%3D3&width=500',
   'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fmygirlmilkteamolitoalabang%2Fphotos%2Fa.325912167938878%2F604695600060532%2F%3Ftype%3D3&width=500',
   'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fmygirlmilkteamolitoalabang%2Fphotos%2Fa.325912167938878%2F606446139885478%2F%3Ftype%3D3&width=500'];
-   obj: any = {
+  addOns: any[] = [
+  {key: 'e1', name: 'Pearl', price: 15, selected: false}, 
+  {key: 'e2', name: 'Yellow Pudding', price: 15, selected: false}, 
+  {key: 'e3', name: 'Red Beans', price: 15, selected: false}, 
+  {key: 'e4', name: 'Oats', price: 15, selected: false}];
 
-    productSample:[
+   obj: any = {
+       productSample:[
     {
       id: '001',
       title: 'Okinawa',
-      price: 110,
+      priceM: 110,
+      priceL: 115,
+      priceXL: 120,
       description: 'Lorem Ipsum Lorem ipsum',
       category_code: 'BS',
       imgpath: 'app/resources/img/Milktea-Sample.jpg'
@@ -40,7 +63,9 @@ export class UtilService {
     {
       id: '002',
       title: 'Winter Melon',
-      price: 130,
+     priceM: 110,
+      priceL: 115,
+      priceXL: 120,
       description: 'Lorem Ipsum Lorem ipsum',
       category_code: 'BS', 
       imgpath: 'app/resources/img/Milktea-Sample1.jpg'
@@ -48,7 +73,9 @@ export class UtilService {
     {
       id: '003',
       title: 'Brown Sugar',
-      price: 130,
+        priceM: 110,
+      priceL: 115,
+      priceXL: 120,
       description: 'Lorem Ipsum Lorem ipsum',
       category_code: 'BS',
       imgpath: 'app/resources/img/Milktea-Sample2.jpg'
@@ -56,7 +83,9 @@ export class UtilService {
       {
         id: '004',
       title: 'Strawberry MilkTea',
-      price: 120,
+       priceM: 110,
+      priceL: 115,
+      priceXL: 120,
       description: 'Lorem Ipsum Lorem ipsum',
       category_code: 'MY',
       imgpath: 'app/resources/img/Milktea-Sample.jpg'
@@ -64,7 +93,9 @@ export class UtilService {
     {
       id: '005',
       title: 'Kiwi MilkTea',
-      price: 110,
+        priceM: 112,
+      priceL: 111,
+      priceXL: 120,
       description: 'Lorem Ipsum Lorem ipsum',
       category_code: 'MG',
       imgpath: 'app/resources/img/Milktea-Sample4.jpg'
@@ -72,7 +103,9 @@ export class UtilService {
       {
         id: '006',
       title: 'Lychee MilkTea',
-      price: 125,
+       priceM: 110,
+      priceL: 113,
+      priceXL: 120,
       description: 'Lorem Ipsum Lorem ipsum',
       category_code: 'MY',
       imgpath: 'app/resources/img/Milktea-Sample1.jpg'
@@ -80,7 +113,9 @@ export class UtilService {
       {
         id: '007',
       title: 'Lychee MilkTea',
-      price: 123,
+      priceM: 110,
+      priceL: 115,
+      priceXL: 125,
       description: 'Lorem Ipsum Lorem ipsum',
       category_code: 'MG',
       imgpath: 'app/resources/img/Milktea-Sample.jpg'
@@ -88,7 +123,9 @@ export class UtilService {
     {
       id: '008',
       title: 'Lychee MilkTea',
-      price: 125,
+      priceM: 110,
+      priceL: 125,
+      priceXL: 140,
       description: 'Lorem Ipsum Lorem ipsum',
       category_code: 'FT',
       imgpath: 'app/resources/img/Milktea-Sample2.jpg'
@@ -97,6 +134,10 @@ export class UtilService {
      
 
   }
+
+
+   constructor() { }
+
   selectItem(content){
      this.myInput = this.obj.productSample.filter(a => a.id === content)[0];
        this.customerOrder.forEach(a => {

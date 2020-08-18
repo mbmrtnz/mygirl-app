@@ -1,12 +1,58 @@
- <section class="featured spad">
-        <div class="container">
-            <div class="row">
 
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2>Featured Product</h2>
+<mat-sidenav-container class="container-fluid" style="background-color:#f3f3f3" autosize>
+  <mat-sidenav opened mode="side" class="example-sidenav col-2 matnav" mode="side"
+ [fixedInViewport]="true"
+  [fixedTopGap]="64"
+  [fixedBottomGap]="0">
+   <div class="col-12  matnav">
+                    <div class="hero__categories">
+                        <div class="categoryBorder">
+                            <span class="categoryText">Categories</span>
+                        </div>
+                        <ul class="matnav">
+                            <li [ngClass]="{'active': category==='all'}" class="categoryTabs" (click)="category='all'" (click)="FilterData()"  data-filter="*">All</li>
+                            <li [ngClass]="{'active': category==='new'}"  class="categoryTabs"(click)="category='new'" (click)="FilterData()"  data-filter=".FT">Milktea</li>
+                            <li [ngClass]="{'active': category==='BestSeller'}" class="categoryTabs" (click)="category='BestSeller'" (click)="FilterData()" data-filter=".BS">Yogurt</li>
+                            <li [ngClass]="{'active': category==='Yogurt'}"  class="categoryTabs" (click)="category='Yogurt'" (click)="FilterData()" data-filter=".MY">Cheese Cream</li>
+                            <li [ngClass]="{'active': category==='MyGirl'}" class="categoryTabs" (click)="category='MyGirl'" (click)="FilterData()"   data-filter=".MG">Milk Online</li>
+                                <li [ngClass]="{'active': category==='Yogurt'}"  class="categoryTabs" (click)="category='Yogurt'" (click)="FilterData()" data-filter=".MY">Smoothies & Cream</li>
+                                <li [ngClass]="{'active': category==='MyGirl'}" class="categoryTabs" (click)="category='MyGirl'" (click)="FilterData()"   data-filter=".MG">Juice</li>
+
+                            <li [ngClass]="{'active': category==='MyGirl'}" class="categoryTabs" (click)="category='MyGirl'" (click)="FilterData()"   data-filter=".MG">Sand Ice</li>
+                                                      </ul>
                     </div>
-                    <div class="featured__controls">
+                    <br/>
+                    <br/>
+
+                      <ngx-slick-carousel class="carousel" 
+                        #slickModal="slick-carousel" 
+                        [config]="slideConfig">
+                    <div ngxSlickItem *ngFor="let milktea of obj.productSample" [ngClass]="'col-3 mix '+milktea.category_code">
+                                            <div class="featured__item">
+                                              <div class="product__discount__item">
+                                                  <div class="product__discount__item__pic set-bg">
+                                                      <div class="featured__item__pic set-bg"   [ngStyle]="{'background-image': 'url('+ milktea.imgpath +')'}">
+                                                        <div class="product__discount__percent">Best Seller</div>
+                                                        
+                                                     </div>
+                                            </div>
+                                         </div>
+                                     </div>
+
+                       </div>
+                        </ngx-slick-carousel>
+                </div>
+  </mat-sidenav>
+ <mat-sidenav-content >
+    <app-announcement></app-announcement> 
+ <section class="featured spad">
+
+              
+                   
+      
+                <div class="col-xl-12" >
+                  
+                  <!--   <div class="featured__controls">
                         <ul>
                             <li [ngClass]="{'active': category==='all'}" (click)="category='all'" (click)="FilterData()"  data-filter="*">All</li>
                             <li [ngClass]="{'active': category==='new'}" (click)="category='new'" (click)="FilterData()"  data-filter=".FT">New</li>
@@ -14,37 +60,147 @@
                             <li [ngClass]="{'active': category==='Yogurt'}" (click)="category='Yogurt'" (click)="FilterData()" data-filter=".MY">MyGirl Yogurt</li>
                             <li [ngClass]="{'active': category==='MyGirl'}" (click)="category='MyGirl'" (click)="FilterData()"   data-filter=".MG">MyGirl</li>
                         </ul>
-                    </div>
-                        <div class="row featured__filter">
-                    <div *ngFor="let milktea of obj.productSample" [ngClass]="'col-lg-3 col-md-4 col-sm-6 mix '+milktea.category_code">
+                    </div> -->
+                 
+                         <div class="row featured__filter">
+                    <div *ngFor="let milktea of obj.productSample" [ngClass]="'col-xl-3 col-md-3 col-lg-3 col-sm-12 col-xs-12 mix '+milktea.category_code">
                         <div class="featured__item">
-                            <div class="featured__item__pic set-bg"   [ngStyle]="{'background-image': 'url('+ milktea.imgpath +')'}">
+                            <div class="featured__item__pic set-bg "   [ngStyle]="{'background-image': 'url('+ milktea.imgpath +')'}">
                                 <ul class="featured__item__pic__hover">
                                     <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                     <li><a (click)="LoginModal.openMdl()"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a (click)="SLModal.openMdl(milktea.id)" (click)="event.selectItem(milktea.id)"  ><i class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a (click)="SLModal.openMdl()" (click)="event.selectItem(milktea.id)"  ><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
                             <div class="featured__item__text">
-                                <h6><a href="#">{{milktea.title}}</a></h6>
+                                <h6 class="listText"><a href="#">{{milktea.title}}</a></h6>
                                 <h5>{{'₱ ' +milktea.price}}</h5>
                             </div>
                         </div>
                     </div>
                   
                 
-            </div>
-        </div>
+            </div>  
+                   
+          </div>
 
-     </div>
-  </div>
 
+   
     </section>
+     </mat-sidenav-content> 
+     <mat-sidenav opened mode="side" #drawer class="example-sidenav col-3" id="checkoutPreText" position="end" 
+      [fixedInViewport]="true"
+       [fixedTopGap]="50">
+   <span class="default"><p> No Items in your Cart Yet </p> </span>
+   <span id="checkOutPrice"><p> Total</p> </span>
+   <button type="button" class="btn btn-success btn-lg btn-block">Checkout</button>
+  </mat-sidenav>
+
+</mat-sidenav-container >
+
 
 
 <app-modal #SLModal class="d-none" >
+  
+    <div body style="min-width: 100px !important;">       
+     <div class="my-image">
+                      <img  [attr.src]="event.myInput.imgpath" class="img-fluid shop-image" alt="Milktea Image" >
+         </div>      
+      <table class="table table-image">
+        
+            <thead>
+             
+          </thead>
+          <tbody>
+        
+           <tr>
+             <td>
+              Select Variant
+             </td>
+
+             <td >
+               <!--  <p-radioButton classs="rbutton" name="Size" value="Medium" [(ngModel)]="teaSize" inputId="size1"></p-radioButton>
+                <label for="size1" classs="rbutton">Medium</label>
+              </td>
+              <td>
+                <span >{{teaSize}}</span>
+                <p-radioButton   name="Size" value="Large" [(ngModel)]="teaSize" inputId="size2"></p-radioButton>
+                <label for="size2"  classs="rbutton">Large</label>
+              </td>
+              <td>
+                 <p-radioButton name="Size" value="XL" [(ngModel)]="teaSize" inputId="size3"></p-radioButton>
+                <label for="size3" classs="rbutton">XL</label>
+                 -->
+                   <p>{{event.sizeKey}}</p>
+
+             <label *ngFor="let size of event.cupSize" for="ice.key" class="labelMargin">       
+              <input  type="radio"   class="radio-inline" [value]="size.name" [(ngModel)]="event.sizeKey" /> <span>{{' '+size.name}}</span>
+            </label>   
+              
+              </td>
+           </tr>
+           <tr>
+              <td>
+                Extras:
+              </td>
+              <td>
+                <div *ngFor="let extras of event.addOns" class="p-field-checkbox">
+      
+
+                   <span>{{ extras.selected }}</span>
+                   <input type="checkbox" [(ngModel)]="extras.selected"/><label [for]="extras.key">{{extras.name}} {{extras.price}}</label>
+                </div>
+              </td>
+              <td>
+                Ice level:
+              </td>
+            <td>
+          
+              <div *ngFor="let ice of event.iceLevel" >
+                 <label for="ice.key" class="radio-inline">
+                 <input type="radio"[value]="ice.name" [(ngModel)]="event.iceKey">   
+           {{ice.name}} </label>
+                    
+              </div> 
+            </td>
+
+           </tr>
+               <tr>
+              <td>
+                  Quantity:
+              </td>
+                 <td class="qty">
+                <div class="input-group">
+                    <input [disabled]="event.value.quantity == 0" type="button"  value="-" class="button-minus" (click)="event.quantityCalc('min')" data-field="quantity">
+                    <input type="number" step="1" max="" [ngModel]="event.value?.quantity" (ngModelChange)="event.value.quantity=$event" (change)="event.quantityCalc('man')" name="quantity" class="quantity-field">
+                    <input type="button" value="+" class="button-plus" data-field="quantity" (click)="event.quantityCalc('add')">
+                </div>
+              </td>
+
+            </tr>
+           <tr>
+            <td>
+            Special Instruction:
+           </td>
+           <td> <textarea pInputTextarea [cols]="100" pInputTextarea autoResize="autoResize"></textarea> </td>
+           </tr>
+          </tbody>
+        </table> 
+         <div class="d-flex justify-content-end">
+         
+        </div>
+    </div>
+    <div footer class="w-100 text-center">
+     <div class="modal-footer border-top-0 d-flex justify-content-between">
+        <button type="button" class="btn btn-secondary" (click)="SLModal.closeMdl()" >Close</button>
+        <button (click)="SLModal.closeMdl()" type="button" class="btn btn-success"  (click)="sampleFunction()">Add to Cart</button>
+      </div>
+    </div>
+</app-modal> 
+
+<app-modal #SLModal2 class="d-none" >
   <div header>
-   <h5 class="modal-title" id="exampleModalLabel">Your Shopping Cart {{TotalPrice}}</h5> 
+   <h5 class="modal-title" id="exampleModalLabel">Your Shopping Carts {{TotalPrice}}</h5> 
     </div>
     <div body style="min-width: 100px !important;">             
       <table class="table table-image">

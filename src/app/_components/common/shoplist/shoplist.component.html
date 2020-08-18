@@ -1,22 +1,15 @@
-   
-    
-<section class="featured spad">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-lg-12">
+<div class="container-fluid">
+  
+<div class="row">
+  <div class="col-md-2"></div>
+        <div class="col-md-8">
                     <div class="section-title">
                         <h2>Featured Product</h2>
                     </div>
 
                     <ngx-slick-carousel class="carousel" 
                         #slickModal="slick-carousel" 
-                        [config]="slideConfig" 
-                        
-                        >
-      <!--   <div ngxSlickItem *ngFor="let slide of slides" class="slide">
-              <img src="{{ slide.img }}" alt="" width="100%"> -->
-
+                        [config]="slideConfig">
                     <div ngxSlickItem *ngFor="let milktea of obj.productSample" [ngClass]="'col-lg-3 col-md-4 col-sm-6 mix '+milktea.category_code">
                                             <div class="featured__item">
                                               <div class="product__discount__item">
@@ -31,134 +24,8 @@
 
                             </div>
                         </ngx-slick-carousel>
-                    
-                    <div class="featured__controls">
-                        <ul>
-                            <li [ngClass]="{'active': category==='all'}" (click)="category='all'" (click)="FilterData()"  data-filter="*">All</li>
-                            <li [ngClass]="{'active': category==='new'}" (click)="category='new'" (click)="FilterData()"  data-filter=".FT">New</li>
-                            <li [ngClass]="{'active': category==='BestSeller'}" (click)="category='BestSeller'" (click)="FilterData()" data-filter=".BS">Best Seller</li>
-                            <li [ngClass]="{'active': category==='Yogurt'}" (click)="category='Yogurt'" (click)="FilterData()" data-filter=".MY">MyGirl Yogurt</li>
-                            <li [ngClass]="{'active': category==='MyGirl'}" (click)="category='MyGirl'" (click)="FilterData()"   data-filter=".MG">MyGirl</li>
-                        </ul>
-                    </div>
-                        <div class="row featured__filter">
-	                <div *ngFor="let milktea of obj.productSample" [ngClass]="'col-lg-3 col-md-4 col-sm-6 mix '+milktea.category_code">
-	                    <div class="featured__item">
-	                        <div class="featured__item__pic set-bg"   [ngStyle]="{'background-image': 'url('+ milktea.imgpath +')'}">
-	                            <ul class="featured__item__pic__hover">
-	                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-	                                <li><a (click)="LoginModal.openMdl()"><i class="fa fa-retweet"></i></a></li>
-	                                <li><a (click)="SLModal.openMdl(milktea.id)" (click)="selectItem(milktea.id)"  ><i class="fa fa-shopping-cart"></i></a></li>
-	                            </ul>
-	                        </div>
-	                        <div class="featured__item__text">
-	                            <h6><a href="#">{{milktea.title}}</a></h6>
-	                            <h5>{{'₱ ' +milktea.price}}</h5>
-	                        </div>
-	                    </div>
-	                </div>
-                  
-	            
-            </div>
-        </div>
-           <div class="section-title col-md-12">
-               <h2>Know us better</h2>
-            </div>
-         <div class="col-md-4" style="max-height: 500px !important" *ngFor="let link of event.socMedLink">
-
-      <iframe  [src]="link | safe" height="700" style="border:none;overflow:hidden; width: 100%; " scrolling="yes" frameborder="1" allowTransparency="true" allow="encrypted-media">
-      </iframe></div>
-     </div>
-
-  </div>
-
-    </section>
-
-    <!--  Pages Tab-->
-
-
-
-
-
-<app-modal #SLModal class="d-none" >
-  <div header>
-   <h5 class="modal-title" id="exampleModalLabel">Your Shopping Cart {{TotalPrice}}</h5> 
-    </div>
-    <div body style="min-width: 100px !important;">             
-      <table class="table table-image">
-          <thead>
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">Product</th>
-              <th scope="col">Price</th>
-              <th scope="col">Qty</th>
-              <th scope="col">Total</th>
-           
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="w-25">
-                <img  [attr.src]="myInput.imgpath" class="img-fluid img-thumbnail" alt="Milktea Image">
-              </td>
-              <td *ngIf="myInput">{{myInput.title}} </td>
-              <td *ngIf="myInput">{{myInput.price}} </td>
-              <td class="qty">
-                <div class="input-group">
-                    <input [disabled]="value.quantity == 0" type="button"  value="-" class="button-minus" (click)="quantityCalc('min')" data-field="quantity">
-                    <input type="number" step="1" max="" [ngModel]="value?.quantity" (ngModelChange)="value.quantity=$event" (change)="quantityCalc('man')" name="quantity" class="quantity-field">
-                    <input type="button" value="+" class="button-plus" data-field="quantity" (click)="quantityCalc('add')">
-                </div>
-              </td>
-              <td *ngIf="value.price">{{value.price}}</td>
-            
-            </tr>
-          </tbody>
-        </table> 
-         <div class="d-flex justify-content-end">
-          <h5 *ngIf="TotalPrice">Total: <span class="price text-success" >{{TotalPrice}}</span></h5>
-        </div>
-    </div>
-    <div footer class="w-100 text-center">
-     <div class="modal-footer border-top-0 d-flex justify-content-between">
-        <button type="button" class="btn btn-secondary" (click)="SLModal.closeMdl()" >Close</button>
-        <button type="button" class="btn btn-success" (click)="quantityCalc('submitOrder')">Add to Cart</button>
+                   
+   
       </div>
-    </div>
-</app-modal> 
-
-
-<app-modal #LoginModal class="d-none">
-
-    <div body style="min-width: 300px !important;">             
-     
-    
-        
-        
-            <h5 class="card-title text-center">Sign In</h5>
-            <form class="form-signin">
-              <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                <label for="inputEmail">Email address</label>
-              </div>
-
-              <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                <label for="inputPassword">Password</label>
-              </div>
-
-              <div class="custom-control custom-checkbox mb-3">
-                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                <label class="custom-control-label" for="customCheck1">Remember password</label>
-              </div>
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
-              <hr class="my-4">
-              <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
-              <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
-            </form>
-         
-    </div>
- 
-</app-modal>
-
-
+      </div>           
+</div>

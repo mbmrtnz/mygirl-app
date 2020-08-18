@@ -1,31 +1,26 @@
 
 <header class="header">
+<div class="container-fluid" >
+    <div class="row">
+        <mat-toolbar class="headerDefault">
+            <div class="col-lg-1"></div> 
 
-    <div class="container" style="max-width: 1400px !important;">
-        <div class="row">
-            <div class="col-lg-2">
-                <div class="header__logo">
-                    <a [routerLink]="['/home']"><img (click)="selectedTab = 1" src="app/resources/img/header-logo-temp.png" alt="header-logo-temp.png" style="max-width: 75%;"></a>
-                </div>
+            <div class="col-lg-2" style="height: 80%" class="MyGirl_Logo">
+                                 <a [routerLink]="['/home']"><img (click)="selectedTab = 1" src="app/resources/img/header-logo-temp.png" alt="header-logo-temp.png" style="max-height: 100%; object-fit:contain; padding: 0px !important; margin: 0px !important"><h1 class="MyGirl_Text" style="display: inline-block; color: white; margin-left: 10px;">MyGirl Milktea </h1></a>
+      
             </div>
-            <div class="col-lg-7">
+            <div class="col-6"></div>
+            <div class="col-lg-1">
                 <nav class="header__menu">
                     <ul>
                         <li [routerLinkActive]="['active']"><a [routerLink]="['/home']">Home</a></li>
-                        <li [routerLinkActive]="['active']"><a [routerLink]="['/shop']">Shop</a></li>
-                        <li><a>Pages</a>
-                            <ul class="header__menu__dropdown">
-                                <li><a>Shop Details</a></li>
-                                <li><a>Shopping Cart</a></li>
-                                <li><a>Check Out</a></li>
-                                <li><a>Blog Details</a></li>
-                            </ul>
-                        </li>
+                        <li [routerLinkActive]="['active']"><a [routerLink]="['/shop']">Product</a></li>
+                        <li [routerLinkActive]="['active']"><a [routerLink]="['/shop']">Order</a></li>
                         <li [routerLinkActive]="['active']"><a [routerLink]="['/about']">About Us</a></li>
                     </ul>
                 </nav>
             </div>
-            <div class="col-lg-3">
+           <!--  <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
                         <li><a><i class="fas fa-heart"></i> <span>1</span></a></li>
@@ -33,33 +28,18 @@
                     </ul>
                     <div class="header__cart__price">Price: <span>{{orderList[orderList.length-1]?.itemGrandTotal}}</span></div>
                 </div>
-            </div>
-        </div>
+            </div> -->
+            </mat-toolbar>
+          </div>
         <div class="humberger__open">
             <i class="fa fa-bars"></i>
         </div>
-    </div>
-</header>
-
-<!-- <div>
-    <div class="row">
-        <div class="col">
-            <router-outlet></router-outlet>
         </div>
-    </div>
-</div> -->
 
-<div class="container-fluid" style="padding: 0 !important; margin: 0 !important;">
-    <div class="row" style="padding: 0 !important; margin: 0 !important;">
-        <div class="col-md-12">
-            <router-outlet></router-outlet>
-        </div>
-      
-    </div>
-</div>
+ </header>
 
-
-
+ <router-outlet></router-outlet>
+  
     <app-modal #cartMdl class="d-none">
       <div header style="max-width: 50% !important;">
        <h5 class="modal-title" id="exampleModalLabel">Your Shopping Cart {{TotalPrice}}</h5> 
@@ -107,3 +87,4 @@
       </div>
     </div>
 </app-modal>
+

@@ -27,6 +27,5 @@ export class AppComponent {
 
   openCart() {
   	this.orderList  = this.service.customerOrder;
-  
   }
 }

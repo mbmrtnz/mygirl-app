@@ -1,3 +1,101 @@
+.borders {
+  border-style: 20px solid black;
+  
+
+}
+
+
+/*Checkout Tab*/
+#checkoutPreText{
+  padding: 0px !important;
+
+
+}
+#checkoutPreText .default
+{
+ text-align: center;
+   padding: 50px !important;
+
+}
+#checkOutPrice{
+  text-align: left;
+  padding: 0px !important;
+}
+
+
+/*Category Navigation*/
+.matnav{
+  margin:0px !important;
+  padding: 0px !important;
+   overflow: hidden; /* Hide scrollbars */
+
+}
+.categoryBorder{
+    background: black;
+    position: relative;
+    padding: 10px 25px 10px 40px;
+    cursor: pointer;
+    border: 1px solid white;
+
+}
+.categoryText{
+  color: white;
+  font-family: "Cairo", sans-serif;
+}
+.categoryTabs{
+    border-bottom: 1px solid #cccccc;
+    margin: 0px !important;
+    padding: 10px;
+}
+/*Item List */
+.itemFrame{
+  border-style: 5px solid black;
+  border-radius:15px;
+}
+
+.example-container {
+  width: 500px;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 20px;
+}
+
+
+.labelMargin {
+    margin-right: 20px !important;
+
+
+}
+.shop-image{
+   width: 100%;
+    max-height: 300px;  
+  object-fit: contain;
+}
+.my-image{
+  width:100%; 
+  height:100%;
+  background-size: cover;
+}
+.product__discount__item__pic .product__discount__percent {
+    position: absolute;
+    background: red;
+    color: white;
+    transform: rotate(-45deg);
+    text-align: center;
+    top: 10px;
+    left: -75px;    
+    width:200px;  
+}
 .nice-select {
   -webkit-tap-highlight-color: transparent;
   background-color: #fff;

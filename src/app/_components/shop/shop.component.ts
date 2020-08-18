@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import mixitup from 'mixitup';
 import { UtilService } from '../../_services/util.service';
+    
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
+  teaSize: any = null;
+  extra1: any = {};
+  e1 : '';
 	 obj: any = {
 
   	productSample:[
@@ -79,6 +83,21 @@ export class ShopComponent implements OnInit {
 
   }
 
+   slideConfig = {
+  "slidesToShow": 1, 
+  "slidesToScroll": 1, 
+  dots:false,
+  autoplay:true,
+  autoplaySpeed: 5000,
+ // 'responsive': [
+ //  { 'breakpoint': 1600, 'settings': { 'slidesToShow': 4, 'slidesToScroll': 4, } },
+ //  { 'breakpoint': 1000, 'settings': { 'slidesToShow': 3, 'slidesToScroll': 3, } }, 
+ //  { 'breakpoint': 600, 'settings': { 'slidesToShow': 1, 'slidesToScroll': 1, } } 
+ //  ]
+      };
+  sampleFunction(){
+    alert(this.e1);
+  }
   FilterData() {
   	const mixer = mixitup('.featured__filter');
   }

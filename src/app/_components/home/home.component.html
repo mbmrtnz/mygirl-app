@@ -1,19 +1,35 @@
-<!-- <div class="container">
-	<div class="row"> -->
-		
-			<app-announcement></app-announcement>
-			<app-shoplist></app-shoplist>
-		
-<!-- <div  class="col-sm-5 col-md-5"> -->
-	<!-- <div class="fb-post" 
-      data-href="https://www.facebook.com/mygirlmilkteamolitoalabang/photos/a.325912167938878/604695600060532/?type=3"
-      data-width="500"></div> -->
-<!-- </div> -->
-			
-      			
-			<!-- <iframe width="560" height="200" src="https://www.youtube.com/embed/2eq7q5Jyp2E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-		
+<div class="container-fluid">
+		<div class="row">
+			<div class="col-12" style="padding: 0px !important">
+					<ngb-carousel *ngIf="images">
+			  		  	<ng-template ngbSlide *ngFor="let ads of images" >
+			    			<div [ngStyle]="{'height': innerWidth+'px'}">
+			    			    <img [src]="ads" alt="MyGirl PH"  width="100%" style="margin: 0px !important; padding: 0px !important; ">
+			      		 	</div>
+						 </ng-template>
+					</ngb-carousel>	
+					
+			</div>
 
-	<!-- </div>
-</div> -->
+			<div class="col-12 myGirlHappinesBG" style="min-height: 350px !important;">
+				<div class="row">
+				<div class="col-1"></div>
+				<div class="col-2">				
+						<img src="app/resources/img/MyGirl-Thumbnail.jpg" class="myGirlPic"  style=" object-fit: contain;">
+				</div>		
+				<div class="col-5 MyGirl-Happiness">
+						<span class="happiness_one">YOU CAN'T BUY HAPPINESS  BUT YOU CAN BUY</span><br>
+					
+						<span class="happiness_Two">MYGIRL MILKTEA</span><br>
+						<span class="happiness_one">AND THAT'S KIND OF THE SAME THING</span><br>
+							<br>
+						<button type="button" class="btn orderNowBTN">ORDER NOW</button>
+				</div>
+				<div class="col-4">
+					<img src="app/resources/img/LOGO.png" class="myGirlPic"  style=" object-fit: contain;">
+				</div>
+			</div>
+			</div>
+		</div>
+</div>
 
