@@ -1,35 +1,92 @@
+<!--First tab-->
 <div class="container-fluid">
 		<div class="row">
 			<div class="col-12" style="padding: 0px !important">
 					<ngb-carousel *ngIf="images">
 			  		  	<ng-template ngbSlide *ngFor="let ads of images" >
-			    			<div [ngStyle]="{'height': innerWidth+'px'}">
-			    			    <img [src]="ads" alt="MyGirl PH"  width="100%" style="margin: 0px !important; padding: 0px !important; ">
+			    			<div [ngStyle]="{'height': innerWidth+'px','background-image': 'url('+ads+')','text-align': 'center'} " class="coverBackground" >
+			    			    <!-- <img [src]="ads" alt="MyGirl PH"  width="100%" style="margin: 0px !important; padding: 0px !important; "> -->
+			    			<!--      <div class="" style=" background-size:cover; height: 100%; background-repeat: no-repeat;background-position: center center;"   [ngStyle]="{'background-image': 'url('+ads+')'}"></div>  -->
+			    			<img src="app/resources/img/LOGO.png" class="myGirlBannerLogo"  style="object-fit: cover;">
+
+
+			    					<div class="">	<button type="button" class="btn btn-sm orderNowBTN" style="margin-top: 20px;">ADD TO CART</button></div>
+			    			    	 <div class="covertText"><span class="coverText">Get your Favorite MyGirl Milktea Easier</span></div>	
 			      		 	</div>
+
 						 </ng-template>
 					</ngb-carousel>	
+
+			
+			</div>
+<!--second tab-->
+			<div class="col-12 myGirlHappinesBG">
+				<div class="row" >
+				
+				<div class="col-3 myGirlPicLeft"></div> 
+				<div class="col-5 MyGirl-Happiness" style="margin: 0px !important;">
+						<span class="happiness_one mvhappiness_one">YOU CAN'T BUY HAPPINESS  BUT YOU CAN BUY</span><br>
 					
+						<span class="happiness_Two mvhappiness_Two">MYGIRL MILKTEA</span><br>
+						<span class="happiness_one mvhappiness_one">AND THAT'S KIND OF THE SAME THING</span>
+					
+			<!-- 			<button type="button" class="btn btn-sm btn xs orderNowBTN">ORDER NOW</button> -->
+				</div>
+				<div class="col-4 myGirlPicRight">
+				
+				</div>
+			</div>
 			</div>
 
-			<div class="col-12 myGirlHappinesBG" style="min-height: 350px !important;">
-				<div class="row">
-				<div class="col-1"></div>
-				<div class="col-2">				
-						<img src="app/resources/img/MyGirl-Thumbnail.jpg" class="myGirlPic"  style=" object-fit: contain;">
-				</div>		
-				<div class="col-5 MyGirl-Happiness">
-						<span class="happiness_one">YOU CAN'T BUY HAPPINESS  BUT YOU CAN BUY</span><br>
+<!--Third tab-->
+		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 myGirlBestBG" style="resize: vertical;"> 
+			<!-- 	<img src="app/resources/img/BestDot.png" class="myGirlPic"  style=" object-fit: contain;"> -->
+			<div class="container">
+					<h2 style="color:white">BEST SELLERS</h2>
+						<ngx-slick-carousel class="carousel " 
+                   		     #slickModal="slick-carousel" 
+                    		    [config]="slideConfig2">
+
+                				    <div ngxSlickItem  style="" class="mvDrinksCarousel bestDotBG mvbestDotBG"  *ngFor="let milktea of utilS.drinksCategory" [ngClass]="'col-xl-3 col-md-1 col-lg-1 '+milktea.category_code">
+                      		       <!--     <div class="col-xl-2" style="background-image: url('app/resources/img/BestDot.png'); background-size: 50%; background-repeat: no-repeat; background-position: center center;height: 100%; width: 100%;  ">  -->
+										<!-- 		<img [src]="'app/resources/img/'+milktea.path+'.png'" class=""  style=" object-fit: contain;"> -->
+										<img src="app/resources/img/Best-2.png" class=""  style=" object-fit: contain;">
+											<span>Flavor</span><br>
+												<button type="button" class="btn btn-sm orderNowBTN">ADD TO CART</button>	
+										
+                     		  		</div>
+
+                     		  		
+                 		  </ngx-slick-carousel>
+
+
+<!-- 
+					<div class="col-xl-2" style="background-image: url('app/resources/img/BestDot.png'); background-size: 50%; background-repeat: no-repeat; background-position: center center;height: 100%; width: 100%;  "> 
+						<img src="app/resources/img/Best-1.png" class="myGirlPic"  style=" object-fit: contain;">
+					</div> -->
 					
-						<span class="happiness_Two">MYGIRL MILKTEA</span><br>
-						<span class="happiness_one">AND THAT'S KIND OF THE SAME THING</span><br>
-							<br>
-						<button type="button" class="btn orderNowBTN">ORDER NOW</button>
-				</div>
-				<div class="col-4">
-					<img src="app/resources/img/LOGO.png" class="myGirlPic"  style=" object-fit: contain;">
-				</div>
-			</div>
-			</div>
+				
+			</div>	
 		</div>
-</div>
+<!--fourth tab-->
 
+		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 myGirlDrinksBG"> 
+			<div class="container">
+			<span class="myGirlDrinkText mvMyGirlDrinkText" style="background-image: url('app/resources/img/Drink_Symbol.png');"><span style="margin-left: 50px; margin-top:10px; font-family: kozuka gothic pro; " class="mvMyGirlDrinkText">CHOOSE YOUR DRINKS </span></span> 
+						  <ngx-slick-carousel class="carousel " 
+                   		     #slickModal="slick-carousel" 
+                    		    [config]="slideConfig">
+
+                				    <div ngxSlickItem  style="display: flex;  justify-content: space-between;"  class="mvDrinksCarousel" *ngFor="let milktea of utilS.drinksCategory" [ngClass]="'col-xl-2 col-md-1 col-lg-1 '+milktea.category_code">
+                      		       <!--     <div class="myGirlDrinkPic"   [ngStyle]="{'background-image': 'url(app/resources/img/'+milktea.path+'.png)'}"></div> -->
+                      		       <img [src]="'app/resources/img/'+milktea.path+'.png'" class=""  style=" object-fit: contain;">
+                     		  		</div>
+                     		  		
+                 		  </ngx-slick-carousel>
+               </div>
+			</div>
+
+
+		</div> <!-- row ending -->
+</div> <!-- Container ending -->
+		

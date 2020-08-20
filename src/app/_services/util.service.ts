@@ -32,6 +32,23 @@ export class UtilService {
  {key:'s2',name:'L' },
  {key:'s3',name:'XL'}]
 
+bestDrinks: any[] =[
+{Key:'B1',Name:'Milktea',path:'D_MilkTea'},
+{Key:'B2',Name:'Yogurt',path:'D_Yogurt'},
+{Key:'B3',Name:'Juice',path:'D_Juice'},
+{Key:'B4',Name:'Milk Online',path:'D_MilkOnline'},
+{Key:'B5',Name:'Cheese Cream',path:'D_CreamCHeese'},
+{Key:'B6',Name:'Smoothies & Cream',path:'D_Smoothies'}]
+
+
+ drinksCategory: any[] =[
+{Key:'D1',Name:'Milktea',path:'D_MilkTea'},
+{Key:'D2',Name:'Yogurt',path:'D_Yogurt'},
+{Key:'D3',Name:'Juice',path:'D_Juice'},
+{Key:'D4',Name:'Milk Online',path:'D_MilkOnline'},
+{Key:'D5',Name:'Cheese Cream',path:'D_CreamCHeese'},
+{Key:'D6',Name:'Smoothies & Cream',path:'D_Smoothies'},
+{Key:'D7',Name:'Sand Ice',path:'D_Sand_Ice'}]
 
  iceLevel: any[] = [
  {key:'i1',name:'25%'},

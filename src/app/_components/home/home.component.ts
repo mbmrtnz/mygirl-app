@@ -18,7 +18,32 @@ export class HomeComponent implements OnInit {
     config.showNavigationArrows = false;
     config.showNavigationIndicators =false;}
 
+ slideConfig2 = {
+  "slidesToShow": 4, 
+  "slidesToScroll": 1,
+  autoplay:true,
+  autoplaySpeed: 5000,
+  nextArrow: false,
+  prevArrow: false,
+ 'responsive': [
+  { 'breakpoint': 1600, 'settings': { 'slidesToShow': 4, 'slidesToScroll': 4,  'dots':true,} },
+  { 'breakpoint': 1000, 'settings': { 'slidesToShow': 3, 'slidesToScroll': 3, 'dots':true,} }, 
+  { 'breakpoint': 600, 'settings': { 'slidesToShow': 1, 'slidesToScroll': 1, 'dots':true,} } 
+  ]
+      };
 
+
+ slideConfig = {
+  "slidesToShow": 7, 
+  "slidesToScroll": 1,
+  autoplay:true,
+  autoplaySpeed: 5000,
+  nextArrow: false,
+  prevArrow: false,
+ 'responsive': [
+  { 'breakpoint': 1600, 'settings': { 'slidesToShow': 4, 'slidesToScroll': 4,  'dots':true,} },
+  { 'breakpoint': 1000, 'settings': { 'slidesToShow': 3, 'slidesToScroll': 3, 'dots':true,} }, 
+  { 'breakpoint': 600, 'settings': { 'slidesToShow': 1, 'slidesToScroll': 1, 'dots':true,} }]};
      images = [1,2,3].map((n) => `/app/resources/img/Header${n}.jpg`);
 
   ngOnInit() {

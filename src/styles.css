@@ -31,6 +31,51 @@
 /* Template default CSS
 /*----------------------------------------*/
 
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+		.mvDrinksCarousel{
+			margin-left: auto;
+			margin-right: auto;
+			background-position: center center;
+			
+			
+		}
+		.mvMyGirlDrinkText{
+		font-size: 25px;
+		}
+		.mvbestDotBG{
+			padding-bottom: 0px !important; 
+
+		}
+		.mvhappiness_one{
+		font-family: kozuka gothic pro;
+		font-size:5px !important;
+		}
+
+
+		.mvhappiness_Two{
+				font-family: kozuka gothic pro;
+				font-size: 14px !important;
+				
+		}
+
+
+
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+/*@media only screen and (min-width: 600px) {...}*/
+
+/* Medium devices (landscape tablets, 768px and up) */
+/*@media only screen and (min-width: 768px) {...}*/
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}
+
 .test{
 	background-color: green;
 	border-color: blue;
