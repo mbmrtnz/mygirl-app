@@ -1,15 +1,37 @@
-.homeMessage{
-		width: 100%;
-}
+
 .covertText{
   position: absolute;
   bottom: 0px;
  padding: 0px !important;
  margin-bottom: 0px !important;
   color:white;
- background-color:  rgba(0, 0, 0, 0.5);
-width: 100%;
-text-align: center;
+	 background-color:  rgba(0, 0, 0, 0.5);
+	width: 100%;
+	text-align: center;
+
+}
+.searchIcon{
+	background-image: url('/app/resources/img/searchIcon.png'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    background-position: right center;
+}
+.coverInputIcon{
+/*	margin-bottom: 20px !important;*/
+
+}
+.coverInput{
+
+	 -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+     border-radius: 20px;
+     border: 1px solid #2d9fd9;
+     color: #a0d18c;
+     width: 50vw;
+     height:50px;
+     padding-left: 10px;
+     margin-top: 20px !important;
 
 }
 .coverBackground{
@@ -18,25 +40,25 @@ text-align: center;
 
 }
 .myGirlBannerLogo{
-	height: 50vh;
+	height: 50%;
 	
   margin-top: 10%;
   margin-bottom:  auto;
   border:1px solid white;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.5);
 
 
 }
 .myGirlBannerLogo:hover{
-	height: 50vh;
+	height: 50%;
 	
   margin-top: 10%;
   margin-bottom:  auto;
   border:1px solid white;
   border-radius: 50%;
   
-  background-image: url('/app/resources/img/Kenniel.gif'); 
+  
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -208,24 +230,34 @@ text-align: center;
   left: 40px;
   top: 10px;
 }
-/*
-<div class="myGirlDrinksBG ">
-							<h2 class="myGirlDrinkText" style="background-image: url('app/resources/img/Drink_Symbol.png');"><span style="margin-left: 50px; margin-top:10px;">CHOOSE YOUR DRINKS </span></h2> 
+.footerBG{
 
-				<div class="row">				
-				<div class="col-xl-1"></div>
-				<div class="col-xl-1  col-xs-3">
-					<div class="myGirlDrinkPic set-bg " style="background-image: url('app/resources/img/D_CreamCHeese.png');object-fit: scale-down; background-repeat: no-repeat;" ></div>
-					
-				</div> 
-				<div class="col-xl-1  col-xs-3">
-					<div class="myGirlDrinkPic set-bg " style="background-image: url('app/resources/img/D_CreamCHeese.png');object-fit: scale-down; background-repeat: no-repeat;" ></div>
-					
-				</div> 
-				<div class="col-xl-1  col-xs-3">
-					<div class="myGirlDrinkPic set-bg " style="background-image: url('app/resources/img/D_CreamCHeese.png');object-fit: scale-down; background-repeat: no-repeat;" >test</div>
-					
-				</div> 
-				</div>
-					</div>
-							</div>*/
+		  background: url('/app/resources/img/BG3.jpg');
+		    background-repeat: repeat-y;
+ 		  background-size: cover;
+ 		  width: 100%;
+ 		  resize:vertical;
+ 		  text-align: center;
+ 		  color: white;
+
+
+}
+
+.footerLinks{
+	color: white;
+	padding: 0px !important;
+	margin: 0px  !important;
+
+}
+.footerHeader{
+	color: white;
+	padding: 0px !important;
+	margin: 0px  !important;
+	font-weight: bold;
+
+}
+.footerSocialIcon{
+	height: 30px;
+	margin-right: 10px;
+
+}

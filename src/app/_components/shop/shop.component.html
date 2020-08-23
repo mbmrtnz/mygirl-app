@@ -1,40 +1,107 @@
+<!--  <button mat-icon-button class="navigationIcon" (click)="snav.toggle()"><mat-icon>menu</mat-icon></button> -->
 
-<mat-sidenav-container class="container-fluid" style="background-color:#f3f3f3" autosize>
-  <mat-sidenav opened mode="side" class="example-sidenav col-2 matnav" mode="side"
+<!-- mobile tool -->
+<div class="navigationWrapper" [style.display]="mobileQuery.matches ? '' : 'none'">
+  <button style="border-radius: 50%; padding: 0px; background-color: rgba(255,255,255,0.5);"  mat-icon-button class="navigationIcon btn btn-link" (click) = toggleDisplay()>
+    <img style="height: 50px; width: 50px; border-radius: 50%;" src="/app/resources/img/LOGO.png">
+  </button>
+      <div [hidden] = "isShow" (click) = toggleDisplay()>
+     
+        <button type="button" style="border-radius: 50%; padding: 0px !important;" class=" test11 searchIcon btn-link " (click)="toggleSearch()" >
+          <img src="/app/resources/img/search.png" style="border-radius: 50%; height: 25px;">
+        </button> <span class="searchText">Search</span>
+      
+        <button type="button" style="border-radius: 50%; padding: 0px !important;" class="categoryIcon btn-link " (click)="snav.toggle()">
+          <img src="/app/resources/img/Drink_Symbol.png"  style="border-radius: 50%; height: 25px;">
+        </button> <span class="categoryIconText " (click)="snav.toggle()" >Categories</span>
+
+        <button type="button" style="border-radius: 50%; padding: 0px !important;" class="cartNavIcon btn-link " (click)="myCart.toggle()" >
+          <img src="/app/resources/img/cartIcon.png"  style="border-radius: 50%; height: 25px;">
+        </button> <span class="cartNavIconText " (click)="myCart.toggle()" >Cart</span>
+
+         <button type="button" style="border-radius: 50%; padding: 0px !important;" class="wishList btn-link " (click)="toggleCartNav(myCart.opened)">
+                  <i class="fa fa-heart" aria-hidden="true"></i>
+        </button> <span class="wishListIconText ">Wish List</span>
+      </div>
+      <button  [hidden] = "searchShow"  class=" btn btn-link searchClose" (click)="toggleSearch()" ><i class="searchCloseIcon fa fa-times"></i></button>
+  <!--     <input [hidden] = "searchShow" class="searchInput" type="text" > -->
+
+  <form class="example-form">
+  <input type="text"
+         placeholder="Find your Favorites!"
+         [formControl]="control"
+         [matAutocomplete]="auto"
+         class="searchInput"
+         [hidden] = "searchShow">
+  <mat-autocomplete #auto="matAutocomplete">
+  
+    <mat-option style="clear:both;" *ngFor="let milktea of filteredProduct | async" [value]="milktea.title">
+      {{milktea.title}}
+    </mat-option>
+    
+  </mat-autocomplete>
+</form>
+     
+</div>
+
+
+<!-- end -->
+
+<mat-sidenav-container  class="container-fluid" style="background-color:#f3f3f3" autosize class="example-sidenav-container"
+                         [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+
+  <mat-sidenav  #snav [opened]="mobileQuery.matches ? 'false' : 'true'"  mode="side" class="example-sidenav col-xl-2 col-lg-2 col-md-12 col-xs-12 matnav" mode="side"
  [fixedInViewport]="true"
   [fixedTopGap]="64"
-  [fixedBottomGap]="0">
+  [fixedBottomGap]="0" [mode]="mobileQuery.matches ? 'over' : 'side'"
+                 [fixedInViewport]="mobileQuery.matches"
+                 [autoFocus]="true">
    <div class="col-12  matnav">
                     <div class="hero__categories">
                         <div class="categoryBorder">
-                            <span class="categoryText">Categories</span>
-                        </div>
-                        <ul class="matnav">
-                            <li [ngClass]="{'active': category==='all'}" class="categoryTabs" (click)="category='all'" (click)="FilterData()"  data-filter="*">All</li>
-                            <li [ngClass]="{'active': category==='new'}"  class="categoryTabs"(click)="category='new'" (click)="FilterData()"  data-filter=".FT">Milktea</li>
-                            <li [ngClass]="{'active': category==='BestSeller'}" class="categoryTabs" (click)="category='BestSeller'" (click)="FilterData()" data-filter=".BS">Yogurt</li>
-                            <li [ngClass]="{'active': category==='Yogurt'}"  class="categoryTabs" (click)="category='Yogurt'" (click)="FilterData()" data-filter=".MY">Cheese Cream</li>
-                            <li [ngClass]="{'active': category==='MyGirl'}" class="categoryTabs" (click)="category='MyGirl'" (click)="FilterData()"   data-filter=".MG">Milk Online</li>
-                                <li [ngClass]="{'active': category==='Yogurt'}"  class="categoryTabs" (click)="category='Yogurt'" (click)="FilterData()" data-filter=".MY">Smoothies & Cream</li>
-                                <li [ngClass]="{'active': category==='MyGirl'}" class="categoryTabs" (click)="category='MyGirl'" (click)="FilterData()"   data-filter=".MG">Juice</li>
 
-                            <li [ngClass]="{'active': category==='MyGirl'}" class="categoryTabs" (click)="category='MyGirl'" (click)="FilterData()"   data-filter=".MG">Sand Ice</li>
-                                                      </ul>
+                            <span class="categoryText">Categories
+                              
+                              <button  type="button" [style.display]="mobileQuery.matches ? '' : 'none'" class="btn btn-link float-right" style="outline: 0px;"  (click)="snav.toggle()" >
+                                <i class="fas fa-times" [style.display]="mobileQuery.matches ? '' : 'none'" style="color:white;"></i>
+                              </button>
+                          
+                            </span>
+
+                        </div >
+                        <ul class="matnav" style="clear: both;">
+                            <li [ngClass]="{'active': category==='All Category'}" class="categoryTabs" (click)="category='All Category'" (click)="mobileQuery.matches ? snav.toggle() : false" (click)="FilterData()"  data-filter="*">All</li>
+                            <li [ngClass]="{'active': category==='Milktea'}"  class="categoryTabs"(click)="category='Milktea'" (click)="mobileQuery.matches ? snav.toggle() : false" (click)="FilterData()"  data-filter=".FT">Milktea</li>
+                            <li [ngClass]="{'active': category==='Yogurt'}" class="categoryTabs" (click)="category='Yogurt'" (click)="mobileQuery.matches ? snav.toggle() : false" (click)="FilterData()" data-filter=".BS">Yogurt</li>
+                            <li [ngClass]="{'active': category==='Cheese Cream'}"  class="categoryTabs" (click)="category='Cheese Cream'" (click)="mobileQuery.matches ? snav.toggle() : false"  (click)="FilterData()" data-filter=".MY">Cheese Cream</li>
+                            <li [ngClass]="{'active': category==='Milk Online'}" class="categoryTabs" (click)="category='Milk Online'"  (click)="mobileQuery.matches ? snav.toggle() : false" (click)="FilterData()"   data-filter=".MG">Milk Online</li>
+                            <li [ngClass]="{'active': category==='Smoothies & Cream'}"  class="categoryTabs" (click)="category='Smoothies & Cream'"  (click)="mobileQuery.matches ? snav.toggle() : false" (click)="FilterData()" data-filter=".MY">Smoothies & Cream</li>
+                            <li [ngClass]="{'active': category==='Juice'}" class="categoryTabs" (click)="category='Juice'"  (click)="mobileQuery.matches ? snav.toggle() : false" (click)="FilterData()"   data-filter=".MG">Juice</li>
+
+                            <li [ngClass]="{'active': category==='Sand Ice'}" class="categoryTabs" (click)="category='Sand Ice'" (click)="mobileQuery.matches ? snav.toggle() : false"  (click)="FilterData()"   data-filter=".MG">Sand Ice</li>
+                            </ul>
                     </div>
-                    <br/>
-                    <br/>
-
+                    
+                    <div class="" [style.display]="mobileQuery.matches ? 'none' : ''" style="height: 30px; width: 300px; font-size: 20px; font-weight: bold; background-color: rgba(255, 0, 0,0.8); text-align: center; margin-top: 5px; margin-bottom: 5px; font-family: kozuka gothic pro;">
+                        <marquee><span style="color: white;  "> <i class="fa fa-star"></i> Can't Decide? Try our Best Seller!<i class="fa fa-star"></i></span></marquee>
+                    </div>
                       <ngx-slick-carousel class="carousel" 
                         #slickModal="slick-carousel" 
-                        [config]="slideConfig">
+                        [config]="slideConfig" [style.display]="mobileQuery.matches ? 'none' : ''">
                     <div ngxSlickItem *ngFor="let milktea of obj.productSample" [ngClass]="'col-3 mix '+milktea.category_code">
                                             <div class="featured__item">
+
                                               <div class="product__discount__item">
-                                                  <div class="product__discount__item__pic set-bg">
-                                                      <div class="featured__item__pic set-bg"   [ngStyle]="{'background-image': 'url('+ milktea.imgpath +')'}">
-                                                        <div class="product__discount__percent">Best Seller</div>
+
+                                                  <div class="BestSellerNavWrapper set-bg">
+                                                      <div class="BestSellerNav set-bg"   [ngStyle]="{'background-image': 'url('+ milktea.imgpath +')'}">
+                                                     
                                                         
                                                      </div>
+                                                      <div class="BestSellerNavDesc">
+                                                                  <h6 class="listText"><a href="#" style="color: white;">{{milktea.title}}</a></h6>
+                                                                   <h5 style="color: white;">{{milktea.description}}</h5>
+                                                               </div>
                                             </div>
                                          </div>
                                      </div>
@@ -43,13 +110,14 @@
                         </ngx-slick-carousel>
                 </div>
   </mat-sidenav>
- <mat-sidenav-content >
-    <app-announcement></app-announcement> 
+ <mat-sidenav-content  >
+    <app-announcement [mobileView]="mobileQuery.matches" ></app-announcement> 
  <section class="featured spad">
-
-              
+               
                    
-      
+                   <div class="section-title" style="margin-bottom: 20px;">
+                        <h2>{{category}}</h2>
+                    </div>
                 <div class="col-xl-12" >
                   
                   <!--   <div class="featured__controls">
@@ -66,6 +134,7 @@
                     <div *ngFor="let milktea of obj.productSample" [ngClass]="'col-xl-3 col-md-3 col-lg-3 col-sm-12 col-xs-12 mix '+milktea.category_code">
                         <div class="featured__item">
                             <div class="featured__item__pic set-bg "   [ngStyle]="{'background-image': 'url('+ milktea.imgpath +')'}">
+                              <div class="product__discount__percent">{{'₱ ' +milktea.price}}</div>
                                 <ul class="featured__item__pic__hover">
                                     <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                     <li><a (click)="LoginModal.openMdl()"><i class="fa fa-retweet"></i></a></li>
@@ -74,7 +143,7 @@
                             </div>
                             <div class="featured__item__text">
                                 <h6 class="listText"><a href="#">{{milktea.title}}</a></h6>
-                                <h5>{{'₱ ' +milktea.price}}</h5>
+                                <h5>{{milktea.description}}</h5>
                             </div>
                         </div>
                     </div>
@@ -87,8 +156,12 @@
 
    
     </section>
+    
+
      </mat-sidenav-content> 
-     <mat-sidenav opened mode="side" #drawer class="example-sidenav col-3" id="checkoutPreText" position="end" 
+
+
+     <mat-sidenav [opened]="mobileQuery.matches ? 'false' : 'true'" mode="side" #myCart class="example-sidenav col-xl-2 col-lg-2 col-md-12 col-xs-12" id="checkoutPreText" position="end" 
       [fixedInViewport]="true"
        [fixedTopGap]="50">
    <span class="default"><p> No Items in your Cart Yet </p> </span>

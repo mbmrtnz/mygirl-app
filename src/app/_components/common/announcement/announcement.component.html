@@ -17,7 +17,7 @@
 		</div>
 </div>	 -->
 
-
+	<div  [style.display]="mobileView ? 'none':''">
     	
 		<ngb-carousel *ngIf="images">
 			  
@@ -25,8 +25,10 @@
 		            <img [src]="ads" alt="MyGirl PH"  width="100%" style="margin: 0px !important; padding: 0px !important; opacity: 80%;">
 		            	<div class="form-group has-warning has-feedback">
 		            		<input id="searchbox" type="text" name="searchbar">
+		            	
 		            		<span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
 		            	</div>
 		    </ng-template>
 		  
 		</ngb-carousel>
+	</div>

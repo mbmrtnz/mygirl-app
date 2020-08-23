@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { UtilService } from '../../_services/util.service';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';  
+import {MediaMatcher} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-home',
@@ -10,13 +11,21 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 export class HomeComponent implements OnInit {
   myObj: object = {};
   public innerWidth: any;
-  constructor(public utilS: UtilService,config: NgbCarouselConfig)
+   private _mobileQueryListener: () => void;
+   mobileQuery: MediaQueryList;
+  constructor(public utilS: UtilService,config: NgbCarouselConfig,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher)
    {   config.interval = 6000;  
     config.wrap = true;  
     config.keyboard = false;  
     config.pauseOnHover = true;  
     config.showNavigationArrows = false;
-    config.showNavigationIndicators =false;}
+    config.showNavigationIndicators =false;
+
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+
+  }
 
  slideConfig2 = {
   "slidesToShow": 4, 

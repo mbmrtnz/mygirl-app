@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input,ChangeDetectorRef, OnDestroy } from '@angular/core';
 import mixitup from 'mixitup';
 import { UtilService } from '../../_services/util.service';
-    
+import {MediaMatcher} from '@angular/cdk/layout';   
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {startWith, map} from 'rxjs/operators';
+
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
@@ -9,8 +13,23 @@ import { UtilService } from '../../_services/util.service';
 })
 export class ShopComponent implements OnInit {
   teaSize: any = null;
-  extra1: any = {};
+
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
+  isShow = true;
+  searchShow = true;
+  category="All Category";
+  // extra1: any = {};
   e1 : '';
+
+
+
+  control = new FormControl();
+  streets: string[] = ['Champs-Élysées', 'Lombard Street', 'Abbey Road', 'Fifth Avenue'];
+  filteredProduct: Observable<string[]>;
+
+
+
 	 obj: any = {
 
   	productSample:[
@@ -89,6 +108,8 @@ export class ShopComponent implements OnInit {
   dots:false,
   autoplay:true,
   autoplaySpeed: 5000,
+   fade: true,
+  cssEase: 'linear'
  // 'responsive': [
  //  { 'breakpoint': 1600, 'settings': { 'slidesToShow': 4, 'slidesToScroll': 4, } },
  //  { 'breakpoint': 1000, 'settings': { 'slidesToShow': 3, 'slidesToScroll': 3, } }, 
@@ -101,9 +122,51 @@ export class ShopComponent implements OnInit {
   FilterData() {
   	const mixer = mixitup('.featured__filter');
   }
-  constructor(public event: UtilService) { }
+  constructor(public event: UtilService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+
+   }
+
+
+
+    toggleDisplay() {
+    this.isShow = !this.isShow;
+  }
+
+     toggleSearch() {
+    this.searchShow = !this.searchShow;
+  }
+  toggleCartNav(myCart){
+    if(this.mobileQuery.matches==false && myCart==false)  {
+        
+
+
+    }
+
+  }
 
   ngOnInit() {
+
+     this.filteredProduct = this.control.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+
+    );
+
+  }
+
+
+   private _filter(value: string): string[] {
+    const filterValue = this._normalizeValue(value);
+   // console.log(this.obj.productSample.filter(street => this._normalizeValue(street.title).includes(filterValue)));
+    return this.obj.productSample.filter(a => this._normalizeValue(a.title).includes(filterValue));
+  }
+
+  private _normalizeValue(value: string): string {
+    return value.toLowerCase().replace(/\s/g, '');
   }
 
 

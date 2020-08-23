@@ -22,6 +22,10 @@ import {RadioButtonModule} from 'primeng/radiobutton';
 import {MenuItem} from 'primeng/api'; 
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import { FormControl } from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -43,7 +47,7 @@ export class SafePipe implements PipeTransform {
     AnnouncementComponent,
     ShopComponent,
     SafePipe,
-   
+    
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,11 @@ export class SafePipe implements PipeTransform {
     SlickCarouselModule,
     MatSidenavModule,
     MatToolbarModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+
+ 
   ],
   providers: [
     Title
