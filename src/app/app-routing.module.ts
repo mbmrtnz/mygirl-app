@@ -4,6 +4,8 @@ import { HomeComponent } from './_components/home/home.component';
 import { AboutComponent } from './_components/about/about.component';
 import { ShopComponent } from './_components/shop/shop.component';
 import { AdminComponent } from './_components/admin/admin.component';
+import { LoginComponent } from './_components/login/login.component';
+import { AuthGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -23,7 +25,12 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    component: AdminComponent
+    component: AdminComponent,
+    canActivate : [AuthGuard]
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
 ];
 

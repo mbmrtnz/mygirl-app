@@ -16,6 +16,10 @@
   z-index: 2;
 }
 
+.toolbar {
+  background-color: #F5F5F5;
+}
+
 h1.header {
   margin-left: 10px;
 }
@@ -36,10 +40,16 @@ h1.header {
   margin-left: 1em;
 }
 
+.tab-list-label {
+  margin-left: 5px;
+}
+
 .active-nav {
-  background: lightgray;
+  background: #E0E0E0;
 }
 
 h1.greeting {
-  float: right;
+  /*float: right;*/
+  font-family: helvetica !important;
+  font-size: 16px !important;
 }

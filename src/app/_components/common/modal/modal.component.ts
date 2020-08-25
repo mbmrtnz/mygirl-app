@@ -25,7 +25,7 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   */
 
-  @ViewChild('content', null) test: any;
+  @ViewChild('content', {static: false}) test: any;
 
   @Input() modalSize: string = "modal-size";
   @Input() btnTitle: string = "Open Modal from Child";

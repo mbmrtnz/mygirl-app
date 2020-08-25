@@ -94,6 +94,8 @@ export class ShoplistComponent implements OnInit {
 
   }
 
+  category: any = 'all';
+
   FilterData() {
   	const mixer = mixitup('.featured__filter');
   }

@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-lg-2">
                 <div class="header__logo">
-                    <a [routerLink]="['/home']"><img (click)="selectedTab = 1" src="app/resources/img/header-logo-temp.png" alt="header-logo-temp.png" style="max-width: 75%;"></a>
+                    <a [routerLink]="['/home']"><img src="app/resources/img/header-logo-temp.png" alt="header-logo-temp.png" style="max-width: 75%;"></a>
                 </div>
             </div>
             <div class="col-lg-7">
@@ -42,9 +42,10 @@
 </ng-container>
 <router-outlet></router-outlet>
 
-<app-modal #cartMdl class="d-none">
+<!-- kinomment out ko muna tong buong modal kasi nageerror ako, wala kasi yung mga variables sa ts -->
+<!-- <app-modal #cartMdl class="d-none">
   <div header style="max-width: 50% !important;">
-   <h5 class="modal-title" id="exampleModalLabel">Your Shopping Cart {{TotalPrice}}</h5> 
+   <h5 class="modal-title" id="exampleModalLabel">Your Shopping Cart {{TotalPrice}}</h5>
     </div>
     <div body >             
       <table class="table table-image">
@@ -88,4 +89,4 @@
         <button type="button" class="btn btn-success" (click)="quantityCalc('submitOrder')">Add to Cart</button>
       </div>
     </div>
-</app-modal>
+</app-modal> -->

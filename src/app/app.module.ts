@@ -17,14 +17,18 @@ import { AnnouncementComponent } from './_components/common/announcement/announc
 import { ShopComponent } from './_components/shop/shop.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminComponent } from './_components/admin/admin.component';
+import { AuthGuard } from './_guards/auth.guard';
 
 // material
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
 
 //primeng
 import { TableModule } from 'primeng/table';
+import { CardModule } from 'primeng/card';
+import { LoginComponent } from './_components/login/login.component';
 
 
 @NgModule({
@@ -38,7 +42,8 @@ import { TableModule } from 'primeng/table';
     ShoplistComponent,
     AnnouncementComponent,
     ShopComponent,
-    AdminComponent
+    AdminComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,11 +57,13 @@ import { TableModule } from 'primeng/table';
     MatSidenavModule,
     MatToolbarModule,
     MatListModule,
-    TableModule
+    MatTabsModule,
+    TableModule,
+    CardModule
   ],
   providers: [
-    Title
-  
+    Title,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
