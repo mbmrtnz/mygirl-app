@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
-import { UtilService } from '@app/_services';
+import { UtilService } from '../../_services/util.service';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';  
 import { MediaMatcher } from '@angular/cdk/layout';
-import { environment } from '@environments/environment';
+import { environment } from '../../../environments/environment';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 
