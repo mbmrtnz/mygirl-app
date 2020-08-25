@@ -19,13 +19,15 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer} from '@angular/platform-browser';
 import {RadioButtonModule} from 'primeng/radiobutton';
-import {MenuItem} from 'primeng/api'; 
+// import {MenuItem} from 'primeng/api'; 
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
-import { FormControl } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatMenuModule} from '@angular/material/menu';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -47,6 +49,7 @@ export class SafePipe implements PipeTransform {
     AnnouncementComponent,
     ShopComponent,
     SafePipe,
+
     
   ],
   imports: [
@@ -63,7 +66,9 @@ export class SafePipe implements PipeTransform {
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatAutocompleteModule,
-
+    MatMenuModule,
+    DialogModule,
+      ButtonModule,
  
   ],
   providers: [

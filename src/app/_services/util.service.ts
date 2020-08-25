@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {startWith, map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +28,8 @@ export class UtilService {
  checked: boolean = false;
  iceKey: any = "";
  sizeKey: any = "";
+   control = new FormControl();
+  filteredProduct: Observable<string[]>;
 
 
  cupSize: any[] =[
@@ -275,5 +280,26 @@ bestDrinks: any[] =[
  			itemCode: ev.cartItems[0].category_code, itemTotal:ev.cartDefaults[0],itemTotalPrice:ev.cartDefaults[1],itemPath:ev.cartItems[0].imgpath,
  			itemGrandTotal:this.GrandTotal}); 
     }	
+
+    autoComplete() {
+
+     this.filteredProduct = this.control.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+
+    );
+
+  }
+
+     private _filter(value: string): string[] {
+    const filterValue = this._normalizeValue(value);
+   // console.log(this.obj.productSample.filter(street => this._normalizeValue(street.title).includes(filterValue)));
+    return this.obj.productSample.filter(a => this._normalizeValue(a.title).includes(filterValue));
+  }
+
+  private _normalizeValue(value: string): string {
+    return value.toLowerCase().replace(/\s/g, '');
+  }
+
 
 }

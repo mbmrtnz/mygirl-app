@@ -31,6 +31,10 @@
 /* Template default CSS
 /*----------------------------------------*/
 
+
+
+
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 		.mvDrinksCarousel{
@@ -75,8 +79,14 @@
 			font-size: 10px;
 
 		}
+	.mobileMenuText {
+		color:black;
+	}
+		.mvspad{
 
-
+margin-top: 0px !important; 
+background-color: black;
+}
 
 
 }
@@ -90,10 +100,18 @@
 		  margin-bottom:  auto;
 		  border:1px solid white;
 		  border-radius: 50%;
-	
+			
 
 }
-
+	.mobileMenuText {
+		color:black;
+	}
+	.mvheader__menu{
+		display: none;
+	}
+	.mvspad{
+	margin-top: 0px !important; 
+}
 
 }
 
@@ -284,11 +302,12 @@ ol {
 	background-position: top center;
 }
 .spad{
-	margin-top: 20px;
-
+	margin: 0px !important;
 }
 
-
+.humberger__open{
+	display: none;
+}
 
 
 /* buttons */
@@ -686,9 +705,6 @@ ol {
 	display: none;
 }
 
-.humberger__open {
-	display: none;
-}
 
 /*---------------------
   Hero
@@ -946,7 +962,7 @@ ol {
 
 .featured {
 
-	position: initial;
+	/*position: initial;*/
 }
 
 .featured__controls {
@@ -3110,20 +3126,7 @@ ol {
 		overflow: hidden;
 		margin-bottom: 25px;
 	}
-	.humberger__open {
-		display: block;
-		font-size: 22px;
-		color: #1c1c1c;
-		height: 35px;
-		width: 35px;
-		line-height: 33px;
-		text-align: center;
-		border: 1px solid #1c1c1c;
-		cursor: pointer;
-		position: absolute;
-		right: 15px;
-		top: 22px;
-	}
+	
 	.header .container {
 		position: relative;
 	}
@@ -3376,13 +3379,15 @@ ol {
 		width: 35px;
 		line-height: 33px;
 		text-align: center;
-		border: 1px solid #1c1c1c;
 		cursor: pointer;
 		position: absolute;
 		right: 15px;
-		top: 22px;
+		top: 10px;
 	}
-	.header .container {
+		.header__menu {
+		display: none;
+	}
+	/*.header .container {
 		position: relative;
 	}
 	.humberger__menu__wrapper {
@@ -3544,16 +3549,14 @@ ol {
 	.header__top {
 		display: none;
 	}
-	.header__menu {
-		display: none;
-	}
+
 	.header__cart {
 		text-align: center;
 		padding: 10px 0 24px;
 	}
 	.over_hid {
 		overflow: hidden;
-	}
+	}*/
 }
 
 /* Small Device = 320px */

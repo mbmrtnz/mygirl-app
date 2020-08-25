@@ -8,3 +8,19 @@
 		padding: 0px !important;
 		margin: 0px !important;
 }
+
+.mobileMenuBox {
+		display: block;
+		
+		height: 35px;
+		width: 35px;
+		line-height: 33px;
+		text-align: center;
+		cursor: pointer;
+		
+		right: 15px;
+		top: 5px;
+	}
+.defaultMenu{
+		color:white;
+	}

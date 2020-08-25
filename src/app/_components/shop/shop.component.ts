@@ -2,7 +2,7 @@ import { Component, OnInit,Input,ChangeDetectorRef, OnDestroy } from '@angular/c
 import mixitup from 'mixitup';
 import { UtilService } from '../../_services/util.service';
 import {MediaMatcher} from '@angular/cdk/layout';   
-import {FormControl} from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {Observable} from 'rxjs';
 import {startWith, map} from 'rxjs/operators';
 
@@ -22,11 +22,13 @@ export class ShopComponent implements OnInit {
   // extra1: any = {};
   e1 : '';
 
+  
 
 
-  control = new FormControl();
-  streets: string[] = ['Champs-Élysées', 'Lombard Street', 'Abbey Road', 'Fifth Avenue'];
-  filteredProduct: Observable<string[]>;
+
+  // control = new FormControl();
+  // streets: string[] = ['Champs-Élysées', 'Lombard Street', 'Abbey Road', 'Fifth Avenue'];
+  // filteredProduct: Observable<string[]>;
 
 
 
@@ -101,7 +103,8 @@ export class ShopComponent implements OnInit {
      
 
   }
-
+ displayBasic: boolean;
+ 
    slideConfig = {
   "slidesToShow": 1, 
   "slidesToScroll": 1, 
@@ -122,7 +125,11 @@ export class ShopComponent implements OnInit {
   FilterData() {
   	const mixer = mixitup('.featured__filter');
   }
-  constructor(public event: UtilService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+
+  orderForm: FormGroup;
+  submitted: boolean = false;
+  constructor(public event: UtilService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
+            private formBuilder: FormBuilder) {
 
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -140,34 +147,43 @@ export class ShopComponent implements OnInit {
     this.searchShow = !this.searchShow;
   }
   toggleCartNav(myCart){
-    if(this.mobileQuery.matches==false && myCart==false)  {
-        
-
-
-    }
-
+   this.event.autoComplete();
   }
 
   ngOnInit() {
-
-     this.filteredProduct = this.control.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value))
-
-    );
-
+    this.orderForm = this.formBuilder.group({
+      specialIns: ['', Validators.required]
+    })
+    this.event.autoComplete();
+ 
   }
 
-
-   private _filter(value: string): string[] {
-    const filterValue = this._normalizeValue(value);
-   // console.log(this.obj.productSample.filter(street => this._normalizeValue(street.title).includes(filterValue)));
-    return this.obj.productSample.filter(a => this._normalizeValue(a.title).includes(filterValue));
+  get f() {
+    return this.orderForm.controls;
   }
 
-  private _normalizeValue(value: string): string {
-    return value.toLowerCase().replace(/\s/g, '');
+  onFormSubmit() {
+    this.submitted = true;
+
+    if(this.orderForm.valid)
+    this.myFunc();
   }
+
+  //call ws
+
+  myFunc() {
+    alert('ws');
+  }
+
+  //  private _filter(value: string): string[] {
+  //   const filterValue = this._normalizeValue(value);
+  //  // console.log(this.obj.productSample.filter(street => this._normalizeValue(street.title).includes(filterValue)));
+  //   return this.obj.productSample.filter(a => this._normalizeValue(a.title).includes(filterValue));
+  // }
+
+  // private _normalizeValue(value: string): string {
+  //   return value.toLowerCase().replace(/\s/g, '');
+  // }
 
 
 }

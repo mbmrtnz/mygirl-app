@@ -23,12 +23,35 @@
 			  
 		    <ng-template ngbSlide *ngFor="let ads of images" >
 		            <img [src]="ads" alt="MyGirl PH"  width="100%" style="margin: 0px !important; padding: 0px !important; opacity: 80%;">
-		            	<div class="form-group has-warning has-feedback">
-		            		<input id="searchbox" type="text" name="searchbar">
-		            	
-		            		<span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
-		            	</div>
+		            	<form class="example-form">
+						  <input type="text"
+						         placeholder="Find your Favorites!"
+						         [formControl]="event.control"
+						         [matAutocomplete]="auto"
+						         id="searchbox"
+						         [hidden] = ""
+						       	 
+						         >
+						  <mat-autocomplete #auto="matAutocomplete">
+						  
+						    <mat-option style="clear:both;" *ngFor="let milktea of event.filteredProduct | async" [value]="milktea.title">
+						      {{milktea.title}}
+						    </mat-option>
+    
+						  </mat-autocomplete>
+						</form>
 		    </ng-template>
 		  
 		</ngb-carousel>
 	</div>
+<button type="button" (click)="showBasicDialog()" pButton icon="pi pi-external-link" label="Show"></button>
+<p-dialog header="Godfather I" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+        The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
+        His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
+        Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family,
+        kind and benevolent to those who give respect, but given to ruthless violence whenever anything stands against the good of the family.
+    <p-footer>
+        <button type="button" pButton icon="pi pi-check" (click)="displayBasic=false" label="Yes"></button>
+        <button type="button" pButton icon="pi pi-times" (click)="displayBasic=false" label="No" class="ui-button-secondary"></button>
+    </p-footer>
+</p-dialog>
