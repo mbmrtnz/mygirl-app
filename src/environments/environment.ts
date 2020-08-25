@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'http://192.168.0.19:8888/api' //local ni reid, naka local ip para di magconflict sa websocket
 };
 
 /*

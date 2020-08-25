@@ -1,12 +1,57 @@
-<div class='container'>
-	<div class='row'>
+<!-- <div class="container-fluid">
+		<div class="row">
+     		 <div class="col-md-12 home-image home-Settings">
+     			
+	     		  <div class="home-Text">
+		       			<h1>Indulge your tastebuds with <p class="myGirlText">MyGirl Milktea</p> </h1> 
+		       		    <h6>Our delivery service makes it easier for you to enjoy your favorites</h6>
+		       	  </div>
+	  		 </div>
+
+	   <div class="col-3 test">
+	   		 <img  src="/app/resources/img/MyGirlHome1.jpg" class="image-thumbnail">
+	   </div>
+		   <div class="col-3 test1">
+		  			test 2
+		   </div>
+		</div>
+</div>	 -->
+
+	<div  [style.display]="mobileView ? 'none':''">
+    	
 		<ngb-carousel *ngIf="images">
-		    <ng-template ngbSlide *ngFor="let ads of images">
-		        <div class="picsum-img-wrapper">
-		            <img [src]="ads" alt="Random first slide">
-		        </div>
+			  
+		    <ng-template ngbSlide *ngFor="let ads of images" >
+		            <img [src]="ads" alt="MyGirl PH"  width="100%" style="margin: 0px !important; padding: 0px !important; opacity: 80%;">
+		            	<form class="example-form">
+						  <input type="text"
+						         placeholder="Find your Favorites!"
+						         [formControl]="event.control"
+						         [matAutocomplete]="auto"
+						         id="searchbox"
+						         [hidden] = ""
+						       	 
+						         >
+						  <mat-autocomplete #auto="matAutocomplete">
+						  
+						    <mat-option style="clear:both;" *ngFor="let milktea of event.filteredProduct | async" [value]="milktea.title">
+						      {{milktea.title}}
+						    </mat-option>
+    
+						  </mat-autocomplete>
+						</form>
 		    </ng-template>
-		    
+		  
 		</ngb-carousel>
 	</div>
-</div>
+<button type="button" (click)="showBasicDialog()" pButton icon="pi pi-external-link" label="Show"></button>
+<p-dialog header="Godfather I" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+        The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
+        His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
+        Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family,
+        kind and benevolent to those who give respect, but given to ruthless violence whenever anything stands against the good of the family.
+    <p-footer>
+        <button type="button" pButton icon="pi pi-check" (click)="displayBasic=false" label="Yes"></button>
+        <button type="button" pButton icon="pi pi-times" (click)="displayBasic=false" label="No" class="ui-button-secondary"></button>
+    </p-footer>
+</p-dialog>

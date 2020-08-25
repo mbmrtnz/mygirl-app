@@ -1,13 +1,101 @@
- .btn {
-  position: absolute;
-  top: 80%;
-  left: 15%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  color: white;
-  font-size: 16px;
-  padding: 12px 24px;
-  border: none;
-  cursor: pointer;
- 
+#searchbox{
+       color: white;
+  text-align: left;
+    left: 0;
+    right: 0;
+    top: 50%;
+    margin: 0 auto;
+    color: black;
+    position: absolute;
+     font-size: 2vw 1vh;
+    white-space: nowrap;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: bold;
+    width: 80%;
+    background-color: rgba(255,255,255,0.5);
+}
+
+
+.home-Settings h1{
+
+    color: white;
+text-align: center;
+    left: 0;
+    right: 0;
+    top: 50%;
+    margin: 0 auto;
+    color: white;
+    position: absolute;
+     font-size: 2vw 1vh;
+    white-space: nowrap;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: bold;
+
+}
+.image-caption{
+    background-color: #442439;
+  
+}
+.image-thumbnail{
+    opacity: 99%;
+
+}
+.image-special{
+  padding: 0px !important;
+
+  
+
+}
+.home-Settings h6{
+    color: white;
+text-align: center;
+    left: 0;
+    right: 0;
+    top: 55%;
+    margin: 0 auto;
+    color: white;
+    position: absolute;
+     font-size: 2vw 1vh;
+    white-space: nowrap;
+    font-family: 'Open Sans Condensed', sans-serif;
+
+}
+@media (max-width: 640px) {
+    .home-Settings h6{
+         top: 43%;
+     font-size: 9px;
+}
+}
+
+
+
+@media (max-width: 640px) {
+    .home-Settings h1{
+         top: 35%;
+     font-size: 20px;
+}
+}
+
+.home-Settings{
+  position: relative;
+
+
+}
+.home-Text{
+
+}
+
+.myGirlText{
+  color:  #33cc33;
+  font-size: 2vw;
+ display: inline;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: bold;
+     text-shadow: 1px 1px #ffff;
+}
+@media (max-width: 640px) {
+    .home-Settings p{
+     font-size: 20px;
+       display: block; 
+}
 }

@@ -30,6 +30,136 @@
 /*----------------------------------------*/
 /* Template default CSS
 /*----------------------------------------*/
+
+
+
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+		.mvDrinksCarousel{
+			margin-left: auto;
+			margin-right: auto;
+			background-position: center center;
+			
+			
+		}
+		.mvMyGirlDrinkText{
+		font-size: 25px;
+		}
+		.mvbestDotBG{
+			padding-bottom: 0px !important; 
+
+		}
+		.mvhappiness_one{
+		font-family: kozuka gothic pro;
+		font-size:5px !important;
+		}
+
+
+		.mvhappiness_Two{
+				font-family: kozuka gothic pro;
+				font-size: 14px !important;
+				
+		}
+		.mvmyGirlBannerLogo{
+		  height: 20vh !important;
+		  margin-top: 10%;
+		  margin-bottom:  auto;
+		  border:1px solid white;
+		  border-radius: 50%;
+		  background-color: rgba(255, 255, 255, 0.5);
+
+
+		}
+		.mvcoverInput{
+			margin-top: 10px !important;
+			margin-bottom: 40px !important;
+			width: 250px !important;
+			font-size: 10px;
+
+		}
+	.mobileMenuText {
+		color:black;
+	}
+		.mvspad{
+
+margin-top: 0px !important; 
+background-color: black;
+}
+
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+		.mvmyGirlBannerLogo{
+		height: 20%;
+		background-color: blue;
+		  margin-top: 10%;
+		  margin-bottom:  auto;
+		  border:1px solid white;
+		  border-radius: 50%;
+			
+
+}
+	.mobileMenuText {
+		color:black;
+	}
+	.mvheader__menu{
+		display: none;
+	}
+	.mvspad{
+	margin-top: 0px !important; 
+}
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+/*@media only screen and (min-width: 768px) {...}*/
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}
+
+.test{
+	background-color: green;
+	border-color: blue;
+	border-style: dotted;
+		height: 100%;
+}
+.test1{
+	background-color: yellow;
+	border-color: black;
+	border-style: dotted;
+
+
+}
+.header{
+
+	top: 0;
+    z-index: 9999;
+   
+    background-color: white;
+   position: sticky;
+   
+
+}
+.home-image{
+  background: url('/app/resources/img/MyGirlHome2.jpg');
+    
+   opacity:80%;
+   height: 1000px;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+ 	position: absolute;
+ 
+}
 .modal-content {
     width: auto;
     margin: auto;
@@ -69,14 +199,6 @@
 
 .modal-body{
     overflow: auto;
-}
-
-html,
-body {
-	height: 100%;
-	font-family: "Cairo", sans-serif;
-	-webkit-font-smoothing: antialiased;
-	font-smoothing: antialiased;
 }
 
 h1,
@@ -153,7 +275,7 @@ ol {
 -----------------------*/
 
 .section-title {
-	margin-bottom: 50px;
+
 	text-align: center;
 }
 
@@ -164,15 +286,14 @@ ol {
 }
 
 .section-title h2:after {
-	position: absolute;
-	left: 0;
+	
 	bottom: -15px;
-	right: 0;
+	text-align: center;
 	height: 4px;
 	width: 80px;
-	background: #7fad39;
+	background: black;
 	content: "";
-	margin: 0 auto;
+	
 }
 
 .set-bg {
@@ -180,24 +301,14 @@ ol {
 	background-size: cover;
 	background-position: top center;
 }
-
-.spad {
-	padding-top: 100px;
-	padding-bottom: 100px;
+.spad{
+	margin: 0px !important;
 }
 
-.text-white h1,
-.text-white h2,
-.text-white h3,
-.text-white h4,
-.text-white h5,
-.text-white h6,
-.text-white p,
-.text-white span,
-.text-white li,
-.text-white a {
-	color: #fff;
+.humberger__open{
+	display: none;
 }
+
 
 /* buttons */
 
@@ -450,6 +561,7 @@ ol {
 
 .header__logo {
 	padding: 15px 0;
+	
 }
 
 .header__logo a {
@@ -501,7 +613,7 @@ ol {
 }
 
 .header__menu ul li.active a {
-	color: #7fad39;
+	color: white;
 }
 
 .header__menu ul li:hover .header__menu__dropdown {
@@ -520,7 +632,7 @@ ol {
 
 .header__menu ul li a {
 	font-size: 14px;
-	color: #252525;
+	color: white;
 	text-transform: uppercase;
 	font-weight: 700;
 	letter-spacing: 2px;
@@ -593,9 +705,6 @@ ol {
 	display: none;
 }
 
-.humberger__open {
-	display: none;
-}
 
 /*---------------------
   Hero
@@ -852,13 +961,13 @@ ol {
 -----------------------*/
 
 .featured {
-	padding-top: 80px;
-	padding-bottom: 40px;
+
+	/*position: initial;*/
 }
 
 .featured__controls {
 	text-align: center;
-	margin-bottom: 50px;
+
 }
 
 .featured__controls ul li {
@@ -899,10 +1008,13 @@ ol {
 }
 
 .featured__item__pic {
-	height: 270px;
+	height: 200px;
 	position: relative;
 	overflow: hidden;
 	background-position: center center;
+	border: 4px solid #000;
+	border-top-right-radius:  5px;
+	border-top-left-radius: 5px;
 }
 
 .featured__item__pic__hover {
@@ -969,6 +1081,13 @@ ol {
 .featured__item__text {
 	text-align: center;
 	padding-top: 15px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	background-color: black;
+
+}
+.listText{
+	color:red;
 }
 
 .featured__item__text h6 {
@@ -976,12 +1095,18 @@ ol {
 }
 
 .featured__item__text h6 a {
-	color: #252525;
+	color: white;
+	font-family: kozuka gothic pro;
 }
 
 .featured__item__text h5 {
 	color: #252525;
-	font-weight: 700;
+	font-weight: 100;
+	color: white;
+	  text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 1; 
+   -webkit-box-orient: vertical;
 }
 
 /*---------------------
@@ -1327,19 +1452,7 @@ ol {
 	overflow: hidden;
 }
 
-.product__discount__item__pic .product__discount__percent {
-	height: 45px;
-	width: 45px;
-	background: #dd2222;
-	border-radius: 50%;
-	font-size: 14px;
-	color: #ffffff;
-	line-height: 45px;
-	text-align: center;
-	position: absolute;
-	left: 15px;
-	top: 15px;
-}
+
 
 .product__item__pic__hover {
 	position: absolute;
@@ -3013,20 +3126,7 @@ ol {
 		overflow: hidden;
 		margin-bottom: 25px;
 	}
-	.humberger__open {
-		display: block;
-		font-size: 22px;
-		color: #1c1c1c;
-		height: 35px;
-		width: 35px;
-		line-height: 33px;
-		text-align: center;
-		border: 1px solid #1c1c1c;
-		cursor: pointer;
-		position: absolute;
-		right: 15px;
-		top: 22px;
-	}
+	
 	.header .container {
 		position: relative;
 	}
@@ -3279,13 +3379,15 @@ ol {
 		width: 35px;
 		line-height: 33px;
 		text-align: center;
-		border: 1px solid #1c1c1c;
 		cursor: pointer;
 		position: absolute;
 		right: 15px;
-		top: 22px;
+		top: 10px;
 	}
-	.header .container {
+		.header__menu {
+		display: none;
+	}
+	/*.header .container {
 		position: relative;
 	}
 	.humberger__menu__wrapper {
@@ -3447,16 +3549,14 @@ ol {
 	.header__top {
 		display: none;
 	}
-	.header__menu {
-		display: none;
-	}
+
 	.header__cart {
 		text-align: center;
 		padding: 10px 0 24px;
 	}
 	.over_hid {
 		overflow: hidden;
-	}
+	}*/
 }
 
 /* Small Device = 320px */
@@ -3571,3 +3671,6 @@ input[type="number"] {
   -moz-appearance: textfield;
   -webkit-appearance: none;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

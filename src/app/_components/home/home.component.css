@@ -1,0 +1,263 @@
+
+.covertText{
+  position: absolute;
+  bottom: 0px;
+ padding: 0px !important;
+ margin-bottom: 0px !important;
+  color:white;
+	 background-color:  rgba(0, 0, 0, 0.5);
+	width: 100%;
+	text-align: center;
+
+}
+.searchIcon{
+	background-image: url('/app/resources/img/searchIcon.png'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    background-position: right center;
+}
+.coverInputIcon{
+/*	margin-bottom: 20px !important;*/
+
+}
+.coverInput{
+
+	 -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+     border-radius: 20px;
+     border: 1px solid #2d9fd9;
+     color: #a0d18c;
+     width: 50vw;
+     height:50px;
+     padding-left: 10px;
+     margin-top: 20px !important;
+
+}
+.coverBackground{
+	background-repeat: no-repeat;
+	background-size: cover;
+
+}
+.myGirlBannerLogo{
+	height: 50%;
+	
+  margin-top: 10%;
+  margin-bottom:  auto;
+  border:1px solid white;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+
+
+}
+.myGirlBannerLogo:hover{
+	height: 50%;
+	
+  margin-top: 10%;
+  margin-bottom:  auto;
+  border:1px solid white;
+  border-radius: 50%;
+  
+  
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.coverText{
+  color:white;
+  font-family:kozuka gothic pro;
+  font-size:2vw; 
+}
+.myGirlPicLeft{ 
+  
+    background-image: url('/app/resources/img/MyGirl-Thumbnail.jpg'); 
+    background-repeat: no-repeat; 
+	background-position: center 15%;
+	background-size: contain;
+	padding-bottom: 10px;
+   max-height: 100%;
+   margin-top: 1%;
+   margin-bottom: 1%;
+}
+
+.myGirlPicRight{ 
+  
+    background-image: url('/app/resources/img/LOGO.png'); 
+    background-repeat: no-repeat; 
+	background-position: center 15%;
+	background-size: contain;
+	padding-bottom: 10px;
+   max-height: 100%;
+     margin-top: 1%;
+     margin-bottom: 1%;
+}
+
+.MyGirl-Happiness{
+		text-align: center;
+		margin-top: 4%;
+
+}
+.myGirlHappinesBG{
+		  background: url('/app/resources/img/BG1.jpg');
+		  background-repeat: no-repeat;
+ 		  background-size: cover;
+ 		  resize: vertical;
+}
+.myGirlBestBG{
+		  background: url('/app/resources/img/BG3.jpg');
+		    background-repeat: repeat-y;
+ 		  background-size: cover;
+ 		  width: 100%;
+ 		  resize:vertical;
+ 		  text-align: center;
+
+}
+.myGirlBestText{
+	  font-family: kozuka gothic pro;
+ 	  color: white;
+ 	  margin-top: 10px;
+}
+
+.myGirlbestThumbnail{
+ 	 height: 450px;
+
+
+}
+.myGirlbestDotBG{
+	background-color: white;
+	border-radius: 50%;
+	margin-top: 100px;
+	margin-left: 10px;
+	height: 120px;
+	width: 120px;
+	
+
+
+}
+.bestDotBG{
+
+	background-image: url('/app/resources/img/BestDot.png'); 
+	background-size: 60%;
+    background-repeat: no-repeat; 
+	background-position: center 15%;
+	height: 100%;
+	width: 100%;
+	padding-bottom: 10px;
+}
+
+.myGirlDrinksBG{
+		  background: url('/app/resources/img/BG2.jpg');
+ 		  background-size: cover;
+ 		  width: 100%;
+ 		  resize: vertical;
+ 	/*	  padding: 0px !important;
+ 		  margin:0px !important;*/
+ 		  text-align: center;
+  		  
+ 	
+}
+.myGirlFooterBG{
+		  background: url('/app/resources/img/BG3.jpg');
+		    background-repeat: no-repeat;
+ 		  background-size: cover;
+ 		  width: 100%;
+ 		  height: 100px;
+}
+
+.happiness_one{
+		font-family: Kozuka Gothic Pro;
+		font-weight: bold;
+		font-size:33px;
+}
+
+
+.happiness_Two{
+		font-family: kozuka gothic pro;
+		font-weight: bold;
+		font-size: 50px;
+}
+
+.orderNowBTN{
+		background-color: #ff1a1a;
+		color: white;
+		font-family: kozuka gothic pro;
+}
+
+
+.myGirlDrinks{
+	text-align: center;
+	margin-top: 10px;
+   
+}
+.myGirlDrinkIcon{
+	height: 40px;
+	width: 100%;
+
+}
+
+.myGirlDrinkText{
+	width:500px;
+	height: 55px;  
+	background-size: contain; 
+	background-repeat: no-repeat; 
+	margin-left: auto;
+    margin-right: auto;  
+    margin-top:50px;
+    font-size: 30px;
+}
+
+.myGirlDrinkPic {
+    height: 25vh;
+	width:500px;
+   background-position: center center;
+   background-repeat: no-repeat;
+   background-size: contain;
+
+
+}
+
+
+
+.under {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+
+}
+
+.over {
+  position: absolute;
+  left: 40px;
+  top: 10px;
+}
+.footerBG{
+
+		  background: url('/app/resources/img/BG3.jpg');
+		    background-repeat: repeat-y;
+ 		  background-size: cover;
+ 		  width: 100%;
+ 		  resize:vertical;
+ 		  text-align: center;
+ 		  color: white;
+
+
+}
+
+.footerLinks{
+	color: white;
+	padding: 0px !important;
+	margin: 0px  !important;
+
+}
+.footerHeader{
+	color: white;
+	padding: 0px !important;
+	margin: 0px  !important;
+	font-weight: bold;
+
+}
+.footerSocialIcon{
+	height: 30px;
+	margin-right: 10px;
+
+}
