@@ -11,9 +11,12 @@ import { UtilService } from './_services/util.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  @ViewChild('cartMdl', null) cartMdl: ModalComponent;	
+  @ViewChild('cartMdl', {static: false}) cartMdl: ModalComponent;	
   title = 'mygirl-app';
   orderList: any[] =[];
+
+  admin: boolean = true;
+
   public constructor(
   	private ts: Title,
   	private router: Router,

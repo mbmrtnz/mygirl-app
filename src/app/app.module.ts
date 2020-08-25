@@ -20,14 +20,24 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer} from '@angular/platform-browser';
 import {RadioButtonModule} from 'primeng/radiobutton';
 // import {MenuItem} from 'primeng/api'; 
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatMenuModule} from '@angular/material/menu';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
+import { AdminComponent } from './_components/admin/admin.component';
+import { AuthGuard } from './_guards/auth.guard';
+
+// material
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
+
+//primeng
+import { TableModule } from 'primeng/table';
+import { CardModule } from 'primeng/card';
+import { LoginComponent } from './_components/login/login.component';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -49,8 +59,8 @@ export class SafePipe implements PipeTransform {
     AnnouncementComponent,
     ShopComponent,
     SafePipe,
-
-    
+    AdminComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,19 +71,22 @@ export class SafePipe implements PipeTransform {
     AppRoutingModule,
     RouterModule,
     SlickCarouselModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    BrowserAnimationsModule,
     MatFormFieldModule,
     MatAutocompleteModule,
     MatMenuModule,
     DialogModule,
-      ButtonModule,
- 
+    ButtonModule,
+    BrowserAnimationsModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule,
+    MatTabsModule,
+    TableModule,
+    CardModule
   ],
   providers: [
-    Title
-  
+    Title,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

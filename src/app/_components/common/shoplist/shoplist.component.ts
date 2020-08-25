@@ -94,7 +94,8 @@ export class ShoplistComponent implements OnInit {
 
   }
 
-  
+  category: any = 'all';
+
   selectItem(content){
      this.myInput = this.obj.productSample.filter(a => a.id === content)[0];
   }

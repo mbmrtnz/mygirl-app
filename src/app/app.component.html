@@ -1,26 +1,41 @@
+<ng-container *ngIf="!admin">
+  <header class="header">
 
-<header class="header">
-<div class="container-fluid" >
-    <div class="row">
+    <div class="container-fluid" >
+      <div class="row">
         <mat-toolbar class="headerDefault">
-          
-            <div class="col-lg-1"></div> 
 
-            <div class="col-lg-2" style="height: 80%" class="MyGirl_Logo">
-                                 <a [routerLink]="['/home']"><img (click)="selectedTab = 1" src="app/resources/img/header-logo-temp.png" alt="header-logo-temp.png" style="max-height: 100%; object-fit:contain; padding: 0px !important; margin: 0px !important"><h1 class="MyGirl_Text" style="display: inline-block; color: white; margin-left: 10px;">MyGirl Milktea </h1></a>
-      
-            </div>
-            <div class="col-6"></div>
-            <div class="col-lg-1">
-                <nav class="header__menu">
+          <div class="col-lg-1"></div> 
+
+          <div class="col-lg-2" style="height: 80%" class="MyGirl_Logo">
+
+          <!-- kinomment ni reid -->
+          <!-- cause: Property 'selectedTab' does not exist on type 'AppComponent'. -->
+          <!-- <a [routerLink]="['/home']"><img (click)="selectedTab = 1" src="app/resources/img/header-logo-temp.png" alt="header-logo-temp.png" style="max-height: 100%; object-fit:contain; padding: 0px !important; margin: 0px !important"><h1 class="MyGirl_Text" style="display: inline-block; color: white; margin-left: 10px;">MyGirl Milktea </h1></a> -->
+
+          <!-- temp -->
+          <a [routerLink]="['/home']"><img (click)="selectedTab = 1" src="app/resources/img/header-logo-temp.png" alt="header-logo-temp.png" style="max-height: 100%; object-fit:contain; padding: 0px !important; margin: 0px !important"><h1 class="MyGirl_Text" style="display: inline-block; color: white; margin-left: 10px;">MyGirl Milktea </h1></a>
+          <!-- temp end -->
+
+    <!-- <div class="container" style="max-width: 1400px !important;">
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="header__logo">
+                    <a [routerLink]="['/home']"><img src="app/resources/img/header-logo-temp.png" alt="header-logo-temp.png" style="max-width: 75%;"></a>
+                  </div> -->
+
+                </div>
+                <div class="col-6"></div>
+                <div class="col-lg-1">
+                  <nav class="header__menu">
                     <ul>
-                        <li [routerLinkActive]="['active']"><a class="defaultMenu"  [routerLink]="['/home']">Home</a></li>
-                        <li [routerLinkActive]="['active']"><a class="defaultMenu" [routerLink]="['/shop']">Shop</a></li>
-                        <li [routerLinkActive]="['active']"><a class=" defaultMenu" [routerLink]="['/shop']">Order</a></li>
-                        <li [routerLinkActive]="['active']"><a class="defaultMenu" [routerLink]="['/about']">About Us</a></li>
+                      <li [routerLinkActive]="['active']"><a class="defaultMenu"  [routerLink]="['/home']">Home</a></li>
+                      <li [routerLinkActive]="['active']"><a class="defaultMenu" [routerLink]="['/shop']">Shop</a></li>
+                      <li [routerLinkActive]="['active']"><a class=" defaultMenu" [routerLink]="['/shop']">Order</a></li>
+                      <li [routerLinkActive]="['active']"><a class="defaultMenu" [routerLink]="['/about']">About Us</a></li>
                     </ul>
-                </nav>
-            </div>
+                  </nav>
+                </div>
            <!--  <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
@@ -29,33 +44,39 @@
                     </ul>
                     <div class="header__cart__price">Price: <span>{{orderList[orderList.length-1]?.itemGrandTotal}}</span></div>
                 </div>
-            </div> -->
+              </div> -->
             </mat-toolbar>
           </div>
-        <div class="humberger__open">
+          <div class="humberger__open">
             <button class="btn btn-link" style="color: white; outline: none;border: none; padding: 0px; border:0px; " menuOpen="true" mat-button [matMenuTriggerFor]="menu">  <i class="fa fa-bars"></i></button>
-               <mat-menu  #menu="matMenu">
-                        <li mat-menu-item [routerLinkActive]="['active']"><a class="mobileMenuText" [routerLink]="['/home']">Home</a></li>
-                        <li mat-menu-item [routerLinkActive]="['active']"><a class="mobileMenuText" [routerLink]="['/shop']">Shop</a></li>
-                        <li mat-menu-item [routerLinkActive]="['active']"><a class="mobileMenuText" [routerLink]="['/shop']">Order</a></li>
-                        <li mat-menu-item [routerLinkActive]="['active']"><a class="mobileMenuText" [routerLink]="['/about']">About Us</a></li>
-              </mat-menu>
-        </div>
-      
+            <mat-menu  #menu="matMenu">
+              <li mat-menu-item [routerLinkActive]="['active']"><a class="mobileMenuText" [routerLink]="['/home']">Home</a></li>
+              <li mat-menu-item [routerLinkActive]="['active']"><a class="mobileMenuText" [routerLink]="['/shop']">Shop</a></li>
+              <li mat-menu-item [routerLinkActive]="['active']"><a class="mobileMenuText" [routerLink]="['/shop']">Order</a></li>
+              <li mat-menu-item [routerLinkActive]="['active']"><a class="mobileMenuText" [routerLink]="['/about']">About Us</a></li>
+            </mat-menu>
+          </div>
+
 
           
         </div>
 
- </header>
+      </header>
 
- <router-outlet></router-outlet>
-  
-    <app-modal #cartMdl class="d-none">
-      <div header style="max-width: 50% !important;">
-       <h5 class="modal-title" id="exampleModalLabel">Your Shopping Cart {{TotalPrice}}</h5> 
-    </div>
-    <div body >             
-      <table class="table table-image">
+      <router-outlet></router-outlet>
+
+      <app-modal #cartMdl class="d-none">
+        <div header style="max-width: 50% !important;">
+          <!-- kinomment ni reid -->
+          <!-- cause: Property 'TotalPrice' does not exist on type 'AppComponent'. -->
+         <!-- <h5 class="modal-title" id="exampleModalLabel">Your Shopping Cart {{TotalPrice}}</h5>  -->
+
+         <!-- temp -->
+         <h5 class="modal-title" id="exampleModalLabel">Your Shopping Cart </h5>
+         <!-- temp end -->
+       </div>
+       <div body >             
+        <table class="table table-image">
           <thead>
             <tr>
               <th scope="col"></th>
@@ -63,7 +84,7 @@
               <th scope="col">Price</th>
               <th scope="col">Qty</th>
               <th scope="col">Total</th>
-           
+
             </tr>
           </thead>
           <tbody>
@@ -71,30 +92,36 @@
               <td class="w-25">
                 <img  [attr.src]="custOrders.itemPath" class="img-fluid img-thumbnail" alt="Milktea Image">
               </td>
-               <td >{{custOrders.itemTitle}} </td> 
+              <td >{{custOrders.itemTitle}} </td> 
               <td >{{custOrders.itemPrice}} </td>
               <td class="qty">
                 <div class="input-group">
-                    <input [disabled]="custOrders.itemTotal == 0" type="button"  value="-" class="button-minus" (click)="service.additionalItems(custOrders.itemId,'min')" data-field="quantity">
-                    <input type="number" step="1" max="" [ngModel]="custOrders.itemTotal" (ngModelChange)="custOrders.itemTotal=$event" (change)="service.quantityCal('Manualadding')" name="quantity" class="quantity-field">
-                    <input type="button" value="+" class="button-plus" data-field="quantity" (click)="service.additionalItems(custOrders.itemId,'add')">
+                  <input [disabled]="custOrders.itemTotal == 0" type="button"  value="-" class="button-minus" (click)="service.additionalItems(custOrders.itemId,'min')" data-field="quantity">
+                  <input type="number" step="1" max="" [ngModel]="custOrders.itemTotal" (ngModelChange)="custOrders.itemTotal=$event" (change)="service.quantityCal('Manualadding')" name="quantity" class="quantity-field">
+                  <input type="button" value="+" class="button-plus" data-field="quantity" (click)="service.additionalItems(custOrders.itemId,'add')">
                 </div>
               </td>
               <td >{{custOrders.itemTotalPrice}}</td>
-            
+
             </tr>
           </tbody>
         </table> 
 
-         <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-end">
           <h5>Total: <span class="price text-success" >{{orderList[orderList.length-1]?.itemGrandTotal}}</span></h5>
         </div>
-    </div>
-    <div footer class="w-100 text-center">
-     <div class="modal-footer border-top-0 d-flex justify-content-between">
+      </div>
+      <div footer class="w-100 text-center">
+       <div class="modal-footer border-top-0 d-flex justify-content-between">
         <button type="button" class="btn btn-secondary" (click)="cartMdl.closeMdl()" >Close</button>
-        <button type="button" class="btn btn-success" (click)="quantityCalc('submitOrder')">Add to Cart</button>
+
+        <!-- kinomment ni reid -->
+        <!-- cause: Property 'quantityCalc' does not exist on type 'AppComponent'. -->
+        <!-- <button type="button" class="btn btn-success" (click)="quantityCalc('submitOrder')">Add to Cart</button> -->
+
+        <!-- temp -->
+        <button type="button" class="btn btn-success">Add to Cart</button>
+        <!-- temp end -->
       </div>
     </div>
-</app-modal>
-
+  </app-modal>
