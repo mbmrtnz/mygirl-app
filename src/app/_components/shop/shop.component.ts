@@ -5,12 +5,15 @@ import {MediaMatcher} from '@angular/cdk/layout';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {Observable} from 'rxjs';
 import {startWith, map} from 'rxjs/operators';
+import { ConfirmationService } from 'primeng/api';
+import {Message} from 'primeng/api';
 
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.css']
 })
+
 export class ShopComponent implements OnInit {
   teaSize: any = null;
 
@@ -21,7 +24,27 @@ export class ShopComponent implements OnInit {
   category="All Category";
   // extra1: any = {};
   e1 : '';
+  msgs: Message[] = [];
 
+  position: string;
+
+ confirm1() {
+        this.confirmationService.confirm({
+            message: 'Are you sure that you want to proceed?',
+            header: 'Confirmation',
+            icon: 'pi pi-exclamation-triangle',
+            defaultFocus: 'none',
+
+            accept: () => {
+                this.msgs = [{severity:'info', summary:'Confirmed', detail:'You have accepted'}];
+
+
+            },
+            reject: () => {
+                this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+            }
+        });
+    }
   
 
 
@@ -104,7 +127,7 @@ export class ShopComponent implements OnInit {
 
   }
  displayBasic: boolean;
- 
+ displayConfirm: boolean;  
    slideConfig = {
   "slidesToShow": 1, 
   "slidesToScroll": 1, 
@@ -129,7 +152,7 @@ export class ShopComponent implements OnInit {
   orderForm: FormGroup;
   submitted: boolean = false;
   constructor(public event: UtilService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
-            private formBuilder: FormBuilder) {
+            private formBuilder: FormBuilder,private confirmationService: ConfirmationService) {
 
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -150,9 +173,16 @@ export class ShopComponent implements OnInit {
    this.event.autoComplete();
   }
 
+    showBasicDialog() {
+        this.displayBasic = true;
+    }
+    showConfirmDialog() {
+        this.displayConfirm = true;
+    }
+
   ngOnInit() {
     this.orderForm = this.formBuilder.group({
-      specialIns: ['', Validators.required]
+      mgSize: ['', Validators.required]
     })
     this.event.autoComplete();
  

@@ -27,6 +27,9 @@ import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { AdminComponent } from './_components/admin/admin.component';
 import { AuthGuard } from './_guards/auth.guard';
+import {ConfirmDialogModule} from 'primeng/confirmdialog'
+import {MessagesModule} from 'primeng/messages';
+
 
 // material
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -38,6 +41,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { TableModule } from 'primeng/table';
 import { CardModule } from 'primeng/card';
 import { LoginComponent } from './_components/login/login.component';
+
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -82,7 +86,10 @@ export class SafePipe implements PipeTransform {
     MatListModule,
     MatTabsModule,
     TableModule,
-    CardModule
+    CardModule,
+    ConfirmDialogModule,
+    MessagesModule,
+
   ],
   providers: [
     Title,

@@ -69,11 +69,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.innerWidth = Number(window.innerWidth)-1015;
     this.userId = this.userId + (Math.random() * 100000).toFixed(0);
-    this.wsConnect();
+    // this.wsConnect();
   }
 
   ngOnDestroy(): void {
-    this.wsDisconnect();
+    // this.wsDisconnect();
   }
 
   wsConnect() {
