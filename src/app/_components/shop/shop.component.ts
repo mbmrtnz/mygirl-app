@@ -5,13 +5,14 @@ import {MediaMatcher} from '@angular/cdk/layout';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {Observable} from 'rxjs';
 import {startWith, map} from 'rxjs/operators';
-import { ConfirmationService } from 'primeng/api';
+import {ConfirmationService} from 'primeng/api';
 import {Message} from 'primeng/api';
 
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
-  styleUrls: ['./shop.component.css']
+  styleUrls: ['./shop.component.css'],
+   providers: [ConfirmationService]
 })
 
 export class ShopComponent implements OnInit {
@@ -21,31 +22,14 @@ export class ShopComponent implements OnInit {
   private _mobileQueryListener: () => void;
   isShow = true;
   searchShow = true;
+  displayBasic: boolean;
+  displayConfirm: boolean;
   category="All Category";
-  // extra1: any = {};
   e1 : '';
   msgs: Message[] = [];
-
   position: string;
 
- confirm1() {
-        this.confirmationService.confirm({
-            message: 'Are you sure that you want to proceed?',
-            header: 'Confirmation',
-            icon: 'pi pi-exclamation-triangle',
-            defaultFocus: 'none',
 
-            accept: () => {
-                this.msgs = [{severity:'info', summary:'Confirmed', detail:'You have accepted'}];
-
-
-            },
-            reject: () => {
-                this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
-            }
-        });
-    }
-  
 
 
 
@@ -126,8 +110,7 @@ export class ShopComponent implements OnInit {
      
 
   }
- displayBasic: boolean;
- displayConfirm: boolean;  
+  
    slideConfig = {
   "slidesToShow": 1, 
   "slidesToScroll": 1, 
@@ -180,6 +163,8 @@ export class ShopComponent implements OnInit {
         this.displayConfirm = true;
     }
 
+  
+
   ngOnInit() {
     this.orderForm = this.formBuilder.group({
       mgSize: ['', Validators.required]
@@ -204,16 +189,21 @@ export class ShopComponent implements OnInit {
   myFunc() {
     alert('ws');
   }
-
-  //  private _filter(value: string): string[] {
-  //   const filterValue = this._normalizeValue(value);
-  //  // console.log(this.obj.productSample.filter(street => this._normalizeValue(street.title).includes(filterValue)));
-  //   return this.obj.productSample.filter(a => this._normalizeValue(a.title).includes(filterValue));
-  // }
-
-  // private _normalizeValue(value: string): string {
-  //   return value.toLowerCase().replace(/\s/g, '');
-  // }
+       confirmDelete(ev) {
+        this.confirmationService.confirm({
+            message: 'Are you sure that you want to proceed?',
+            icon: 'pi pi-exclamation-triangle',
+            defaultFocus: 'none',
+            accept: () => {
+                // this.msgs = [{severity:'info', summary:'Confirmed', detail:'You have accepted'}];
+                this.event.itemRemover(ev);
+            },
+            reject: () => {
+                // this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+                  this.displayConfirm = false;
+            }
+        });
+    }
 
 
 }

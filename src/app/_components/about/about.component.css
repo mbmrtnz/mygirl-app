@@ -1,0 +1,71 @@
+
+.aboutHeader{
+	height: 100%;
+	 background-image: url('/app/resources/img/AboutHeader.jpg'); 
+	
+	 background-size: cover;
+	 background-repeat: no-repeat;
+	/* filter: blur(10px);*/
+
+
+}
+.noPadding{
+	 padding: 0px !important;
+	 margin: 0px !important;
+}
+
+.mgLogo{
+	text-align: center;
+
+}
+.mgLogoImg{
+	height: 500px !important;
+	background-color: rgba(255,255,255,0.3);
+	border-radius: 50%;
+
+
+}
+.imgText{
+	color:white;
+	  text-shadow: 2px 2px black;
+
+
+}
+
+.storeHours{
+	text-align: center;
+	 /*background-image: url('/app/resources/img/announcement.jpg'); */
+	padding: 50px;
+	margin: 0px !important;
+	  background-position: center;
+	  background-repeat: no-repeat;
+	  background-size: cover;
+	  position: initial;
+	  	/* filter: blur(10px);*/
+	}
+.storeHoursText{
+	color: black;
+		  text-shadow: 1px 1px white;
+
+
+}
+
+.storeHoursBorder{
+  border-radius: 15px;
+	  border: 5px solid white;
+	  background-color: rgba(255,255,255,0.3);
+
+}
+#followTab{
+ text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+		.mvmgLogoImg{
+			height: 200px !important;
+		/*	background-color: rgba(255,255,255,0.3);*/
+			border-radius: 50%;
+	
+				}
+
+}

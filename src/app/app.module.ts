@@ -41,6 +41,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { TableModule } from 'primeng/table';
 import { CardModule } from 'primeng/card';
 import { LoginComponent } from './_components/login/login.component';
+import { PromosComponent } from './_components/promos/promos.component';
 
 
 @Pipe({ name: 'safe' })
@@ -65,6 +66,7 @@ export class SafePipe implements PipeTransform {
     SafePipe,
     AdminComponent,
     LoginComponent,
+    PromosComponent,
   ],
   imports: [
     BrowserModule,

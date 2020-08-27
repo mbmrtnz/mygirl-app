@@ -28,7 +28,7 @@ export class UtilService {
  checked: boolean = false;
  iceKey ="i1";
  honeyKey= "h4";
- sizeKey: string = "";
+
    control = new FormControl();
   filteredProduct: Observable<string[]>;
 
@@ -43,10 +43,11 @@ export class UtilService {
     temp1:number = 0; 
     temp2: any[] = []; 
     getTotalValue: number =0 ;
+    viewOrder:any[] = [];
 
 
 
-
+ sizeKey: string = "";
  cupSize: any[] =[
  {key:'s1',name:'S'},
  {key:'s2',name:'L' },
@@ -96,82 +97,126 @@ bestDrinks: any[] =[
     {
       id: '001',
       title: 'Okinawa',
-      priceM: 110,
-      priceL: 115,
-      priceXL: 120,
+    
       description: 'Lorem Ipsum Lorem ipsum',
       category_code: 'BS',
-      imgpath: 'app/resources/img/Milktea-Sample.jpg'
-    },
+      imgpath: 'app/resources/img/Milktea-Sample.jpg',
+      size:{
+              selected: {
+                key: 's1'
+              },
+              opts:[
+            {key: 's1', abb: 'M', name: 'Medium', price: 115},
+            {key: 's2', abb: 'L', name: 'Large', price: 140},
+            {key: 's3', abb: 'XL', name: 'Extra Large', price: 150}]}
+
+
+
+          },
     {
       id: '002',
       title: 'Winter Melon',
-     priceM: 110,
-      priceL: 115,
-      priceXL: 120,
       description: 'Lorem Ipsum Lorem ipsum',
       category_code: 'BS', 
-      imgpath: 'app/resources/img/Milktea-Sample1.jpg'
+      imgpath: 'app/resources/img/Milktea-Sample1.jpg',
+        size:{
+              selected: {
+                key: 's1'
+              },
+              opts:[
+            {key: 's1', abb: 'M', name: 'Medium', price: 115},
+            {key: 's2', abb: 'L', name: 'Large', price: 140},
+            {key: 's3', abb: 'XL', name: 'Extra Large', price: 150}]}
     },
     {
       id: '003',
       title: 'Brown Sugar',
-        priceM: 110,
-      priceL: 115,
-      priceXL: 120,
       description: 'Lorem Ipsum Lorem ipsum',
       category_code: 'BS',
-      imgpath: 'app/resources/img/Milktea-Sample2.jpg'
+      imgpath: 'app/resources/img/Milktea-Sample2.jpg',
+            size:{
+              selected: {
+                key: 's1'
+              },
+              opts:[
+            {key: 's1', abb: 'M', name: 'Medium', price: 115},
+            {key: 's2', abb: 'L', name: 'Large', price: 140},
+            {key: 's3', abb: 'XL', name: 'Extra Large', price: 150}]}
     },
       {
-        id: '004',
+      id: '004',
       title: 'Strawberry MilkTea',
-       priceM: 110,
-      priceL: 115,
-      priceXL: 120,
       description: 'Lorem Ipsum Lorem ipsum',
       category_code: 'MY',
-      imgpath: 'app/resources/img/Milktea-Sample.jpg'
+      imgpath: 'app/resources/img/Milktea-Sample.jpg',
+            size:{
+              selected: {
+                key: 's1'
+              },
+              opts:[
+            {key: 's1', abb: 'M', name: 'Medium', price: 115},
+            {key: 's2', abb: 'L', name: 'Large', price: 140},
+            {key: 's3', abb: 'XL', name: 'Extra Large', price: 150}]}
     },
     {
       id: '005',
       title: 'Kiwi MilkTea',
-        priceM: 112,
-      priceL: 111,
-      priceXL: 120,
       description: 'Lorem Ipsum Lorem ipsum',
       category_code: 'MG',
-      imgpath: 'app/resources/img/Milktea-Sample4.jpg'
+      imgpath: 'app/resources/img/Milktea-Sample4.jpg',
+            size:{
+              selected: {
+                key: 's1'
+              },
+              opts:[
+            {key: 's1', abb: 'M', name: 'Medium', price: 115},
+            {key: 's2', abb: 'L', name: 'Large', price: 140},
+            {key: 's3', abb: 'XL', name: 'Extra Large', price: 150}]}
     },
       {
         id: '006',
       title: 'Lychee MilkTea',
-       priceM: 110,
-      priceL: 113,
-      priceXL: 120,
       description: 'Lorem Ipsum Lorem ipsum',
       category_code: 'MY',
-      imgpath: 'app/resources/img/Milktea-Sample1.jpg'
+      imgpath: 'app/resources/img/Milktea-Sample1.jpg',
+            size:{
+              selected: {
+                key: 's1'
+              },
+              opts:[
+            {key: 's1', abb: 'M', name: 'Medium', price: 115},
+            {key: 's2', abb: 'L', name: 'Large', price: 140},
+            {key: 's3', abb: 'XL', name: 'Extra Large', price: 150}]}
     },
       {
         id: '007',
       title: 'Lychee MilkTea',
-      priceM: 110,
-      priceL: 115,
-      priceXL: 125,
       description: 'Lorem Ipsum Lorem ipsum',
       category_code: 'MG',
-      imgpath: 'app/resources/img/Milktea-Sample.jpg'
+      imgpath: 'app/resources/img/Milktea-Sample.jpg',
+            size:{
+              selected: {
+                key: 's1'
+              },
+              opts:[
+            {key: 's1', abb: 'M', name: 'Medium', price: 115},
+            {key: 's2', abb: 'L', name: 'Large', price: 140},
+            {key: 's3', abb: 'XL', name: 'Extra Large', price: 150}]}
     },
     {
       id: '008',
       title: 'Lychee MilkTea',
-      priceM: 110,
-      priceL: 125,
-      priceXL: 140,
       description: 'Lorem Ipsum Lorem ipsum',
       category_code: 'FT',
-      imgpath: 'app/resources/img/Milktea-Sample2.jpg'
+      imgpath: 'app/resources/img/Milktea-Sample2.jpg',
+      size:{
+              selected: {
+                key: 's1'
+              },
+              opts:[
+            {key: 's1', abb: 'M', name: 'Medium', price: 115},
+            {key: 's2', abb: 'L', name: 'Large', price: 140},
+            {key: 's3', abb: 'XL', name: 'Extra Large', price: 150}]}
     }]
 
   }
@@ -179,19 +224,13 @@ bestDrinks: any[] =[
 
    constructor() { }
 
+
   selectItem(content){
      this.myInput = this.obj.productSample.filter(a => a.id === content)[0];
-     //   this.customerOrder.forEach(a => {
-     // if(a.itemId==content){
-     //   this.value.quantity = a.itemTotal;
-     //   }
-     //   else{
-     //    this.value.quantity = 0;
-     //   }});
   }
 
-  myFunc(str?) {
-  	console.log(str);
+  myFunc(ev) {
+  	this.myInput.size.selected = this.myInput.size.opts.filter(a => a.key == ev)[0];
   }
 
   addFunction(ev){
@@ -226,22 +265,22 @@ bestDrinks: any[] =[
 
 
 
-  submitCart(){
+  submitCart(ev?){
+   
     this.orderID = this.orderID+1;
     //get size
-       if(this.sizeKey=='s1'){
-           this.selectedMTPrice = this.myInput.priceM;
-           this.selectedSize = 'Medium';
-       }
-       else if(this.sizeKey=='s2'){
-            this.selectedMTPrice = this.myInput.priceM;
-            this.selectedSize = 'Large';
-       }
-        else if(this.sizeKey=='s3'){
-            this.selectedMTPrice = this.myInput.priceXL;
-            this.selectedSize = 'Extra Large';
-
-       }
+       // if(this.sizeKey=='s1'){
+       //     this.selectedMTPrice = this.myInput.priceM;
+       //     this.selectedSize = 'Medium';
+       // }
+       // else if(this.sizeKey=='s2'){
+       //      this.selectedMTPrice = this.myInput.priceL;
+       //      this.selectedSize = 'Large';
+       // }
+       //  else if(this.sizeKey=='s3'){
+       //      this.selectedMTPrice = this.myInput.priceXL;
+       //      this.selectedSize = 'Extra Large';
+       // }
    // get all add ons
      this.addOns.forEach(a => {
      if(a.selected==true){
@@ -257,12 +296,15 @@ bestDrinks: any[] =[
      );
      
    //Get Total including price and addOns
-   this.temp = this.addOnsPrice + this.selectedMTPrice
+   this.temp = this.addOnsPrice + this.myInput.size.selected.price;
+ 
    this.calculatedPrice = this.temp * this.quantityValue;
    this.totalPrice = this.totalPrice + this.calculatedPrice;
 
-   // add to Array 
-     this.customerOrder.push(
+
+     if(ev==null){
+          // add to Array 
+      this.customerOrder.push(
        {
        
        itemOrderID: 'MG'+this.orderID,
@@ -270,6 +312,7 @@ bestDrinks: any[] =[
        itemComputed: this.temp,
        itemPrice: this.selectedMTPrice,
        itemSize:this.selectedSize, 
+       itemSizeKey:this.sizeKey,
        itemTitle:this.myInput.title, 
        itemCode: this.myInput.category_code, 
        itemTotal:this.quantityValue,
@@ -278,7 +321,39 @@ bestDrinks: any[] =[
        itemIceLevel:this.iceKey,
        itemHoneyLevel:this.honeyKey,
        itemInstruction:this.specialInstruction,
-       itemExtras: this.addOnsSelected});
+       itemExtras: this.addOnsSelected,
+       itemDescription: this.myInput.description,
+       itemPicture: this.myInput.imgpath});
+
+
+
+     }
+     else{
+
+       this.customerOrder.forEach(b => {
+       if(b.itemOrderID == ev){
+       b.itemPicture = this.myInput.imgpath;
+       b.itemComputed =  this.temp,
+       b.itemPrice =  this.selectedMTPrice,
+       b.itemSize = this.selectedSize, 
+       b.itemSizeKey = this.sizeKey,
+       b.itemTitle = this.myInput.title, 
+       b.itemCode =  this.myInput.category_code, 
+       b.itemTotal = this.quantityValue,
+       b.itemPath = this.myInput.imgpath,
+       b.itemGrandTotal = this.calculatedPrice,
+       b.itemIceLeve = this.iceKey,
+       b.itemHoneyLevel = this.honeyKey,
+       b.itemInstruction = this.specialInstruction,
+       b.itemExtras =  this.addOnsSelected,
+       b.itemDescription =  this.myInput.description,
+       b.itemPicture =  this.myInput.imgpath
+
+       }
+     });
+
+     }
+     
      
      //reset values
       this.quantityValue = 1;
@@ -296,18 +371,31 @@ bestDrinks: any[] =[
      this.getTotal()
    
   }
+
+
+  updateCart(eve){
+
+        this.customerOrder.forEach(a => {
+       if(a.itemOrderID == eve){
+
+           a.itemGrandTotal
+
+       }
+     });
+
+
+  }
   getTotal(){
     //get total Value of orders
         this.getTotalValue = 0;
-     this.customerOrder.forEach(a => {
+        this.customerOrder.forEach(a => {
        this.getTotalValue = this.getTotalValue + a.itemGrandTotal;
-     }
-
-  
-     );
+     });
      
 
   }
+
+
   quantityCalc(ev){
     this.myObject = {
       selectedItem:
@@ -376,18 +464,67 @@ bestDrinks: any[] =[
      // this.itemRemover();
    }
    itemRemover(ev){
-     
+
         this.customerOrder.forEach(function(item, index, object) {
             if (item.itemOrderID == ev) {
               object.splice(index, 1);
             }
           });
+          this.getTotal()
    }
+     viewTitle: string = "";
+     viewPrice: number = 0;
+     view: boolean = false;
+    viewDescription: string = "";
+    viewImagePath: string = "";
+    viewOrderId : string ="";
+    viewOrderCount: number = 0;
+    viewOrderExtras: any ={};
+    viewOrderMTPrice: number = 0;
+    editOrder(ev){
+      this.myFunction();
+         this.customerOrder.forEach(a => {
+           if(a.itemOrderID == ev){
+                    this.view = true;
+                    this.viewTitle = a.itemTitle;
+                    this.viewPrice = a.itemGrandTotal;
+                    this.sizeKey = a.itemSizeKey;
+                    this.viewOrderMTPrice = a.itemPrice;
+                    this.iceKey = a.itemIceLevel;
+                    this.honeyKey= a.itemHoneyLevel;
+                    this.specialInstruction = a.itemInstruction;
+                    this.viewDescription = a.itemDescription;
+                    this.viewImagePath = a.itemPicture;
+                    this.viewOrderId = a.itemOrderID;
+                    this.quantityValue = a.itemTotal;
+                    this.viewOrderExtras = a.itemExtras;
+                    
+                  
+                }
+          });
 
 
-
-
-
+              this.addOns.forEach(a => {
+                     a.selected = false;
+                        this.viewOrderExtras.forEach(b => {
+                                if(b.extrasId == a.key){
+                                  a.selected = true;
+                                }
+                               });
+               });
+    }
+        myFunction(){
+       this.view = false;
+       this.sizeKey = '';
+       // this.viewOrderExtras = [];
+       // this.viewTitle = ''
+       // this.viewPrice = ''
+       // this.sizeKey = a.itemSizeKey;
+       // this.iceKey = a.itemIceLevel;
+       // this.honeyKey= a.itemHoneyLevel;
+       // this.specialInstruction = a.itemInstruction;
+       // this.viewDescription = a.itemDescription;
+    }
 
    	addToCart(ev){
    		this.GrandTotal = this.GrandTotal+ev.cartDefaults[1];
@@ -399,13 +536,10 @@ bestDrinks: any[] =[
 
 
     autoComplete() {
-
      this.filteredProduct = this.control.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value))
-
     );
-
   }
 
      private _filter(value: string): string[] {

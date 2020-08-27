@@ -1,14 +1,5 @@
-<!--  <button mat-icon-button class="navigationIcon" (click)="snav.toggle()"><mat-icon>menu</mat-icon></button> -->
-
-<!-- <i class="icon-thumbs-down glow" ></i> -->
-<!-- mobile tool -->
 
 
-
-  <button type="button" (click)="showConfirmDialog()" pButton icon="pi pi-times" label="Confirm"></button>
-<!-- <button type="button" (click)="confirm2()" pButton icon="pi pi-times" label="Delete"></button>
- -->
-<p-messages [value]="msgs"></p-messages>
 <div class="navigationWrapper" [style.display]="mobileQuery.matches ? '' : 'none'">
   <button style="border-radius: 50%;"  mat-icon-button class="navigationIcon btn btn-link"  (click) = toggleDisplay()>
     <img style="height: 50px; width: 50px; border-radius: 50%;" src="/app/resources/img/Navigate.png">
@@ -81,10 +72,7 @@
 
     </div >
     <ul class="matnav" style="clear: both;">
-      <!-- kinomment ni reid -->
-      <!-- cause: Property 'clearSearch' does not exist on type 'UtilService' -->
-      <!-- <li [ngClass]="{'active': category==='All Category'}" class="categoryTabs" (click)="category='All Category'" (click)="mobileQuery.matches ? snav.toggle() : false" (click)="FilterData()"  (click)="event.clearSearch()" data-filter="*">All</li> -->
-
+   
       <!-- temp -->
       <li [ngClass]="{'active': category==='All Category'}" class="categoryTabs" (click)="category='All Category'" (click)="mobileQuery.matches ? snav.toggle() : false" (click)="FilterData()" data-filter="*">All</li>
       <!-- temp end -->
@@ -174,22 +162,24 @@
                 </mat-sidenav-content> 
 
 
-     <mat-sidenav [opened]="mobileQuery.matches ? 'false' : 'true'" mode="side" #myCart class="example-sidenav col-xl-2 col-lg-2 col-md-12 col-xs-12" id="checkoutPreText" position="end" 
+     <mat-sidenav style=" overflow-y: hidden;" [opened]="mobileQuery.matches ? 'false' : 'true'" mode="side" #myCart class="example-sidenav col-xl-2 col-lg-2 col-md-12 col-xs-12" id="checkoutPreText" position="end" 
                 [fixedInViewport]="true"
-                [fixedTopGap]="50">
+                [fixedTopGap]="50" >
 
             
 
 
                    
-                        <div class="col-12"> <span class="default" ><p *ngIf="event.customerOrder.length==0"> No Items in your Cart Yet </p> </span>  </div>
+                        <div class="col-12" > <span class="default" ><p *ngIf="event.customerOrder.length==0"  > No Items in your Cart Yet </p> </span> 
+
+                         </div>
 
               <div class="row" *ngFor="let order of event.customerOrder" style="padding-left: 10px; font-family:kozuka gothic pro;">
-                        <div class="col-7"> <h5> {{order.itemTitle}} </h5> 
+                        <div class="col-5"> <h5> {{order.itemTitle}} </h5> 
                            <p style="font-size: 12px; line-height : 15px; padding: 0px; margin: 0px;" > {{order.itemSize}} </p>
                            </div>
-                        <div class="col-5"> <p> {{'PHP '+order.itemGrandTotal}} </p>  </div>
-
+                        <div class="col-4 " style="text-align:right;"> <p class=""> {{'PHP '+order.itemGrandTotal}} </p>  </div>
+                          <div class="col-3" style="text-align:right;" (click)="showBasicDialog()" (click)="event.editOrder(order.itemOrderID)"  ><i class="pi pi-external-link"></i></div>
 
                         <div class="col-5"> 
                           <p style="font-size: 10px; line-height : 10px; padding: 0px; margin: 0px;" *ngFor="let extras of order.itemExtras" >  {{'+ '+extras.extrasTitle}}</p> 
@@ -202,7 +192,7 @@
                                 <button [style.display]="order.itemTotal == 1 ? 'none':'' " type="button"  value="-" class="button-minus btn btn-link" (click)="event.quantityControl('s-min',order.itemOrderID)" data-field="quantity">
                                     <i  class=" blackFont fa fa-minus"></i>
                                </button>
-                              <button [style.display]="order.itemTotal == 1 ? '':'none' "  type="button"  value="-" class="button-minus btn btn-link" (click)="event.itemRemover(order.itemOrderID)" data-field="quantity">
+                              <button [style.display]="order.itemTotal == 1 ? '':'none' "  type="button"  value="-" class="button-minus btn btn-link"  (click)="confirmDelete(order.itemOrderID)"  data-field="quantity">
                                 <i class=" blackFont fa fa-trash"></i>
                               </button>
                               <input type="number" style="border: 0;
@@ -211,7 +201,7 @@
                         </div>
                       </div>
                </div>
-               <div class="row">
+               <div class="row" style="padding: 0px !important; margin: 0px !important;">
                    <div class="col-5"><p>Total Price</p></div>
                    <div class="col-7"><p *ngIf="event.totalPrice!=0"> {{'PHP '+ event.getTotalValue}}</p></div>
                 </div>
@@ -219,28 +209,25 @@
        </mat-sidenav>
      </mat-sidenav-container >
 <!-- Confirm Box -->
-  <p-confirmDialog header="Remove Item" [(visible)]="displayConfirm" closable="true"  [style]="{width: '50vw'}" [baseZIndex]="10000">
-    
-  <p-dialog-content>
-      <p>Are you sure you want to remove this order?</p>
-    </p-dialog-content>
-
-    <p-footer>
-      <button type="button"  pButton icon="pi pi-check" label="Yes"></button>
-      <button type="button"  pButton icon="pi pi-times" label="No"></button>
-  </p-footer>
+  <p-confirmDialog  position="top" header="Remove Item" [(visible)]="displayConfirm" closable="true"  [style]="{width: '20vw'}" [baseZIndex]="10000">
+  
+   
 
   </p-confirmDialog>
      <!-- MODAL FOR ADD TO CART -->
-      <p-dialog position="center"  [(visible)]="displayBasic" header="Add to Cart"  [style]="{width: '30vw','text-align': 'left'}" [baseZIndex]="10000">
+      <p-dialog position="center" [modal]="true" (onHide)="event.myFunction()"  [(visible)]="displayBasic" header="Add to Cart"  [style]="{width: '30vw','text-align': 'left'}" [baseZIndex]="10000">
        <div class="my-image">
-        <img  style="object-fit: cover;" [attr.src]="event.myInput.imgpath" class=" shop-image" alt="Milktea Image" >
+        <img  style="object-fit: cover;" [attr.src]="!event.view ? event.myInput.imgpath : event.viewImagePath" class=" shop-image" alt="Milktea Image" >
 
       </div> 
       <div style="border-bottom: 1px solid gray;" >
-        <h2 style="display: inline-block;">{{event.myInput.title}}</h2>
+        <h2 style="display: inline-block;">{{!event.view ? event.myInput.title : event.viewTitle}}</h2>
         <h6> {{event.myInput.description}}</h6>
-        <h6 class="float-right" style="display: inline-block; margin-top: 15px; color: gray;">{{'₱ '+event.myInput.priceM}} </h6>
+        <h6 class="float-right" style="display: inline-block; margin-top: 15px; color: gray;"> 
+   <!--       {{event.viewOrderMTPrice==0 ? '': 'PHP '+event.viewOrderMTPrice  }} --> 
+                {{event.myInput?.size?.selected?.price}}
+                <!-- {{mgSize.value}} -->
+        </h6>
       </div>
         <!-- this -->
          <form [formGroup]="orderForm">
@@ -248,12 +235,12 @@
       <span >Size (Select One) </span>  <br>
        <span class="float-right p-tag p-tag-rounded p-tag-danger">Required</span>
       
-          <label *ngFor="let size of event.cupSize" for="size.key" class="labelMargin">       
-            <input  type="radio" formControlName="mgSize" [ngClass]="{'invld': submitted && f.mgSize.errors }" style="margin-right: 5px !important; margin-left: 5px !important;" class="radio-inline" [value]="size.key" [(ngModel)]="event.sizeKey" /> <span [ngClass]="{'invld': submitted && f.mgSize.errors }" >{{' '+size.name}}</span>
+          <label *ngFor="let size of event.myInput.size?.opts" for="size.key" class="labelMargin">
+            <input type="radio" formControlName="mgSize" [ngClass]="{'invld': submitted && f.mgSize.errors }" style="margin-right: 5px !important; margin-left: 5px !important;" class="radio-inline" [value]="size.key" [ngModel]="event.myInput.size.selected.key" (ngModelChange)="event.myFunc($event)"/> <span [ngClass]="{'invld': submitted && f.mgSize.errors }" >{{' '+size.abb}}</span>
 
           </label>  
 
-      </div>  
+      </div>
         </form> 
       <div class="IceOption smBorder">
            <span >Ice Level </span> <br>
@@ -301,15 +288,13 @@
                       <button type="button" value="+" class="button-plus btn btn-link" data-field="quantity" (click)="event.quantityControl('add',event.temp1)" ><i class=" blackFont fa fa-plus"></i></button>
                      
 
-   <!--                       <button type="button" class="btn btn-secondary" (click)="SLModal.closeMdl()" >Close</button>
-    <button [disabled]="event.value.quantity == 0" (click)="SLModal.closeMdl()" type="button" class="btn btn-success"  (click)="event.quantityCalc('submitOrder')">Add to Cart</button>
-  </div>
- -->
-                     <!--  <button type="button" pRipple pButton icon="pi pi-check p-button-success" (click)="displayBasic=false" label="Yes"></button> -->
             </div>
             <div>
-             <!--  <button type="submit"  (click)="onFormSubmit()"  pButton pRipple type="button" label="ADD TO CART" class="p-button-success"></button>  -->
-                    <button type="submit"  (click)="event.submitCart()"  pButton pRipple type="button" label="ADD TO CART" class="p-button-success"></button>
+
+                    <button type="submit" [style.display]="event.view ? 'none':''" (click)="displayBasic=false"  (click)="event.submitCart()"  pButton pRipple type="button" label="ADD TO CART" class="p-button-success"></button>
+
+                      <button type="submit" [style.display]="event.view ? '':'none'" (click)="displayBasic=false" (click)="event.submitCart(event.viewOrderId)"  pButton pRipple type="button" label="Update Cart" class="p-button-success"></button>
+
             </div>
                 
           </div> 

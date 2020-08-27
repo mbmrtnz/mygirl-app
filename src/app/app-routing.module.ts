@@ -5,6 +5,7 @@ import { AboutComponent } from './_components/about/about.component';
 import { ShopComponent } from './_components/shop/shop.component';
 import { AdminComponent } from './_components/admin/admin.component';
 import { LoginComponent } from './_components/login/login.component';
+import { PromosComponent } from './_components/promos/promos.component';
 import { AuthGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+    {
+    path: 'promos',
+    component: PromosComponent
   },
 ];
 
