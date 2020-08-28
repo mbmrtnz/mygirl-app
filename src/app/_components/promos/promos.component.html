@@ -1,16 +1,50 @@
-<div class="container">
-	<div class="row">
-		<div class="col-12 text-center " style="margin-top: 10px;">
-			<h1> Enjoy your favorites with our promos! </h1>
-		</div>
-		<div class="col-12 promoCard p-shadow-23">
-			
-		</div>
-
-
+<div class="container-fluid bg">
 
 
 </div>
+	<div class="container">
+	<div class="row">
+		<div class="col-12 text-center " style="margin-top: 10px;">
+			<h1 class="enjoy"> Enjoy your favorites with our Special Promos! </h1>
+		</div>
+
+
+		<!-- <div class="col-12 promoCard p-shadow-23">
+			<div class="row">
+				<div class="promoThumbnail col-3">
+					<img src="app/resources/img/header-logo-temp.png" >
+				</div>
+				<div class="promoThumbnail col-7 ">
+					
+
+				</div>
+			</div> -->
+			<div *ngFor="let promo of event.promos" class="">
+			<p-card  styleClass="p-card-shadow">
+				<div class="row">
+				<div class="col-3"> 
+					<img alt="Card" [attr.src]="promo.promoIcon" style="min-height: 200px; object-fit: cover;">
+					<div class="top-right"><h3 class="enjoy"><b>{{promo.promoType.key=='disc'?  promo.promoType.discount+' %Discount' : promo.promoType.display}}</b></h3></div>
+				</div>
+				   <div class="col-5"> 
+				   <h1 class="enjoy"><b style="border-bottom: 4px solid red;">{{promo.promoTitle}}</b></h1>
+				   <h5 class="enjoy">valid from {{promo.date.startDate}} to {{promo.date.endDate}} </h5>
+				    <h5 class="enjoy">Promo code: <b>{{ promo.promoCode}}</b> </h5>          
+				    <p class="enjoy">{{promo.promoDescription}}</p>
+				    </div>
+				   </div> 
+				  
+			</p-card><br>
+				
+		</div>
+
+
+		</div>
+
+		</div>
+
+
+
 
 
 

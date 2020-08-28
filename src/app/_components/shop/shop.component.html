@@ -1,4 +1,7 @@
+<div class="container-fluid bg">
 
+
+</div>
 
 <div class="navigationWrapper" [style.display]="mobileQuery.matches ? '' : 'none'">
   <button style="border-radius: 50%;"  mat-icon-button class="navigationIcon btn btn-link"  (click) = toggleDisplay()>
@@ -48,14 +51,12 @@
 
 
 <!-- end -->
-<mat-sidenav-container  class="container-fluid" style="background-color:#f3f3f3" autosize class="example-sidenav-container">
+<mat-sidenav-container  class="container-fluid" style="background-color:#f3f3f3" class="">
 <!-- <mat-sidenav-container  class="container-fluid" style="background-color:#f3f3f3" autosize class="example-sidenav-container"
  [style.marginTop.px]="mobileQuery.matches ? 56 : 0">  WIDTH MOBILE MARGIN-->
-
- <mat-sidenav  #snav [opened]="mobileQuery.matches ? 'false' : 'true'"  mode="side" class="example-sidenav col-xl-2 col-lg-2 col-md-12 col-xs-12 matnav" mode="side"
- [fixedInViewport]="true"
- [fixedTopGap]="64"
- [fixedBottomGap]="0" [mode]="mobileQuery.matches ? 'over' : 'side'"
+<!--  -->
+ <mat-sidenav [disableClose]="true" [style.height]="mobileQuery.matches? '':'409px'"    #snav [opened]="mobileQuery.matches ? 'false' : 'true'"  mode="side" class="example-sidenav col-xl-2 col-lg-2 col-md-12 col-xs-12 matnav" mode="side"
+ [fixedBottomGap]="0"
  [fixedInViewport]="mobileQuery.matches"
  [autoFocus]="true">
  <div class="col-12  matnav">
@@ -71,11 +72,12 @@
       </span>
 
     </div >
+
     <ul class="matnav" style="clear: both;">
    
-      <!-- temp -->
+      
       <li [ngClass]="{'active': category==='All Category'}" class="categoryTabs" (click)="category='All Category'" (click)="mobileQuery.matches ? snav.toggle() : false" (click)="FilterData()" data-filter="*">All</li>
-      <!-- temp end -->
+   
 
       <li [ngClass]="{'active': category==='Milktea'}"  class="categoryTabs"(click)="category='Milktea'" (click)="mobileQuery.matches ? snav.toggle() : false" (click)="FilterData()"  data-filter=".FT">Milktea</li>
       <li [ngClass]="{'active': category==='Yogurt'}" class="categoryTabs" (click)="category='Yogurt'" (click)="mobileQuery.matches ? snav.toggle() : false" (click)="FilterData()" data-filter=".BS">Yogurt</li>
@@ -89,42 +91,32 @@
   </div>
 
 
-  <div class="" [style.display]="mobileQuery.matches ? 'none' : ''" style="height: 30px; width: 300px; font-size: 20px; font-weight: bold; background-color: rgba(255, 0, 0,0.8); text-align: center; margin-top: 5px; margin-bottom: 5px; font-family: kozuka gothic pro;">
-    <marquee><span style="color: white;  "> <i class="fa fa-star"></i> Can't Decide? Try our Best Seller!<i class="fa fa-star"></i></span></marquee>
-  </div>
-  <ngx-slick-carousel class="carousel" 
-  #slickModal="slick-carousel" 
-  [config]="slideConfig" [style.display]="mobileQuery.matches ? 'none' : ''">
-  <div ngxSlickItem *ngFor="let milktea of obj.productSample" [ngClass]="'col-3 mix '+milktea.category_code">
-    <div class="featured__item">
-
-      <div class="product__discount__item">
-
-        <div class="BestSellerNavWrapper set-bg">
-          <div class="BestSellerNav set-bg"   [ngStyle]="{'background-image': 'url('+ milktea.imgpath +')'}">
-
-
-          </div>
-          <div class="BestSellerNavDesc">
-            <h6 class="listText"><a href="#" style="color: white;">{{milktea.title}}</a></h6>
-            <h5 style="color: white;">{{milktea.description}}</h5>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</ngx-slick-carousel>
 </div>
 </mat-sidenav>
-<mat-sidenav-content  >
-  <app-announcement [mobileView]="mobileQuery.matches" ></app-announcement> 
+<mat-sidenav-content style="min-height: 500px;" >
+<!--   <app-announcement [mobileView]="mobileQuery.matches" ></app-announcement>  -->
   <section class="featured spad">
 
 
-   <div class="section-title" style="margin-bottom: 20px;">
-    <h2>{{category}}</h2>
+   <div class="section-title text-align center search" style="margin-bottom: 20px;">
+  
+      
+        
+          <input type="text"
+                     placeholder="Find your Favorites!"
+                     [formControl]="event.control"
+                     [matAutocomplete]="auto"
+                     class="searchbox searchTerm"
+                     [hidden] = ""
+                     > 
+                      <button type="submit" class="searchButton">
+                          <i class="fa fa-search"></i>
+                       </button>
+         
 
+
+ 
+    
 
 
   </div>
@@ -162,14 +154,9 @@
                 </mat-sidenav-content> 
 
 
-     <mat-sidenav style=" overflow-y: hidden;" [opened]="mobileQuery.matches ? 'false' : 'true'" mode="side" #myCart class="example-sidenav col-xl-2 col-lg-2 col-md-12 col-xs-12" id="checkoutPreText" position="end" 
+     <mat-sidenav [disableClose]="true" [opened]="mobileQuery.matches ? 'false' : 'true'" mode="side" #myCart class="example-sidenav col-xl-2 col-lg-2 col-md-12 col-xs-12" id="checkoutPreText" position="end" 
                 [fixedInViewport]="true"
                 [fixedTopGap]="50" >
-
-            
-
-
-                   
                         <div class="col-12" > <span class="default" ><p *ngIf="event.customerOrder.length==0"  > No Items in your Cart Yet </p> </span> 
 
                          </div>
@@ -205,7 +192,7 @@
                    <div class="col-5"><p>Total Price</p></div>
                    <div class="col-7"><p *ngIf="event.totalPrice!=0"> {{'PHP '+ event.getTotalValue}}</p></div>
                 </div>
-                <button type="button" class="btn btn-success btn-lg btn-block">Checkout</button>
+                <button type="button" (click)="showCheckout()" class="btn btn-success btn-lg btn-block">Checkout</button>
        </mat-sidenav>
      </mat-sidenav-container >
 <!-- Confirm Box -->
@@ -215,7 +202,7 @@
 
   </p-confirmDialog>
      <!-- MODAL FOR ADD TO CART -->
-      <p-dialog position="center" [modal]="true" (onHide)="event.myFunction()"  [(visible)]="displayBasic" header="Add to Cart"  [style]="{width: '30vw','text-align': 'left'}" [baseZIndex]="10000">
+      <p-dialog position="center" [modal]="true" (onHide)="event.myFunction()"   [(visible)]="displayBasic" header="Add to Cart"  [style]="{width: '30vw','text-align': 'left'}" [baseZIndex]="10000">
        <div class="my-image">
         <img  style="object-fit: cover;" [attr.src]="!event.view ? event.myInput.imgpath : event.viewImagePath" class=" shop-image" alt="Milktea Image" >
 
@@ -291,7 +278,7 @@
             </div>
             <div>
 
-                    <button type="submit" [style.display]="event.view ? 'none':''" (click)="displayBasic=false"  (click)="event.submitCart()"  pButton pRipple type="button" label="ADD TO CART" class="p-button-success"></button>
+                    <button type="submit" [style.display]="event.view ? 'none':''"   (click)="event.submitCart()"  (click)="displayBasic=false" pButton pRipple type="button" label="ADD TO CART" class="p-button-success"></button>
 
                       <button type="submit" [style.display]="event.view ? '':'none'" (click)="displayBasic=false" (click)="event.submitCart(event.viewOrderId)"  pButton pRipple type="button" label="Update Cart" class="p-button-success"></button>
 
@@ -301,7 +288,31 @@
     </p-footer>
 </p-dialog>
 
+<!-- Checkout Modal -->
+<p-dialog header="Checkout" modal="true" position="top" [(visible)]="checkout" [style]="{width: '30vw'}" [baseZIndex]="10000">
+  <div class="container-fluid" *ngFor="let order of event.customerOrder">
+    <div class="row" >
+        <div class="col-4" >
+          <img class="checkoutImage"  [attr.src]="order.itemPicture">
+        </div>
+       
+        <div class="col-12" style="width: 100%;">
+          <h2 class="checkOutTitle" style="display: inline-block;">{{order.itemTitle}}</h2> 
+          <h5 class="checkOutTitle" style="display: inline-block; float: right; margin-top:5px;" >{{order.itemTotal}} x {{order.itemGrandTotal}}</h5>
+          <h6 class="checkOutTitle">{{order.itemSize}} - {{order.itemPrice}}</h6>
+        </div>
+        <div class="col-6">
+          <p class="checkoutDetails" *ngFor="let extra of order.itemExtras">{{extra.extrasTitle}}</p>
+        
+        </div>
+        <div class="col-6">
+          <p class="checkoutDetails" *ngFor="let extra of order.itemExtras">{{extra.extrasPrice}}</p>
+        </div>
      
+  </div>
+</div>
+</p-dialog>
+<!-- Checkout Modal END-->     
 <app-modal #LoginModal class="d-none">
 
   <div body style="min-width: 300px !important;">             

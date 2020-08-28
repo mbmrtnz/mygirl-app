@@ -24,12 +24,12 @@ export class UtilService {
   temp: number = 0;
 	cart: any = {};
 	customerOrder: any[] =[];
-  extraTop: any[] =[]; 
+ extraTop: any[] =[]; 
  checked: boolean = false;
  iceKey ="i1";
  honeyKey= "h4";
 
-   control = new FormControl();
+  control = new FormControl();
   filteredProduct: Observable<string[]>;
 
 
@@ -44,7 +44,21 @@ export class UtilService {
     temp2: any[] = []; 
     getTotalValue: number =0 ;
     viewOrder:any[] = [];
+    viewTitle: string = "";
+    viewPrice: number = 0;
+    view: boolean = false;
+    viewDescription: string = "";
+    viewImagePath: string = "";
+    viewOrderId : string ="";
+    viewOrderCount: number = 0;
+    viewOrderExtras: any ={};
+    viewOrderMTPrice: number = 0;
 
+
+    storeHours: any[] =[{
+      store: {day:'monday to sunday', time:'9:00 to 9:00 PM'},
+      delivery: {day:'Monday to Sunday', time:'9:00 to 9:00 PM'}
+    }]
 
 
  sizeKey: string = "";
@@ -81,9 +95,57 @@ bestDrinks: any[] =[
  {key:'h3',name:'75%'},
  {key:'h4',name:'100%'}];
  selectecIce: any ={};
-  socMedLink: string[] = ['https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fmygirlmilkteamolitoalabang%2Fphotos%2Fa.325912167938878%2F606446139885478%2F%3Ftype%3D3&width=500',
-  'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fmygirlmilkteamolitoalabang%2Fphotos%2Fa.325912167938878%2F604695600060532%2F%3Ftype%3D3&width=500',
-  'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fmygirlmilkteamolitoalabang%2Fphotos%2Fa.325912167938878%2F606446139885478%2F%3Ftype%3D3&width=500'];
+
+ promos: any[] = [
+ {promoCode:'P1002', 
+ promoTitle: '20% Discount', 
+ status: true,
+ promoIcon: 'app/resources/img/header-logo-temp.png',
+ promoDescription:'Get Discount on any milktea purchase through our website',
+  avail: 100, 
+ date:{
+   startDate: '08/28/2020',
+   endDate: '09/12/2020'},
+   promoType:
+   {key: 'disc', name: 'Discount',discount:20,display:''}},
+   {promoCode:'P1002', 
+   promoTitle: 'Free Delivery',
+   status: true,
+   promoIcon: 'app/resources/img/header-logo-temp.png', 
+   promoDescription:'Get Free Delivery on any milktea purchase through our website', 
+   avail: 100, 
+ date:{
+   startDate: '08/28/2020',
+   endDate: '09/12/2020'},
+   promoType:
+   {key: 'vckey01', name: 'Discount',discount:0,display:'FREE DELIVERY'}},
+
+   {promoCode:'P1002', 
+   promoTitle: '20% Discount', 
+   status: true,
+   promoIcon: 'app/resources/img/header-logo-temp.png',
+   promoDescription:'Get Discount on any milktea purchase through our website', 
+   avail: 100, 
+ date:{
+   startDate: '08/28/2020',
+   endDate: '09/12/2020'},
+   promoType:
+   {key: 'disc', name: 'Discount',discount:20,display:''}},
+
+   {promoCode:'P1002', 
+   promoTitle: '20% Discount', 
+   status: true,
+
+   promoIcon: 'app/resources/img/header-logo-temp.png',
+   promoDescription:'Get Discount on any milktea purchase through our website', 
+   avail: 100, 
+ date:{
+   startDate: '08/28/2020',
+   endDate: '09/12/2020'},
+   promoType:
+   {key: 'disc', name: 'Discount',discount:20,display:''}}];
+
+
   addOns: any[] = [
   {key: 'e1', name: 'Pearl', price: 15, selected: false}, 
   {key: 'e2', name: 'Yellow Pudding', price: 15, selected: false}, 
@@ -268,19 +330,7 @@ bestDrinks: any[] =[
   submitCart(ev?){
    
     this.orderID = this.orderID+1;
-    //get size
-       // if(this.sizeKey=='s1'){
-       //     this.selectedMTPrice = this.myInput.priceM;
-       //     this.selectedSize = 'Medium';
-       // }
-       // else if(this.sizeKey=='s2'){
-       //      this.selectedMTPrice = this.myInput.priceL;
-       //      this.selectedSize = 'Large';
-       // }
-       //  else if(this.sizeKey=='s3'){
-       //      this.selectedMTPrice = this.myInput.priceXL;
-       //      this.selectedSize = 'Extra Large';
-       // }
+  
    // get all add ons
      this.addOns.forEach(a => {
      if(a.selected==true){
@@ -310,8 +360,8 @@ bestDrinks: any[] =[
        itemOrderID: 'MG'+this.orderID,
        itemId : this.myInput.id, 
        itemComputed: this.temp,
-       itemPrice: this.selectedMTPrice,
-       itemSize:this.selectedSize, 
+       itemPrice: this.myInput.size.opts[0].price,
+       itemSize:this.myInput.size.opts[0].name, 
        itemSizeKey:this.sizeKey,
        itemTitle:this.myInput.title, 
        itemCode: this.myInput.category_code, 
@@ -353,9 +403,14 @@ bestDrinks: any[] =[
      });
 
      }
-     
-     
-     //reset values
+     this.resetValues();
+    
+
+     this.getTotal()
+   
+  }
+  resetValues(){
+      //reset values
       this.quantityValue = 1;
       this.specialInstruction = '';
       this.calculatedPrice = 0;
@@ -368,10 +423,11 @@ bestDrinks: any[] =[
       this.sizeKey = '';
       this.temp = 0;
 
-     this.getTotal()
-   
-  }
+      this.addOns.forEach(a=> {
+        a.selected=false;
+      });
 
+  }
 
   updateCart(eve){
 
@@ -472,15 +528,7 @@ bestDrinks: any[] =[
           });
           this.getTotal()
    }
-     viewTitle: string = "";
-     viewPrice: number = 0;
-     view: boolean = false;
-    viewDescription: string = "";
-    viewImagePath: string = "";
-    viewOrderId : string ="";
-    viewOrderCount: number = 0;
-    viewOrderExtras: any ={};
-    viewOrderMTPrice: number = 0;
+ 
     editOrder(ev){
       this.myFunction();
          this.customerOrder.forEach(a => {
@@ -516,6 +564,7 @@ bestDrinks: any[] =[
         myFunction(){
        this.view = false;
        this.sizeKey = '';
+        this.resetValues();
        // this.viewOrderExtras = [];
        // this.viewTitle = ''
        // this.viewPrice = ''

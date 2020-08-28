@@ -29,9 +29,7 @@
 						         [formControl]="event.control"
 						         [matAutocomplete]="auto"
 						         class="searchbox"
-						         [hidden] = ""
-						       	 
-						         >
+						         [hidden] = "">
 						  <mat-autocomplete #auto="matAutocomplete">
 						  
 						    <mat-option style="clear:both;" *ngFor="let milktea of event.filteredProduct | async" [value]="milktea.title">

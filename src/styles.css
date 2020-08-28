@@ -292,13 +292,15 @@ ol {
 
 .section-title {
 
-	text-align: center;
+	
 }
 
 .section-title h2 {
+	margin-top:10px;
 	color: #1c1c1c;
 	font-weight: 700;
 	position: relative;
+	font-family: Happy Monkey;
 }
 
 .section-title h2:after {
@@ -784,6 +786,7 @@ ol {
 .hero__categories ul {
 	border: 1px solid #ebebeb;
 	padding-left: 40px;
+
 	padding-top: 10px;
 	padding-bottom: 12px;
 }
@@ -796,7 +799,8 @@ ol {
 	font-size: 16px;
 	color: #1c1c1c;
 	line-height: 39px;
-	display: block;
+
+	display: inline-block;
 }
 
 .hero__search {
@@ -3689,4 +3693,8 @@ input[type="number"] {
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0;
+font-family: Happy Monkey;
+ 
+
+}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { UtilService } from '../../_services/util.service';
 @Component({
   selector: 'app-promos',
   templateUrl: './promos.component.html',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PromosComponent implements OnInit {
 
-  constructor() { }
+  constructor(public event: UtilService) { }
 
   ngOnInit(): void {
   }

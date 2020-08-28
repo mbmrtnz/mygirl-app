@@ -1,5 +1,43 @@
 .promoCard{
 	background-color: white;
 	min-height: 300px;
+	box-shadow: 3px 3px 5px 6px #ccc;
+	margin: 15px;
+}
+.promoThumbnail{
+	padding-top: auto;
+	padding-bottom:  auto;
 
+
+
+}
+.p-card-shadow{
+	margin-top: 10px;
+
+}
+.bg{
+	background-image: url('/app/resources/img/Header2.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position:center 35%;
+	height: 400px;
+
+
+}
+.enjoy{
+	font-family: Happy Monkey;
+
+
+}
+
+.top-right {
+  position: absolute;
+  bottom:  0px;
+
+  background-color: rgba(255, 0, 0,0.6);
+  width: 100%;
+  padding: 0px !important;
+  margin: 0px !important;
+  text-align: center;
+  
 }

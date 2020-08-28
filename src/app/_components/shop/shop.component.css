@@ -1,3 +1,51 @@
+
+.searchTerm {
+  width: 95%;
+  border: 3px solid black;
+  border-right: none;
+  padding: 5px;
+  height: 36px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: black;
+}
+
+.searchTerm:focus{
+  color: black;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid black;
+  background: black;
+  text-align: center;
+  color: white;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+.search {
+  width: 50%;
+  position: relative;
+  display: flex;
+  margin-top: 10px;
+  margin-left: 16px;
+
+
+}
+
+
+.bg{
+  background-image: url('/app/resources/img/Header2.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position:center 35%;
+  height: 400px;
+
+
+}
+
 .bottom-right {
   position: absolute;
   bottom: 8px;
@@ -246,7 +294,7 @@ display: block;
 
 .example-sidenav-content {
   display: flex;
-  height: 100%;
+  /*height: 100%;*/
   align-items: center;
   justify-content: center;
 }
@@ -306,6 +354,26 @@ display: block;
   border-bottom-left-radius: 5px;
   background-color: red;
 
+}
+.checkoutImage{
+  border: 1px solid #ddd; 
+  border-radius: 4px; 
+  padding: 5px; 
+  height: 150px;
+ 
+  object-fit: cover;
+  resize: horizontal;
+}
+.checkOutTitle{
+  font-family: Happy Monkey;
+  padding: 0px !important;
+  margin: 0px !important;
+}
+.checkoutDetails{
+  font-size: 15px; 
+  line-height : 15px;
+  margin: 0px;
+  padding: 0px;
 }
 /*
 .nice-select {

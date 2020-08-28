@@ -22,6 +22,7 @@ export class ShopComponent implements OnInit {
   private _mobileQueryListener: () => void;
   isShow = true;
   searchShow = true;
+  checkout: boolean = true;
   displayBasic: boolean;
   displayConfirm: boolean;
   category="All Category";
@@ -156,11 +157,16 @@ export class ShopComponent implements OnInit {
    this.event.autoComplete();
   }
 
+
     showBasicDialog() {
         this.displayBasic = true;
     }
     showConfirmDialog() {
         this.displayConfirm = true;
+    }
+    showCheckout() {
+        this.checkout = true;
+        console.log(this.event.customerOrder);
     }
 
   

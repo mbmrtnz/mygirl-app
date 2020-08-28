@@ -23,45 +23,26 @@
 					     <h1 class="storeHoursText">Opening Hours</h1>
 					 	<h4 class="storeHoursText">Store Hours</h4>
 					 	</div>
-					 	<div class="col-xl-6">
-					 			<h3 class="storeHoursText" >Monday to Sunday</h3>
-					 	</div>
-					 	<div class="col-xl-6">
-					 			<h3 class="storeHoursText">9:00 AM to 9:00PM</h3>
-					 	</div>
+					 	<div class="container">
+					 	  <div class="row " *ngFor="let dhrs of event.storeHours">
+					   		<div class="col-xl-6"><h3 class="storeHoursText">{{dhrs.store.day}}</h3></div>
+					   		<div class="col-xl-6"> <h3 class="storeHoursText">{{dhrs.store.time}}</h3> </div> 
+					   	  </div>
+					   </div>
 					   <div class="col-xl-12 ">
 					   		<h4 class="storeHoursText">Delivery Hours</h4>
-
 					   </div>
-					   <div class="col-xl-6"><h3 class="storeHoursText">Monday to Sunday</h3></div>
-					   <div class="col-xl-6"> <h3 class="storeHoursText">10AM to 8PM</h3> </div> 
-
-
+					   <div class="container">
+					 	  <div class="row" *ngFor="let dhrs of event.storeHours">
+					   		<div class="col-xl-6"><h3 class="storeHoursText">{{dhrs.delivery.day}}</h3></div>
+					   		<div class="col-xl-6"> <h3 class="storeHoursText">{{dhrs.delivery.time}}</h3> </div> 
+					   	  </div>
+					   </div>
 				 	</div>
 			   </div>
 
 			 </div>
-			<!--  <div >
-				 <div class="container" >
-				 	<div class="row" >
-				 		<div class="col-12" id="followTab">
-				 				<h1>Follow us!</h1>
-				 			<div class="row">
-				 		
-				 			<div class="col-xl-3" style="text-align: center;">
-				 				<a href=""><img src="/app/resources/img/fbIcon.png" style="height: 50px;"></a>
-				 			</div>
-				 			<div class="col-xl-3" style="text-align: center;">
-				 				<a href=""><img src="/app/resources/img/intagramIcon.png" style="height: 50px;"></a>
-				 			</div>
-				 			<div class="col-xl-3" style="text-align: center;">
-				 				<a href=""><img src="/app/resources/img/TwitterIcon.png" style="height: 50px;"></a>
-				 			</div>
-				 			</div>
-				 		</div>
-				 	</div>
-				 </div>
-			</div> -->
+		
 
 			 
 		</div>
