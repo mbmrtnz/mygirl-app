@@ -1,5 +1,7 @@
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
+
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -54,3 +56,166 @@ h1.greeting {
   font-family: helvetica !important;
   font-size: 16px !important;
 }
+
+
+
+.pendingBox{
+background: linear-gradient(135deg, #ff875e 1%, #fc629d 100%);
+
+border-bottom: 4px solid rgba(0, 0, 0, 0.25);
+height: 120px;
+border-radius: 15px;
+padding: 15px;
+color: white;
+box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.30);
+overflow: hidden;
+
+
+margin: 5px;
+}
+
+.TotalBox{
+  background: linear-gradient(135deg, #3bd1bf 0%, #119bd2 100%);
+  border-bottom: 4px solid rgba(0, 0, 0, 0.25);
+max-height: 120px;
+border-radius: 15px;
+padding: 15px;
+color: white;
+box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.30);
+overflow: hidden;
+margin: 5px;
+}
+
+.turnOver{
+  background: linear-gradient(135deg, #ee70e9 0%, #8363f9 100%);
+  border-bottom: 4px solid rgba(0, 0, 0, 0.25);
+max-height: 120px;
+border-radius: 15px;
+padding: 15px;
+color: white;
+box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.30);
+overflow: hidden;
+margin: 5px;
+}
+.dashboardText{
+
+  color: white;
+
+}
+.tblActionBTN{
+    margin: 10px;
+}
+.errorBorder{
+  border-color: red;
+  color: red;
+}
+.errorBorder:hover{
+  border-color: red;
+   color: red;
+}
+
+.tableImage{
+ border: 1px solid #ddd; /* Gray border */
+  border-radius: 4px;  /* Rounded border */
+  padding: 5px; /* Some padding */
+  width: 40px; /* Set a small width */
+}
+.mydialog {
+    width: 20vw;
+}
+.categoryDRP{
+  border-color: gray;
+  color: gray;
+}
+
+.shop-image{
+   width: 100%;
+    max-height: 300px;  
+
+}
+.my-image{
+  width:100%; 
+  height:100%;
+
+}
+.ui-widget-overlay {
+  background: #666666;
+  opacity: .50;
+  filter: Alpha(Opacity=50);
+  z-index: 1500 !important;
+}
+
+ @media only all {
+            th.ui-p-6,
+            td.ui-p-6,
+            th.ui-p-5,
+            td.ui-p-5,
+            th.ui-p-4,
+            td.ui-p-4,
+            th.ui-p-3,
+            td.ui-p-3,
+            th.ui-p-2,
+            td.ui-p-2,
+            th.ui-p-1,
+            td.ui-p-1 {
+                display: none;
+            }
+        }
+        
+        /* Show priority 1 at 320px (20em x 16px) */
+        @media screen and (min-width: 20em) {
+            th.ui-p-1,
+            td.ui-p-1 {
+                display: table-cell;
+            }
+            .mydialog {
+        width: 100vw;
+           }
+        }
+        
+        /* Show priority 2 at 480px (30em x 16px) */
+        @media screen and (min-width: 30em) {
+            th.ui-p-2,
+            td.ui-p-2 {
+                display: table-cell;
+            }
+            .mydialog {
+        width: 100vw;
+         }
+        }
+        
+        /* Show priority 3 at 640px (40em x 16px) */
+        @media screen and (min-width: 40em) {
+            th.ui-p-3,
+            td.ui-p-3 {
+                display: table-cell;
+            }
+            .mydialog {
+        width: 100vw;
+        }
+        }
+        
+        /* Show priority 4 at 800px (50em x 16px) */
+        @media screen and (min-width: 50em) {
+            th.ui-p-4,
+            td.ui-p-4 {
+                display: table-cell;
+            }
+
+        }
+        
+        /* Show priority 5 at 960px (60em x 16px) */
+        @media screen and (min-width: 60em) {
+            th.ui-p-5,
+            td.ui-p-5 {
+                display: table-cell;
+            }
+        }
+        
+        /* Show priority 6 at 1,120px (70em x 16px) */
+        @media screen and (min-width: 70em) {
+            th.ui-p-6,
+            td.ui-p-6 {
+                display: table-cell;
+            }
+        }

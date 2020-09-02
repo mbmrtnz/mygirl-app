@@ -1,3 +1,5 @@
+<p-toast [baseZIndex]="10000"></p-toast>
+
 <div class="wrapper" [class.is-mobile]="mobileQuery.matches">
 	<mat-toolbar class="toolbar mat-elevation-z4">
 		<div *ngIf="mobileQuery.matches" (click)="snav.toggle()"><i class="fa fa-bars" aria-hidden="true"></i></div>
@@ -21,7 +23,86 @@
 
 	    <mat-sidenav-content>
 	    	<ng-container *ngIf="activeTab == 1">
-	    		<p>Dashboard...</p>
+	    		<div class="container">
+	    			<div class="row">
+	    				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 "><h1 style="color: gray;">Total Summary</h1></div>
+	    				<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+	    			<div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 pendingBox " style="">
+
+	    					<h1 class="dashboardText ">Pending</h1>
+	    					<h2 class="dashboardText">22	<span class="fa fa-bell dashboardText " style="position:absolute;font-size: 80px; opacity: 0.5; top:40px; left:230px;" aria-hidden="true"></span> </h2>
+	    				
+	    				</div> 
+
+	    				<div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 TotalBox " style="">
+	    					<h2 class="dashboardText ">Accepted Orders:</h2>
+
+	    					<h2 class="dashboardText">22	<span class="fa fa-cart-plus dashboardText " style="position:absolute;font-size: 80px; opacity: 0.5; top:40px; left: 210px;" aria-hidden="true"></span> </h2>
+	    				
+	    				</div> 
+	    				<div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 turnOver " style="">
+	    					<h2 class="dashboardText ">Turn over:</h2>
+
+	    					<h2 class="dashboardText">22	<span class="pi pi-money-bill dashboardText " style="position:absolute;font-size: 80px; opacity: 0.5; top:40px; left: 210px;" aria-hidden="true"></span> </h2>
+	  
+	    				</div> 
+	    				<div class="col-xl-12" style="margin: 50px;" ><h2  style="color: gray;">Data Report</h2></div>
+	    				<div class="col-xl-12" >
+		    				<table class="table table-striped">
+								  <thead>
+								  <tr>
+								    <th scope="col" style="width:80%;">Today</th>
+								    <th scope="col"> <a href="">1d</a> &nbsp; <a href="">7d </a> &nbsp; <a href="">30d</a> &nbsp; <a href=""> 12m</a> &nbsp; </th>
+								  </tr>
+								  </thead>
+								  <tbody>
+								  <tr>
+								   <td>Total Accepted Orders</td>
+								   <td>200</td>
+								  </tr>
+								  <tr>
+								   <td>Voucher issued</td>
+								   <td>200</td>
+								  </tr>
+								  <tr>
+								   <td>Voucher Deduction</td>
+								   <td>200</td>
+								  </tr>
+								  <tr>
+								   <td>Actual Income</td>
+								   <td>200</td>
+								  </tr>
+								  
+								  </tbody>
+							</table>
+	    				</div>
+	    					<div class="col-xl-12" style="margin: 50px;" ><h2  style="color: gray;">Best Seller</h2></div>
+	    				<div class="col-xl-12">
+	    						<table class="table table-striped">
+									  <thead>
+									  <tr>
+									    <th scope="col">Flavor</th>
+									    <th scope="col">Category</th>
+									    <th scope="col">Quantity</th>
+									  
+									  </tr>
+									  </thead>
+									  <tbody>
+										<tr *ngFor="let mt of event.obj.productSample">
+											<td>{{mt.title}}</td>
+											<td>{{mt.category_code}}</td>
+											<td>{{mt.quantitySold}}</td>
+										</tr>
+									  </tbody>
+									</table>
+	    				</div>
+
+	    				
+	    			</div> 
+
+
+
+	    		</div> 
 	    	</ng-container>
 
 	    	<!-- Orders -->
@@ -138,7 +219,146 @@
 	    	</ng-container>
 
 	    	<ng-container *ngIf="activeTab == 3">
-	    		<p>Menu...</p>
+		    	<mat-tab-group>
+				  <mat-tab label="Menu">
+
+				  	<p-table [paginator]="true" #productTBL [rows]="10" [globalFilterFields]="filterProducts" [responsive]="true" [loading]="tblLoader" [columns]="products" [value]="event.obj.productSample" styleClass="p-datatable-striped">
+				  		<ng-template pTemplate="caption">
+				  			<div class="row">
+						    				<div class="col-11">
+						    					<input type="text" pInputText size="40" placeholder="Search" (input)="productTBL.filterGlobal($event.target.value, 'contains')" class="col-sm-2">
+					    						<i class="pi pi-search" style="margin: 15px 0 0 -25px; position: absolute;"></i>
+
+					    						
+						    				</div>
+						    				<div class="col-1">
+						    					   <p-button label="Add" (click)="productModal()" icon="pi pi-plus" styleClass="p-button-success p-button-sm" ></p-button>
+						    				</div>
+						    			</div>
+									    </ng-template>
+
+						    <ng-template pTemplate="header" let-columns>
+						        <tr>
+						        	 <th >
+						               Thumbnail
+						            </th>
+						            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+						                {{col.header}}
+						                 <p-sortIcon [field]="col.field"></p-sortIcon>
+						            </th>
+						            <th >
+						               Action
+						            </th>
+						        </tr>
+						    </ng-template>
+						    <ng-template pTemplate="body" let-rowData let-columns="columns">
+						        <tr >
+						         <!--    <td *ngFor="let col of products">
+						                <span class="p-column-title">{{col.header}}</span>
+						                {{rowData[col.field]}}
+
+						            </td> -->
+						            <td><img [src]="rowData.imgpath" class="tableImage"> </td>
+						            <td> <span class="p-column-title">Title</span> {{rowData.title}}</td>
+						            <td> <span class="p-column-title">Category</span> {{rowData.category_code}}</td>
+						             <td> <span class="p-column-title">Quanitity Sold</span> {{rowData.quantitySold}}</td>
+						              <td> <span class="p-column-title">Action</span> 
+						               <button pButton pRipple icon="pi pi-pencil" (click)="productModal(rowData.id)"  class="p-button-rounded p-button-success tblActionBTN" ></button>
+                  					   <button pButton pRipple (click)="DeleteProduct(rowData.id)" icon="pi pi-trash" class="p-button-rounded p-button-danger tblActionBTN"  ></button>
+              						  </td>
+
+
+						        </tr>
+						    </ng-template>
+						     <ng-template pTemplate="emptymessage">
+									        <tr>
+									            <td [attr.colspan]="cols.length">
+									                No records found
+									            </td>
+									        </tr>
+									    </ng-template>
+						   
+						</p-table>
+
+				  </mat-tab>
+				  <mat-tab label="Voucher">
+				  			<p-table [paginator]="true" #voucherTBL [rows]="10" [globalFilterFields]="filterVoucher" [responsive]="true" [loading]="tblLoader" [columns]="vouchers" [value]="event.promos" styleClass="p-datatable-striped">
+				  		<ng-template pTemplate="caption">
+				  			<div class="row">
+						    				<div class="col-11">
+						    					<input type="text" pInputText size="40" placeholder="Search" (input)="voucherTBL.filterGlobal($event.target.value, 'contains')" class="col-sm-2">
+					    						<i class="pi pi-search" style="margin: 15px 0 0 -25px; position: absolute;"></i>
+
+					    						
+						    				</div>
+						    				<div class="col-1">
+						    					   <p-button label="Add" (click)="voucherCrud()" icon="pi pi-plus" styleClass="p-button-success p-button-sm" ></p-button>
+						    				</div>
+						    			</div>
+									    </ng-template>
+
+						    <ng-template pTemplate="header" let-columns>
+						        <tr>
+						        	 <th >
+						               Thumbnail
+						            </th>
+						            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+						                {{col.header}}
+						                 <p-sortIcon [field]="col.field"></p-sortIcon>
+						            </th>
+						            <th >
+						               Status
+						            </th>
+						            <th >
+						               Action
+						            </th>
+
+						        </tr>
+						    </ng-template>
+						    <ng-template pTemplate="body" let-rowData let-columns="columns">
+						        <tr >
+						         <!--    <td *ngFor="let col of products">
+						                <span class="p-column-title">{{col.header}}</span>
+						                {{rowData[col.field]}}
+
+						            </td> -->
+						            <td><img [src]="rowData.promoIcon" class="tableImage"> </td>
+						            <td> <span class="p-column-title">Title</span> {{rowData.promoTitle}}</td>
+						            <td> <span class="p-column-title">Code</span> {{rowData.promoCode}}</td>
+						            <td> <span class="p-column-title">Start Date</span> {{rowData.date.startDate}}</td>
+						            <td> <span class="p-column-title">End Date</span> {{rowData.date.endDate}}</td>
+						             <td> <span class="p-column-title">Type</span> {{rowData.promoType.key!='disc' ? 'Others':'Discount'}}</td>
+						              <td> <span class="p-column-title">Available</span> {{rowData.avail}}</td>
+						              <td> <span class="p-column-title">Active</span> 
+						             	<p-inputSwitch (click)="voucherStatus(rowData.promoCode)" [(ngModel)]="rowData.status"></p-inputSwitch>
+
+              						  </td>
+              						  <td>
+
+
+              				   <button pButton pRipple icon="pi pi-pencil" (click)="voucherCrud(rowData.promoCode,'read')"   class="p-button-rounded p-button-success tblActionBTN" ></button>
+                  					   <button pButton pRipple (click)="DeleteVoucher(rowData.promoCode)"  icon="pi pi-trash" class="p-button-rounded p-button-danger tblActionBTN"  ></button>		  	
+              						  </td>
+						        </tr>
+						    </ng-template>
+						     <ng-template pTemplate="emptymessage">
+									        <tr>
+									            <td [attr.colspan]="cols.length">
+									                No records found
+									            </td>
+									        </tr>
+									    </ng-template>
+						   
+						</p-table>
+
+
+
+
+
+
+				  </mat-tab>
+				  <mat-tab label="Site Variable"> Content 3 </mat-tab>
+				</mat-tab-group>
 	    	</ng-container>
 
 	    	<ng-container *ngIf="activeTab == 4">
@@ -147,3 +367,198 @@
 	    </mat-sidenav-content>
 	</mat-sidenav-container>
 </div>
+
+
+
+
+<p-dialog [draggable]="false" [resizable]="false" (onHide)="resetOnhide()" modal="true" position="center" [style]="{width: mobileQuery.matches? '100vw': '30vw'}" #deleteConfirm header="Add Item" [(visible)]="addProductModal"  [baseZIndex]="10000">
+			 <div class="my-image">
+        <img  style="object-fit: cover;" [style.display]="view ? '':'none'" [attr.src]="productTemp?.imgpath" class=" shop-image" alt="Milktea Image" >
+
+      </div> 
+					<form [formGroup]="AddItemForm">
+					<div class="row">
+						
+						<div class="col-6  " >
+						
+							<span class="p-float-label " style="margin-top: 20px;">
+							    <input formControlName="title" [(ngModel)]="cTitle" [ngClass]="details.title.errors!=null && submitted==true? 'errorBorder':''" id="float-input" style="width: 100%; " type="text" pInputText > 
+							    <label for="float-input">Milktea </label>
+							
+							</span>
+
+							
+
+						</div>
+							<div class="col-6 " style="margin-top: 20px;">
+							<div ngbDropdown class="d-inline-block">
+							      <button class="btn categoryDRP" id="dropdownBasic1" ngbDropdownToggle>Select category</button>
+							      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+							        <button ngbDropdownItem *ngFor="let m of event.drinksCategory"  >{{m.Name}}</button>
+							      </div>
+							    </div>
+							</div>
+							<div class="col-12 " style="margin-top: 20px;">
+									<textarea formControlName="description" 
+								
+									[(ngModel)]="cDescription" [ngClass]="details.description.errors!=null && submitted==true? 'errorBorder':''" class="form-control input-sm" pInputTextarea [cols]="60" pInputTextarea autoResize="autoResize"   placeholder="Flavor short description"></textarea> 
+									
+							</div>
+							<div class="col-12" style="margin-top: 20px;">Pricing:</div>
+							<div class="col-4">
+									<span class="p-float-label " style="margin-top: 20px;">
+
+									    <input 
+									    formControlName="PricingXL" 
+									 
+									    [(ngModel)]="cPriceXL" 
+									    [ngClass]="details.PricingXL.errors!=null && submitted==true? 'errorBorder':''" 
+									    id="float-input2" style="width: 100%; " 
+									    type="text" pInputText > 
+									    <label for="float-input">Extra Large</label>
+							
+									</span>
+							</div>
+							<div class="col-4">
+
+									<span class="p-float-label " style="margin-top: 20px;">
+										
+									    <input formControlName="PricingL" [(ngModel)]="cPriceL" [ngClass]="details.PricingL.errors!=null && submitted==true? 'errorBorder':''"  id="float-input3" style="width: 100%; " type="text" pInputText > 
+									    <label for="float-input">Large</label>
+									
+									</span>
+							</div>
+							<div class="col-4">
+									<span class="p-float-label " style="margin-top: 20px;">
+									    <input formControlName="PricingM" [ngClass]="details.PricingM.errors!=null && submitted==true? 'errorBorder':''" [(ngModel)]="cPriceM"  id="float-input4" style="width: 100%; " type="text" pInputText > 
+									    <label for="float-input">Medium </label>
+									   
+									</span>
+								
+									
+
+							</div>
+					</div>
+					</form>
+						<div class="col-12">
+
+									<span class="p-float-label " style="margin-top: 20px;">
+									    <input id="float-input5" [(ngModel)]="cLink " style="width: 100%; " type="text" pInputText > 
+									    <label for="float-input">Image Link </label>
+									</span>
+
+							</div>
+				
+			 <p-footer>
+			<div class="col-12 text-right flex">
+
+					<button pButton pRipple type="button" [style.display]="view ? 'none':''" label="Add" 
+					(click)="onFormSubmit()"   class="p-button-success" style="margin: 10px;"></button>
+
+
+					<button pButton pRipple type="button" label="Update" (click)="onFormSubmit()"  [style.display]="view ? '':'none'"  class="p-button-success" style="margin: 10px;"></button>
+
+
+					<button pButton pRipple type="button" (click)="productModal()" label="Cancel" class="p-button-danger" style="margin: 10px;"></button>
+			</div>
+		    </p-footer>
+</p-dialog>
+
+<!-- Voucher Box -->
+<p-dialog #try position="top" [style]="{width: mobileQuery.matches? '100vw': '40vw'}" (onHide)="resetOnhide()" [draggable]="false" [resizable]="false"  header="Add Voucher" [(visible)]="voucherAdd"  modal="true"  [baseZIndex]="10000">
+   
+   	<form [formGroup]="addVoucherForm">
+   		<div class="row">
+   		<div class="col-6">
+   			<span class="p-float-label " style="margin-top: 20px;">
+
+   			    <input [(ngModel)]="tTitle"
+   			     [ngClass]="vDetails.vtitle.errors!=null && submittedVoucher==true? 'errorBorder':''"
+   			      formControlName="vtitle" 
+   			      id="float-input" style="width: 100%; " type="text" pInputText > 
+
+   			    <label for="float-input">Voucher Title </label>
+   			</span>
+   		</div>
+   		<div class="col-2">
+   			<span class="p-float-label " style="margin-top: 20px;">
+
+   			    <input [(ngModel)]="tAvail"
+   			     [ngClass]="vDetails.tAvail.errors!=null && submittedVoucher==true? 'errorBorder':''"
+   			      formControlName="tAvail" 
+   			      id="float-input2" style="width: 100%; " type="text" pInputText > 
+
+   			    <label for="float-input2">Quantity </label>
+   			</span>
+   		</div>
+   		<div class="col-4" style="margin-top: 20px;">
+   			<div class="p-grid" style="">
+   			    <div class="p-col-12"><p-radioButton name="group1" value="Discount" label="Discount"  inputId="opt1"></p-radioButton></div>
+   			    <div class="p-col-12"><p-radioButton name="group2" value="Others" label="Others"  inputId="opt2"></p-radioButton></div>
+   			   
+   			</div>
+   	</div>
+   	<div class="col-12" style="margin-top: 20px;">
+   			<textarea [(ngModel)]="tDescription" [ngClass]="vDetails.description.errors!=null && submittedVoucher==true? 'errorBorder':''" formControlName="description" 
+   			  class="form-control input-sm"  pInputTextarea [cols]="60" pInputTextarea autoResize="autoResize"   placeholder="Voucher Description/Instructions"></textarea> 
+   	</div>
+   	<div class="col-12" style="margin-top: 20px;">Start - End Date</div>
+   	<div class="col-6">
+   		  <div class="input-group">
+      <input class="form-control" [(ngModel)]="tStartdate" [ngClass]="vDetails.startDate.errors!=null && submittedVoucher==true? 'errorBorder':''" formControlName="startDate" placeholder="yyyy-mm-dd"
+             name="dp" ngbDatepicker #d="ngbDatepicker" >
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary calendar" [ngClass]="vDetails.endDate.errors!=null && submittedVoucher==true? 'errorBorder':''" (click)="d.toggle()" type="button"><i class="fa fa-calendar" aria-hidden="true" ></i></button>
+      </div>
+    </div>
+   
+
+   	</div>
+   	<div class="col-6">
+   		  <div class="input-group">
+      <input class="form-control" [(ngModel)]="tEndDate"  [ngClass]="vDetails.endDate.errors!=null && submittedVoucher==true? 'errorBorder':''" formControlName="endDate" placeholder="yyyy-mm-dd"
+             name="dp" ngbDatepicker #ds="ngbDatepicker">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary calendar" [ngClass]="vDetails.endDate.errors!=null && submittedVoucher==true? 'errorBorder':''"   (click)="ds.toggle()" type="button"><i class="fa fa-calendar" aria-hidden="true" ></i></button>
+      </div>
+    </div>
+   	</div>
+   	 </div> 
+   </form>
+   	<div class="col-12" style="margin-top: 20px;">
+   		<span class="p-float-label " style="margin-top: 20px;">
+   		    <input id="float-input5" [(ngModel)]="tlink"  style="width: 100%; " type="text" pInputText > 
+   		    <label for="float-input">Thumbnail Link </label>
+   		</span>
+
+   	</div> 
+   <p-footer>
+   	<button pButton pRipple type="button" (click)="onVoucherSubmit()" [style.display]="editVoucher ? 'none':''"  label="Add" class="p-button-success" style="margin: 10px;">
+   		
+   	</button>
+
+
+   	<button pButton pRipple type="button" label="Update" (click)="voucherCrud(tID)"[style.display]="editVoucher ? '':'none'"  class="p-button-success" style="margin: 10px;"></button>
+   	<button pButton pRipple type="button" (click)="showVoucher()" label="Cancel" class="p-button-danger" style="margin: 10px;"></button>
+
+
+   </p-footer>
+
+</p-dialog>
+
+
+
+<!-- confirmation modals -->
+  <!-- Delete Voucher -->
+   <p-confirmDialog [draggable]="false" key="vDelete"  position="top" header="Delete Voucher" [(visible)]="deleteVoucher" closable="true"  [style]="{width: mobileQuery.matches ? '100%' : '20%'}" [baseZIndex]="10000">
+   </p-confirmDialog>
+
+
+<!-- Delete Menu -->
+  <p-confirmDialog [draggable]="false"   position="top" header="Delete Product" [(visible)]="deleteBox" closable="true"  [style]="{width: mobileQuery.matches ? '100%' : '20%'}" [baseZIndex]="10000">
+   </p-confirmDialog>
+
+
+<!-- confirm voucher status -->
+  <p-confirmDialog [draggable]="false" key="voucherBox"  position="top" header="Voucher Status" [(visible)]="voucherBox" closable="true"  [style]="{width: mobileQuery.matches ? '100%' : '20%'}" [baseZIndex]="10000">
+  </p-confirmDialog>

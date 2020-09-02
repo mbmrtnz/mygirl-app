@@ -3,6 +3,8 @@
 
 
 </div> -->
+<p-toast position="top-right" key="c"></p-toast>
+
 
 <!--First tab-->
 <div class="container-fluid">
@@ -13,21 +15,36 @@
 			    			<div [ngStyle]="{'height': innerWidth+'px','background-image': 'url('+ads+')','text-align': 'center'} " class="coverBackground" >
 			    			    <!-- <img [src]="ads" alt="MyGirl PH"  width="100%" style="margin: 0px !important; padding: 0px !important; "> -->
 			    			<!--      <div class="" style=" background-size:cover; height: 100%; background-repeat: no-repeat;background-position: center center;"   [ngStyle]="{'background-image': 'url('+ads+')'}"></div>  -->
-			    			<img src="app/resources/img/LOGO.png" class="myGirlBannerLogo mvmyGirlBannerLogo">
+			    		<!-- 	<img src="app/resources/img/LOGO.png" class="myGirlBannerLogo mvmyGirlBannerLogo"> -->
 
 
-			    					<div class="search">	<!-- <button type="button" class="btn btn-sm orderNowBTN" style="margin-top: 20px;">ADD TO CART</button> -->
-			    						
-			    						<input type="text" placeholder="Find your favorites here!" class="coverInput searchIcon mvcoverInput" value="">
-			    					</div>
-			    			    	 <div class="covertText"><span class="coverText">•DRINK BEST RICH YOUR TASTE• Our Delivery system makes it easier for you •</span></div>	
+			    					
+			    			    	 <div class="" style="padding-top: 300px;"><span class="coverText " style="text-shadow: 2px 2px black; font-family: happy monkey; font-weight: bold;">Drink best rich your taste with <span style="text-shadow: 2px 2px black; color: #ff8000">MYGIRL MILKTEA</span>  </span></div>	
+			    			    	 <h6 style="color: white;">Our Delivery system makes it easier for you</h6>
 			      		 	</div>
 
 						 </ng-template>
 					</ngb-carousel>	
 
-			
+	 <div class="search" style="  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);">
+<!-- 
+      <span class=" mapInput searchMap">
+        <i class="fa fa-map-pin" style="color: black;" aria-hidden="true"></i>
+     </span>
+      <input ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places"  (onAddressChange)="handleAddressChange($event)"  type="text" class="searchLocation mapInput" placeholder="Enter Your Location Here!">
+      <button  style="width: 150px !important; "  class=" mapInput searchButton"  >
+        GO TO MENU
+     </button>
+   </div> -->
+		<!-- 	<div class="search">
+			    						
+			  <input type="text" placeholder="Find your favorites here!" class="coverInput searchIcon mvcoverInput" value="">
+			    					</div> -->
 			</div>
+	
 <!--second tab-->
 			<div class="col-12 myGirlHappinesBG">
 				<div class="row" >
@@ -38,7 +55,7 @@
 					
 						<span class="happiness_Two mvhappiness_Two">MYGIRL MILKTEA</span><br>
 						<span class="happiness_one mvhappiness_one">AND THAT'S KIND OF THE SAME THING</span>
-					
+						
 			<!-- 			<button type="button" class="btn btn-sm btn xs orderNowBTN">ORDER NOW</button> -->
 				</div>
 				<div class="col-4 myGirlPicRight">
@@ -48,6 +65,8 @@
 		</div>
 
 <!--Third tab-->
+
+
 		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 myGirlBestBG" style="resize: vertical;"> 
 			<!-- 	<img src="app/resources/img/BestDot.png" class="myGirlPic"  style=" object-fit: contain;"> -->
 			<div class="container">
@@ -57,8 +76,7 @@
                     		    [config]="slideConfig2">
 
                 				    <div ngxSlickItem  style="" class="mvDrinksCarousel bestDotBG mvbestDotBG"  *ngFor="let milktea of utilS.drinksCategory" [ngClass]="'col-xl-3 col-md-1 col-lg-1 '+milktea.category_code">
-                      		       <!--     <div class="col-xl-2" style="background-image: url('app/resources/img/BestDot.png'); background-size: 50%; background-repeat: no-repeat; background-position: center center;height: 100%; width: 100%;  ">  -->
-										<!-- 		<img [src]="'app/resources/img/'+milktea.path+'.png'" class=""  style=" object-fit: contain;"> -->
+                      		
 										<img src="app/resources/img/Best-2.png" class=""  style=" object-fit: contain;">
 											<span>Flavor</span><br>
 												<button type="button" class="btn btn-sm orderNowBTN">ADD TO CART</button>	
@@ -86,7 +104,8 @@
                    		     #slickModal="slick-carousel" 
                     		    [config]="slideConfig">
 
-                				    <div ngxSlickItem  style="display: flex;  justify-content: space-between;"  class="mvDrinksCarousel" *ngFor="let milktea of utilS.drinksCategory" [ngClass]="'col-xl-2 col-md-1 col-lg-1 '+milktea.category_code">
+                				    <div ngxSlickItem  style="display: flex;   justify-content: space-between;"  class="mvDrinksCarousel" *ngFor="let milktea of utilS.drinksCategory"   [ngClass]="'col-xl-2 col-md-1 col-lg-1 '+milktea.category_code">
+
                       		       <!--     <div class="myGirlDrinkPic"   [ngStyle]="{'background-image': 'url(app/resources/img/'+milktea.path+'.png)'}"></div> -->
                       		       <img [src]="'app/resources/img/'+milktea.path+'.png'" class=""  style=" object-fit: contain;">
                      		  		</div>

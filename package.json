@@ -33,6 +33,7 @@
     "mixitup": "^3.3.1",
     "net": "^1.0.2",
     "ng2-search-filter": "^0.5.1",
+    "ngx-google-places-autocomplete": "^2.0.4",
     "ngx-slick-carousel": "^0.5.1",
     "primeflex": "^2.0.0",
     "primeicons": "^4.0.0",

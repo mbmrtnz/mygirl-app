@@ -1,18 +1,21 @@
-<div class="container-fluid bg">
+<div class="container-fluid" [ngClass]="mobileQuery.matches ? 'bg2' : 'bg'">
 
 
 </div>
 
-<div class="navigationWrapper" [style.display]="mobileQuery.matches ? '' : 'none'">
-  <button style="border-radius: 50%;"  mat-icon-button class="navigationIcon btn btn-link"  (click) = toggleDisplay()>
+<!-- <div class="navigationWrapper" [style.display]="mobileQuery.matches ? '' : 'none'">
+
+  <button   mat-icon-button class="navigationIcon btn btn-link"  (click) = toggleDisplay()>
     <img style="height: 50px; width: 50px; border-radius: 50%;" src="/app/resources/img/Navigate.png">
-    <!--  <i class="fa fa-cogs" aria-hidden="true" style="font-size: 50px;"></i> -->
+     <span class="p-badge p-badge-warning">5</span>
+     <i class="fa fa-cogs" aria-hidden="true" style="font-size: 50px;"></i>
   </button>
+
   <div [hidden] = "isShow" (click) = "toggleDisplay()">
 
     <button type="button" style=" border-bottom: 1px; padding: 0px !important;" class=" searchIcon btn btn-link " (click)="toggleSearch()" >
       <img src="/app/resources/img/search.png" style="border-radius: 50%; height: 35px;">
-      <!--    <i class="fa fa-search " style="font-size: 30px; color: black; background-color: rgba(255,255,255,0.5); border-bottom: 2px solid black; padding-bottom: 5px;"  aria-hidden="true"></i> -->
+         <i class="fa fa-search " style="font-size: 30px; color: black; background-color: rgba(255,255,255,0.5); border-bottom: 2px solid black; padding-bottom: 5px;"  aria-hidden="true"></i>
     </button> <span class="searchText">Search</span>
 
     <button type="button" style="border-radius: 50%; padding: 0px !important;" class="categoryIcon btn btn-link " (click)="snav.toggle()">
@@ -23,12 +26,12 @@
       <img src="/app/resources/img/cartIcon.png"  style="border-radius: 50%; height: 35px;">
     </button> <span class="cartNavIconText " (click)="myCart.toggle()" >Cart</span>
 
-<!--     <button type="button" style="border-radius: 50%; padding: 0px !important;" class="wishList btn-link ">
+    <button type="button" style="border-radius: 50%; padding: 0px !important;" class="wishList btn-link ">
       <i class="fa fa-heart" aria-hidden="true"></i>
-    </button> <span class="wishListIconText ">Wish List</span> -->
+    </button> <span class="wishListIconText ">Wish List</span>
   </div>
   <button  [hidden] = "searchShow"  class=" btn btn-link searchClose" (click)="toggleSearch()" ><i class="searchCloseIcon fa fa-times"></i></button>
-  <!--     <input [hidden] = "searchShow" class="searchInput" type="text" > -->
+
 
   <form class="example-form">
     <input type="text"
@@ -48,14 +51,14 @@
   </form>
 
 </div>
-
+ -->
 
 <!-- end -->
 <mat-sidenav-container  class="container-fluid" style="background-color:#f3f3f3" class="">
 <!-- <mat-sidenav-container  class="container-fluid" style="background-color:#f3f3f3" autosize class="example-sidenav-container"
  [style.marginTop.px]="mobileQuery.matches ? 56 : 0">  WIDTH MOBILE MARGIN-->
 <!--  -->
- <mat-sidenav [disableClose]="true" [style.height]="mobileQuery.matches? '':'409px'"    #snav [opened]="mobileQuery.matches ? 'false' : 'true'"  mode="side" class="example-sidenav col-xl-2 col-lg-2 col-md-12 col-xs-12 matnav" mode="side"
+ <mat-sidenav [disableClose]="true" [style.height]="mobileQuery.matches? '':'409px'" #snav [opened]="mobileQuery.matches ? 'false' : 'true'"  mode="side" class="example-sidenav col-xl-2 col-lg-2 col-md-12 col-xs-12 matnav" mode="side"
  [fixedBottomGap]="0"
  [fixedInViewport]="mobileQuery.matches"
  [autoFocus]="true">
@@ -96,12 +99,29 @@
 <mat-sidenav-content style="min-height: 500px;" >
 <!--   <app-announcement [mobileView]="mobileQuery.matches" ></app-announcement>  -->
   <section class="featured spad">
-
-
-   <div class="section-title text-align center search" style="margin-bottom: 20px;">
-  
+ <div class="scroller">
+  <div class="hero__categoriesmv hero__categoriesmvs">
+  <ul id="inner" class="matnav" style="clear: both;" style="overflow:scroll">
+   
       
-        
+      <li [ngClass]="{'active2': category==='All Category'}" class="categoryTabs2" (click)="category='All Category'"  (click)="FilterData()" data-filter="*">All</li>
+   
+
+      <li [ngClass]="{'active2': category==='Milktea'}"  class="categoryTabs2"(click)="category='Milktea'"   data-filter=".FT">Milktea</li>
+      <li [ngClass]="{'active2': category==='Yogurt'}" class="categoryTabs2" (click)="category='Yogurt'"  (click)="FilterData()" data-filter=".BS">Yogurt</li>
+      <li [ngClass]="{'active2': category==='Cheese Cream'}"  class="categoryTabs2" (click)="category='Cheese Cream'"   (click)="FilterData()" data-filter=".MY">Cheese Cream</li>
+      <li [ngClass]="{'active2': category==='Milk Online'}" class="categoryTabs2" (click)="category='Milk Online'" (click)="FilterData()"   data-filter=".MG">Milk Online</li>
+      <li [ngClass]="{'active2': category==='Smoothies & Cream'}"  class="categoryTabs2" (click)="category='Smoothies & Cream'"  (click)="mobileQuery.matches ? snav.toggle() : false" (click)="FilterData()" data-filter=".MY">Smoothies & Cream</li>
+      <li [ngClass]="{'active2': category==='Juice'}" class="categoryTabs2" (click)="category='Juice'"    data-filter=".MG">Juice</li>
+
+      <li [ngClass]="{'active2': category==='Sand Ice'}" class="categoryTabs2" (click)="category='Sand Ice'" (click)="FilterData()"   data-filter=".MG">Sand Ice</li>
+    </ul>
+
+
+  </div>
+</div>
+
+   <div class="section-title text-align center" [ngClass]="mobileQuery.matches ? 'search2' : 'search'" style="margin-bottom: 20px;">
           <input type="text"
                      placeholder="Find your Favorites!"
                      [formControl]="event.control"
@@ -109,17 +129,20 @@
                      class="searchbox searchTerm"
                      [hidden] = ""
                      > 
+                       <mat-autocomplete #auto="matAutocomplete">
+
+      <mat-option style="clear:both;" *ngFor="let milktea of event.filteredProduct | async" [value]="milktea.title">
+        {{milktea.title}}
+      </mat-option>
+
+
+    </mat-autocomplete>
                       <button type="submit" class="searchButton">
                           <i class="fa fa-search"></i>
                        </button>
-         
-
-
- 
-    
-
 
   </div>
+ 
   <div class="col-xl-12" >
 
             
@@ -127,16 +150,16 @@
                         <div *ngFor="let milktea of obj.productSample" [ngClass]="'col-xl-3 col-md-3 col-lg-3 col-sm-12 col-xs-12 mix '+milktea.category_code">
                           <div class="featured__item">
                             <div class="featured__item__pic set-bg "   [ngStyle]="{'background-image': 'url('+ milktea.imgpath +')'}">
-                              <div class="product__discount__percent">{{'₱ ' +milktea.price}}</div>
+                              <div class="product__discount__percent defaultFont">{{'₱ ' +milktea.price}}</div>
                               <ul class="featured__item__pic__hover">
                                 <!--   <li><a href="#"><i class="fa fa-heart"></i></a></li> -->
                                 <li><a (click)="LoginModal.openMdl()"><i class="fa fa-retweet"></i></a></li>
-                                <li><a (click)="showBasicDialog()" (click)="event.selectItem(milktea.id)"  ><i class="fa fa-shopping-cart"></i></a></li>
+                                <li><a (click)="event.showBasicDialog()" (click)="event.selectItem(milktea.id)"  ><i class="fa fa-shopping-cart"></i></a></li>
                               </ul>
                             </div>
                             <div class="featured__item__text">
-                              <h6 class="listText"><a href="#">{{milktea.title}}</a></h6>
-                              <h5>{{milktea.description}}</h5>
+                              <h6 class="listText defaultFont"><a href="#" class="defaultFont">{{milktea.title}}</a></h6>
+                              <h5 class="defaultFont">{{milktea.description}}</h5>
                             </div>
                           </div>
                         </div>
@@ -154,7 +177,7 @@
                 </mat-sidenav-content> 
 
 
-     <mat-sidenav [disableClose]="true" [opened]="mobileQuery.matches ? 'false' : 'true'" mode="side" #myCart class="example-sidenav col-xl-2 col-lg-2 col-md-12 col-xs-12" id="checkoutPreText" position="end" 
+     <mat-sidenav #myCart [disableClose]="true" [opened]="!mobileQuery.matches || event.openedCart" mode="side"   class="example-sidenav col-xl-2 col-lg-2 col-md-12 col-xs-12" id="checkoutPreText" position="end" 
                 [fixedInViewport]="true"
                 [fixedTopGap]="50" >
                         <div class="col-12" > <span class="default" ><p *ngIf="event.customerOrder.length==0"  > No Items in your Cart Yet </p> </span> 
@@ -166,7 +189,7 @@
                            <p style="font-size: 12px; line-height : 15px; padding: 0px; margin: 0px;" > {{order.itemSize}} </p>
                            </div>
                         <div class="col-4 " style="text-align:right;"> <p class=""> {{'PHP '+order.itemGrandTotal}} </p>  </div>
-                          <div class="col-3" style="text-align:right;" (click)="showBasicDialog()" (click)="event.editOrder(order.itemOrderID)"  ><i class="pi pi-external-link"></i></div>
+                          <div class="col-3" style="text-align:right;" (click)="event.showBasicDialog()" (click)="event.editOrder(order.itemOrderID)"  ><i class="pi pi-external-link"></i></div>
 
                         <div class="col-5"> 
                           <p style="font-size: 10px; line-height : 10px; padding: 0px; margin: 0px;" *ngFor="let extras of order.itemExtras" >  {{'+ '+extras.extrasTitle}}</p> 
@@ -192,25 +215,25 @@
                    <div class="col-5"><p>Total Price</p></div>
                    <div class="col-7"><p *ngIf="event.totalPrice!=0"> {{'PHP '+ event.getTotalValue}}</p></div>
                 </div>
-                <button type="button" (click)="showCheckout()" class="btn btn-success btn-lg btn-block">Checkout</button>
+                <button type="button" (click)="showCheckout()" [disabled]="event.customerOrder.length==0 ? 'true':''" class="btn btn-success btn-lg btn-block">Checkout</button>
        </mat-sidenav>
      </mat-sidenav-container >
 <!-- Confirm Box -->
-  <p-confirmDialog  position="top" header="Remove Item" [(visible)]="displayConfirm" closable="true"  [style]="{width: '20vw'}" [baseZIndex]="10000">
+  <p-confirmDialog  position="top" header="Remove Item" [(visible)]="displayConfirm" closable="true"  [style]="{width: mobileQuery.matches ? '100%' : '20%'}" [baseZIndex]="10000">
   
    
 
   </p-confirmDialog>
      <!-- MODAL FOR ADD TO CART -->
-      <p-dialog position="center" [modal]="true" (onHide)="event.myFunction()"   [(visible)]="displayBasic" header="Add to Cart"  [style]="{width: '30vw','text-align': 'left'}" [baseZIndex]="10000">
+      <p-dialog position="center" [modal]="true" (onHide)="event.myFunction()"   [(visible)]="event.displayBasic" header="Add to Cart"  [style]="{width: mobileQuery.matches ? '85%' : '30vw','text-align': 'left'}" [baseZIndex]="10000">
        <div class="my-image">
         <img  style="object-fit: cover;" [attr.src]="!event.view ? event.myInput.imgpath : event.viewImagePath" class=" shop-image" alt="Milktea Image" >
 
       </div> 
       <div style="border-bottom: 1px solid gray;" >
-        <h2 style="display: inline-block;">{{!event.view ? event.myInput.title : event.viewTitle}}</h2>
+        <h2 style="display: inline-block; font-family: happy monkey;"> {{!event.view ? event.myInput.title : event.viewTitle}}</h2>
         <h6> {{event.myInput.description}}</h6>
-        <h6 class="float-right" style="display: inline-block; margin-top: 15px; color: gray;"> 
+        <h6 class="float-right" style="display: inline-block; margin-top: 15px; color: gray; font-family: happy monkey;"> 
    <!--       {{event.viewOrderMTPrice==0 ? '': 'PHP '+event.viewOrderMTPrice  }} --> 
                 {{event.myInput?.size?.selected?.price}}
                 <!-- {{mgSize.value}} -->
@@ -218,51 +241,51 @@
       </div>
         <!-- this -->
          <form [formGroup]="orderForm">
-      <div class="sizeOption smBorder" style="text-align: left; margin-top: 10px;">
+      <div class="sizeOption smBorder" style="text-align: left; margin-top: 10px; font-family: happy monkey;">
       <span >Size (Select One) </span>  <br>
-       <span class="float-right p-tag p-tag-rounded p-tag-danger">Required</span>
+      <!--  <span class="float-right p-tag p-tag-rounded p-tag-danger ">Required</span> -->
       
           <label *ngFor="let size of event.myInput.size?.opts" for="size.key" class="labelMargin">
-            <input type="radio" formControlName="mgSize" [ngClass]="{'invld': submitted && f.mgSize.errors }" style="margin-right: 5px !important; margin-left: 5px !important;" class="radio-inline" [value]="size.key" [ngModel]="event.myInput.size.selected.key" (ngModelChange)="event.myFunc($event)"/> <span [ngClass]="{'invld': submitted && f.mgSize.errors }" >{{' '+size.abb}}</span>
+            <input type="radio" formControlName="mgSize" [ngClass]="{'invld': submitted && f.mgSize.errors }" style="margin-right: 5px !important; margin-left: 5px !important; font-family: happy monkey;" class="radio-inline" [value]="size.key" [ngModel]="event.myInput.size.selected.key" (ngModelChange)="event.myFunc($event)"/> <span [ngClass]="{'invld': submitted && f.mgSize.errors }" >{{' '+size.abb}}</span>
 
           </label>  
 
       </div>
         </form> 
       <div class="IceOption smBorder">
-           <span >Ice Level </span> <br>
+           <span style="font-family: happy monkey;">Ice Level </span> <br>
          
-           <label  *ngFor="let ice of event.iceLevel" for="ice.key" class="radio-inline ">
+           <label  style="font-family: happy monkey;" *ngFor="let ice of event.iceLevel" for="ice.key" class="radio-inline ">
 
-             <input type="radio" [value]="ice.key" name="ice.name" style="margin-right: 5px !important; margin-left: 5px !important;" [(ngModel)]="event.iceKey" />   
+             <input type="radio" [value]="ice.key" name="ice.name" style="font-family: happy monkey; margin-right: 5px !important; margin-left: 5px !important;" [(ngModel)]="event.iceKey" />   
               <span> {{ice.name}}  </span> <br>
          </label>
       </div>
        <div class="smBorder">
-           <span >Honey Level </span>  <br>
+           <span style="font-family: happy monkey;" >Honey Level </span>  <br>
          
-           <label  *ngFor="let honey of event.HoneyLevel" for="honey.key" class="radio-inline ">
-             <input type="radio" [value]="honey.key" name="honey.name" style="margin-right: 5px !important; margin-left: 5px !important;" [(ngModel)]="event.honeyKey" />  
+           <label  style="font-family: happy monkey;" *ngFor="let honey of event.HoneyLevel" for="honey.key" class="radio-inline ">
+             <input type="radio" [value]="honey.key" name="honey.name" style="font-family: happy monkey; margin-right: 5px !important; margin-left: 5px !important;" [(ngModel)]="event.honeyKey" />  
            {{honey.name }}
          </label>
       </div>
 
         <div class="smBorder">
-           <span >Extras </span> <span class="float-right p-tag p-tag-rounded p-tag-info">Optional</span>
+           <span style="font-family: happy monkey;" >Extras </span> <span class="float-right p-tag p-tag-rounded p-tag-info" style="font-family: happy monkey;">Optional</span>
            <div *ngFor="let extras of event.addOns" class="p-field-checkbox">
-           <input type="checkbox" [(ngModel)]="extras.selected"/><label [for]="extras.key">{{extras.name}} </label> 
-           <span class="float-right smFont">{{'+ '+extras.price}}</span>
+           <input type="checkbox" [(ngModel)]="extras.selected"/><label [for]="extras.key" style="font-family: happy monkey;">{{extras.name}} </label> 
+           <span class="float-right smFont" style="font-family: happy monkey;">{{'+ '+extras.price}}</span>
          </div>
        </div>
-         <div class="smBorder">
-           <span >Special Instructions </span> 
-                    <textarea pInputTextarea [cols]="60" pInputTextarea autoResize="autoResize" [(ngModel)]="event.specialInstruction"  placeholder="Any specific preferences? Let us know."></textarea>       
+         <div class="smBorder col-12">
+           <span style="font-family: happy monkey;">Special Instructions </span> 
+                    <textarea class="form-control input-sm" pInputTextarea [cols]="60" pInputTextarea autoResize="autoResize" [(ngModel)]="event.specialInstruction"  placeholder="Any specific preferences? Let us know."></textarea>       
        </div>
     <p-footer>
 <!--         <button type="button" pButton icon="pi pi-check" (click)="displayBasic=false" label="Yes"></button>
         <button type="button" pButton icon="pi pi-times" (click)="displayBasic=false" label="No" class="ui-button-secondary"></button> -->
           <div class="row">
-              <div class="input-group col-8" >
+              <div class="input-group col-6" >
 
 
 
@@ -276,11 +299,11 @@
                      
 
             </div>
-            <div>
+            <div class="col-6">
 
-                    <button type="submit" [style.display]="event.view ? 'none':''"   (click)="event.submitCart()"  (click)="displayBasic=false" pButton pRipple type="button" label="ADD TO CART" class="p-button-success"></button>
+                    <button type="submit" [style.display]="event.view ? 'none':''"   (click)="event.submitCart()"  (click)="event.displayBasic=false" pButton pRipple type="button" label="ADD TO CART" class="p-button-success"></button>
 
-                      <button type="submit" [style.display]="event.view ? '':'none'" (click)="displayBasic=false" (click)="event.submitCart(event.viewOrderId)"  pButton pRipple type="button" label="Update Cart" class="p-button-success"></button>
+                      <button type="submit" [style.display]="event.view ? '':'none'" (click)="event.displayBasic=false" (click)="event.submitCart(event.viewOrderId)"  pButton pRipple type="button" label="Update Cart" class="p-button-success"></button>
 
             </div>
                 
@@ -289,27 +312,135 @@
 </p-dialog>
 
 <!-- Checkout Modal -->
-<p-dialog header="Checkout" modal="true" position="top" [(visible)]="checkout" [style]="{width: '30vw'}" [baseZIndex]="10000">
-  <div class="container-fluid" *ngFor="let order of event.customerOrder">
-    <div class="row" >
-        <div class="col-4" >
-          <img class="checkoutImage"  [attr.src]="order.itemPicture">
-        </div>
-       
-        <div class="col-12" style="width: 100%;">
-          <h2 class="checkOutTitle" style="display: inline-block;">{{order.itemTitle}}</h2> 
-          <h5 class="checkOutTitle" style="display: inline-block; float: right; margin-top:5px;" >{{order.itemTotal}} x {{order.itemGrandTotal}}</h5>
-          <h6 class="checkOutTitle">{{order.itemSize}} - {{order.itemPrice}}</h6>
-        </div>
-        <div class="col-6">
-          <p class="checkoutDetails" *ngFor="let extra of order.itemExtras">{{extra.extrasTitle}}</p>
+<p-dialog [draggable]="false" [resizable]="false" header="Checkout" (onHide)="myF()" modal="true" position="center" [(visible)]="checkout" [style]="{width: mobileQuery.matches ? '100%' : '30vw'}" [baseZIndex]="10000">
+  <div class="container-fluid">
+  
+       <div id="Modal Wrapper" [style.display]="event.addressWrapper? 'none':''"> 
+       <div class="checkoutTable " style="overflow-x:auto;">
+      
+<table class="table table-striped" style="font-family: happy monkey; ">
+  <thead>
+  <tr>
+       <th scope="col">Details</th>
+    <th scope="col">Item</th>
+    <th scope="col">Price</th>
+    <th scope="col">Quantity</th>
+    <th scope="col">Total</th>
+   
+  </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let order of event.customerOrder">
+        <td><i class="pi pi-external-link btn btn-link" (click)="event.showBasicDialog()"  (click)="event.editOrder(order.itemOrderID)" ></i>  </td>
+        <td >{{order.itemTitle}}</td>
+        <td >{{order.itemComputed}}</td>
+        <td style="width: 100%;"> 
+          <div class="input-group"  >
+                                <div class="col-2">
+                                <button [style.display]="order.itemTotal == 1 ? 'none':'' " type="button"  value="-" class="button-minus btn btn-link" (click)="event.quantityControl('s-min',order.itemOrderID)" data-field="quantity">
+                                    <i class=" blackFont fa fa-minus"></i>
+                               </button>
+                              <button [style.display]="order.itemTotal == 1 ? '':'none' "  type="button"  value="-" class="button-minus btn btn-link"  (click)="confirmDelete(order.itemOrderID)"  data-field="quantity">
+                                <i  class=" blackFont fa fa-trash"></i>
+                              </button>
+                                </div>
+                                  <div class="col-3 text-center" [style]="{left: mobileQuery.matches ? '-15px' : '-4px'}">
+                              <input type="number" style="border: 0;
+                              outline: none; background: transparent; border: none; " disabled="true" step="1" max="" [(ngModel)]="order.itemTotal" name="quantity" class="quantity-field text-center"> 
+                            </div>
+                            <div class="col-4">
+                              <button type="button" value="+" class="button-plus btn btn-link" data-field="quantity" (click)="event.quantityControl('s-add',order.itemOrderID)" ><i class=" blackFont fa fa-plus"></i></button>
+                            </div>
+               </div>
+        </td>
+        <td >{{order.itemGrandTotal}}</td>
         
+      </tr>
+  </tbody>
+</table>
+
+       </div>
+       <div class="row" style="margin-top: 20px;"> 
+
+        <div class="col-12"  > TOTAL:  PHP {{event.getTotalValue}} &nbsp; <i *ngIf="event.voucherVerify" style="color: red; font-size: 12px;">{{event.discountTitle}}</i></div>
+        <div class="col-12" > <i  style="font-size:10px; color: red;">Warning! Delivery Charge is not yet Included.</i></div>
+          <div [style.display]="addVoucher? '':'none'">
+            <div class="row" style="padding: 0px; margin: 0px;">
+                 <div class="checkOutVoucher col-3">
+                    <h4 class="checkOutTitle" id="vtext">Voucher</h4> 
+                 </div> 
+                 <div class="col-5">
+                   <input type="text" [disabled]="event.voucherVerify" [ngbTooltip]="event.verifyMessage" [autoClose]="true" triggers="manual" placement="top" #t="ngbTooltip" tooltipClass="my-custom-class"  [(ngModel)]="event.vcode"   placeholder="Enter Code Here" class="form-control"  >
+                 </div>
+                  <div class="col-4">
+                   <button type="button" class="btn btn-link" (click)="event.voucherFinder()" *ngIf="!event.voucherVerify" (click)="t.open()">Verify</button>
+                   <button type="button" class="btn btn-link" style="color: red;" (click)=" myF()" *ngIf="!event.voucherVerify" (click)="t.open()">Close</button>
+                   <button type="button" class="btn btn-link" (click)="event.voucherFinder('edit')" *ngIf="event.voucherVerify" (click)="t.open()">Edit</button>
+                </div>
+              </div>
         </div>
-        <div class="col-6">
-          <p class="checkoutDetails" *ngFor="let extra of order.itemExtras">{{extra.extrasPrice}}</p>
+        <div class="col-12"  [style.display]="addVoucher? 'none':''">
+          <p style="color:black;" (click)="openVoucher()" class="btn btn-link">add voucher code </p>
         </div>
+
+            <div class="col-12 detailsTab" [style.display]="event.getAddress? '':'none'">
+            <p class="detailsText text-center">Delivery to:</p>
+            <p class="detailsText">Address:</p>
+            <p class="detailsText"> CP Number</p>
+            <div class="col-12"><i  (click)="event.editAddress()" class="btn-link btn btn-block editBTN">Edit</i></div>
+            </div> 
+            <i class="btn btn-link" [style.display]="event.getAddress? 'none':''"> Please Click to add Delivery Details</i>
+
+             
+      </div>
+       <div class="col-12" style="margin-top: 15px;">
+        <button  type="button" class="btn-block btn btn-success" (click)="event.confirmOder()"><b><h5 class="checkOutTitle">Confirm</h5></b></button>
+       </div>
      
-  </div>
+</div> <!-- end of Checkout- address begins -->
+
+    
+</div>
+<div  [style.display]="event.addressWrapper? '':'none'">
+  <div class="container">
+    <div class="row">
+               <form [formGroup]="contactForm" class="col-12 ">
+                <div class="row">
+                  <div class="col-6">
+                        <label for="exampleInputEmail1">First Name:</label>
+                        <input type="text" class="form-control"  placeholder="" value="Hello" disabled="true">
+                  </div>
+                  <div class="col-6">
+                        <label  for="exampleInputEmail1">Last Name:</label>
+                        <input type="text" class="form-control"  placeholder="" value="world" disabled="true">
+                  </div> 
+                   <div class="col-6">
+                        <label  [ngClass]="{'invld': submitAdd && details.cnumber.errors }"   for="exampleInputEmail1">Contact Number: <i style="color:red">*</i> </label>
+                        <input type="text" formControlName="cnumber" [(ngModel)]="cnumber" class="form-control" mask="99-9999"  placeholder="09XXXXXXX" value="" >
+                  </div> 
+                  <div class="col-6">
+                        <label [ngClass]="{'invld': submitAdd && details.tnumber.errors }"  for="exampleInputEmail1">Telephone Number:</label>
+                        <input type="text" formControlName="tnumber" [(ngModel)]="tnumber" class="form-control"  placeholder="02XXXXX" value="" >
+                  </div> 
+                   <div class="col-6">
+                        <label [ngClass]="{'invld': submitAdd && details.street.errors }" for="exampleInputEmail1">Street Address: <i style="color:red">*</i> </label>
+                        <input formControlName="street" type="text" [(ngModel)]="street" class="form-control"  placeholder="House #, Street, Brgy" value="" >
+                  </div> 
+                  <div class="col-6">
+                        <label [ngClass]="{'invld': submitAdd && details.city.errors }" for="exampleInputEmail1">Municipality: <i style="color:red">*</i> </label>
+                        <input formControlName="city" type="text" [(ngModel)]="city" class="form-control"  placeholder="City/Province" value="" >
+                  </div> 
+                  <div class="col-6" style="margin-top: 10px;"></div>
+                    <div class="col-6 text-center" style="margin-top: 10px; ">
+                      <button (click)="myF()" type="button" class="editNavigation btn btn-danger btn-sm ">Close</button>
+                      <button (click)="submitAddress()" type="button" class="btn btn-success btn-sm ">Confirm</button>
+                    </div>
+                </div>
+
+
+               </form>
+    </div>
+</div>
 </div>
 </p-dialog>
 <!-- Checkout Modal END-->     

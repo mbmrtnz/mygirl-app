@@ -41,3 +41,28 @@
   text-align: center;
   
 }
+
+.BestSellerNav {
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  background-position: center center;
+  border: 4px solid red;
+  border-top-right-radius:  5px;
+  border-top-left-radius: 5px;
+}
+
+.BestSellerNavWrapper {
+  height: 370px;
+  position: relative;
+  overflow: hidden;
+}
+
+.BestSellerNavDesc {
+  text-align: center;
+  padding-top: 15px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background-color: red;
+
+}

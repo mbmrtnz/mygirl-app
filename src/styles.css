@@ -31,6 +31,77 @@
 /* Template default CSS
 /*----------------------------------------*/
 
+.searchTerm {
+  width: 95%;
+  border: 3px solid black;
+  border-right: none;
+  padding: 5px;
+  height: 36px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: black;
+}
+
+
+.searchLocation {
+  width: 95%;
+  border: 3px solid black;
+  border-right: none;
+  border-left: none;
+  padding: 5px;
+  height: 36px;
+
+  outline: none;
+  color: black;
+}
+
+.searchTerm:focus{
+  color: black;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid black;
+  background: black;
+  text-align: center;
+  color: white;
+  border-radius: 0 5px 5px 0;
+
+  font-size: 20px;
+}
+
+.searchMap{
+  width: 40px;
+  height: 36px;
+  border: 3px solid black;
+  border-right: none;
+  background: white;
+  text-align: center;
+  color: white;
+  border-radius: 5px 0 0 5px;
+  
+  font-size: 30px;
+}
+.search {
+  width: 50%;
+  position: relative;
+  display: flex;
+  margin-top: 10px;
+  margin-left: 16px;
+
+
+}
+.search2 {
+  width: 90%;
+  position: relative;
+  display: flex;
+  margin-top: 10px;
+  margin-left: 16px;
+
+
+}
+
 
 
 
@@ -44,6 +115,7 @@
 			
 			
 		}
+
 		.mvmgLogoImg{
 			height: 200px !important;
 		/*	background-color: rgba(255,255,255,0.3);*/
@@ -86,6 +158,10 @@
 			font-size: 10px;
 
 		}
+		.bestSellerDialog{
+				width: 100%;
+
+		}
 	.mobileMenuText {
 		color:black;
 	}
@@ -107,9 +183,14 @@ background-color: black;
 		  margin-bottom:  auto;
 		  border:1px solid white;
 		  border-radius: 50%;
+
 			
 
 }
+.bestSellerDialog{
+				width: 100%;
+
+		}
 	.mobileMenuText {
 		color:black;
 	}
@@ -135,10 +216,27 @@ background-color: black;
 /*@media only screen and (min-width: 768px) {...}*/
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {}
+@media only screen and (min-width: 992px) {
+	.bestSellerDialog{
+				width: 15vw;
 
+		}
+	.shopCart{
+		display: none;
+		visibility:hidden;
+	}
+}
+		
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {}
+@media only screen and (min-width: 1200px) {
+		.bestSellerDialog{
+				width: 15vw;
+
+		}
+				.shopCart{
+		display: none;
+	}
+}
 
 .test{
 	background-color: green;
@@ -748,6 +846,7 @@ ol {
 	width: 100%;
 	z-index: 9;
 	background: #ffffff;
+
 }
 
 .hero.hero-normal .hero__search {
@@ -786,13 +885,20 @@ ol {
 .hero__categories ul {
 	border: 1px solid #ebebeb;
 	padding-left: 40px;
-
+    
 	padding-top: 10px;
 	padding-bottom: 12px;
 }
 
 .hero__categories ul li {
 	list-style: none;
+
+}
+
+.hero__categoriesmv ul li {
+	list-style: none;
+	  display: inline-block;
+	
 }
 
 .hero__categories ul li a {
@@ -800,7 +906,7 @@ ol {
 	color: #1c1c1c;
 	line-height: 39px;
 
-	display: inline-block;
+	 display: inline-block;
 }
 
 .hero__search {

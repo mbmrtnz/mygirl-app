@@ -2,17 +2,26 @@ import { Injectable } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {startWith, map} from 'rxjs/operators';
-
+import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class UtilService {
+  openedCart: boolean = true;
+
+   public sideNavToggleSubject: BehaviorSubject<any> = new BehaviorSubject(null);
+   public toggle() {
+    return this.sideNavToggleSubject.next(null);
+  } 
+
 	GrandTotal: number = 0;
 	totalPrice: number = 0;
   value: any = {
     quantity: 0,
     price: 0
   };
+  deviceManager:boolean = false;
+  voucherVerify:boolean;
   ordered: number = 0;
   mySelectedItem: any = {};
   myInput: any = {};
@@ -26,12 +35,17 @@ export class UtilService {
 	customerOrder: any[] =[];
  extraTop: any[] =[]; 
  checked: boolean = false;
+ displayBasic: boolean = false;
+  displayCart: boolean = false;
+ addressWrapper: boolean = false;
+ getAddress = true;
  iceKey ="i1";
  honeyKey= "h4";
-
+   verifyMessage: string ="";
   control = new FormControl();
   filteredProduct: Observable<string[]>;
-
+  displayPosition: boolean = false; // best seller modal
+  position: string='bottomleft';
 
     selectedMTPrice: number = 0;
     selectedSize: string = "";
@@ -43,6 +57,7 @@ export class UtilService {
     temp1:number = 0; 
     temp2: any[] = []; 
     getTotalValue: number =0 ;
+    discountedValue: number =0 ;
     viewOrder:any[] = [];
     viewTitle: string = "";
     viewPrice: number = 0;
@@ -53,19 +68,29 @@ export class UtilService {
     viewOrderCount: number = 0;
     viewOrderExtras: any ={};
     viewOrderMTPrice: number = 0;
-
-
+    vcode: string = "";
+    eventBest: string = '';
     storeHours: any[] =[{
       store: {day:'monday to sunday', time:'9:00 to 9:00 PM'},
       delivery: {day:'Monday to Sunday', time:'9:00 to 9:00 PM'}
     }]
-
+       slideConfig = {
+  "slidesToShow": 1, 
+  "slidesToScroll": 1, 
+  dots:false,
+  autoplay:true,
+  autoplaySpeed: 5000,
+   prevArrow: false,
+   nextArrow: false,
+   fade: true,
+  cssEase: 'linear'};
 
  sizeKey: string = "";
  cupSize: any[] =[
  {key:'s1',name:'S'},
  {key:'s2',name:'L' },
  {key:'s3',name:'XL'}]
+
 
 bestDrinks: any[] =[
 {Key:'B1',Name:'Milktea',path:'D_MilkTea'},
@@ -108,19 +133,20 @@ bestDrinks: any[] =[
    endDate: '09/12/2020'},
    promoType:
    {key: 'disc', name: 'Discount',discount:20,display:''}},
-   {promoCode:'P1002', 
+
+   {promoCode:'P1003', 
    promoTitle: 'Free Delivery',
    status: true,
    promoIcon: 'app/resources/img/header-logo-temp.png', 
    promoDescription:'Get Free Delivery on any milktea purchase through our website', 
-   avail: 100, 
+   avail: 0, 
  date:{
    startDate: '08/28/2020',
    endDate: '09/12/2020'},
    promoType:
    {key: 'vckey01', name: 'Discount',discount:0,display:'FREE DELIVERY'}},
 
-   {promoCode:'P1002', 
+   {promoCode:'P1004', 
    promoTitle: '20% Discount', 
    status: true,
    promoIcon: 'app/resources/img/header-logo-temp.png',
@@ -132,7 +158,7 @@ bestDrinks: any[] =[
    promoType:
    {key: 'disc', name: 'Discount',discount:20,display:''}},
 
-   {promoCode:'P1002', 
+   {promoCode:'P1005', 
    promoTitle: '20% Discount', 
    status: true,
 
@@ -154,12 +180,13 @@ bestDrinks: any[] =[
    test: any[] = [];
 
 
+
    obj: any = {
        productSample:[
     {
       id: '001',
       title: 'Okinawa',
-    
+      quantitySold: 23,
       description: 'Lorem Ipsum Lorem ipsum',
       category_code: 'BS',
       imgpath: 'app/resources/img/Milktea-Sample.jpg',
@@ -178,6 +205,7 @@ bestDrinks: any[] =[
     {
       id: '002',
       title: 'Winter Melon',
+      quantitySold: 25,
       description: 'Lorem Ipsum Lorem ipsum',
       category_code: 'BS', 
       imgpath: 'app/resources/img/Milktea-Sample1.jpg',
@@ -193,6 +221,7 @@ bestDrinks: any[] =[
     {
       id: '003',
       title: 'Brown Sugar',
+      quantitySold: 200,
       description: 'Lorem Ipsum Lorem ipsum',
       category_code: 'BS',
       imgpath: 'app/resources/img/Milktea-Sample2.jpg',
@@ -208,6 +237,7 @@ bestDrinks: any[] =[
       {
       id: '004',
       title: 'Strawberry MilkTea',
+      quantitySold: 153,
       description: 'Lorem Ipsum Lorem ipsum',
       category_code: 'MY',
       imgpath: 'app/resources/img/Milktea-Sample.jpg',
@@ -223,6 +253,7 @@ bestDrinks: any[] =[
     {
       id: '005',
       title: 'Kiwi MilkTea',
+      quantitySold: 213,
       description: 'Lorem Ipsum Lorem ipsum',
       category_code: 'MG',
       imgpath: 'app/resources/img/Milktea-Sample4.jpg',
@@ -238,6 +269,7 @@ bestDrinks: any[] =[
       {
         id: '006',
       title: 'Lychee MilkTea',
+      quantitySold: 261,
       description: 'Lorem Ipsum Lorem ipsum',
       category_code: 'MY',
       imgpath: 'app/resources/img/Milktea-Sample1.jpg',
@@ -253,6 +285,7 @@ bestDrinks: any[] =[
       {
         id: '007',
       title: 'Lychee MilkTea',
+      quantitySold: 261,
       description: 'Lorem Ipsum Lorem ipsum',
       category_code: 'MG',
       imgpath: 'app/resources/img/Milktea-Sample.jpg',
@@ -268,6 +301,7 @@ bestDrinks: any[] =[
     {
       id: '008',
       title: 'Lychee MilkTea',
+      quantitySold: 260,
       description: 'Lorem Ipsum Lorem ipsum',
       category_code: 'FT',
       imgpath: 'app/resources/img/Milktea-Sample2.jpg',
@@ -283,22 +317,60 @@ bestDrinks: any[] =[
 
   }
 
+  addresses = [{userID:'01244',
+                street:'19 Maginoo St.',
+                city: 'Manila'}]
+
 
    constructor() { }
 
 
-  selectItem(content){
+  selectItem(content,ev?){
+    if(ev==null){
      this.myInput = this.obj.productSample.filter(a => a.id === content)[0];
-  }
+      this.showBasicDialog();
+      this.displayPosition = false;
+    }
+    else{
+       this.myInput = this.obj.productSample.filter(a => a.id === content)[0];
+    this.showBasicDialog()
+    this.displayPosition = false;
 
+    }
+
+  }
+    showBasicDialog() {
+         this.displayBasic = true;
+    }
+    showCart() {
+         this.displayCart = !this.displayCart;
+         alert(this.displayCart);
+    }
   myFunc(ev) {
   	this.myInput.size.selected = this.myInput.size.opts.filter(a => a.key == ev)[0];
+  }
+  selectedCategory = '';
+   selectCategory(ev) {
+    this.selectedCategory = ev;
+    console.log(this.selectedCategory);
+  }
+  editAddress(){
+        this.addressWrapper = !this.addressWrapper;
+      
+  }
+
+  getAddressDB(){
+      //
+      //queryDB Get
   }
 
   addFunction(ev){
 
   }
-  
+  showPositionDialog(position: string) {
+        this.position = position;
+        this.displayPosition = true;
+    }
   quantityControl(ev,val){
       if(ev=='add'){
       this.quantityValue = this.quantityValue + 1; 
@@ -398,7 +470,7 @@ bestDrinks: any[] =[
        b.itemExtras =  this.addOnsSelected,
        b.itemDescription =  this.myInput.description,
        b.itemPicture =  this.myInput.imgpath
-
+       
        }
      });
 
@@ -490,10 +562,11 @@ bestDrinks: any[] =[
 			  		this.priceComputation.quantity,
 			  		this.priceComputation.price]
   				}
-  		this.addToCart(this.cartValue);
+  		// this.addToCart(this.cartValue);
   	}
   		return this.priceComputation;		
    }
+
 
    additionalItems(ev,func){
 
@@ -519,8 +592,9 @@ bestDrinks: any[] =[
      })
      // this.itemRemover();
    }
-   itemRemover(ev){
 
+   //remove Order to cart 
+   itemRemover(ev){
         this.customerOrder.forEach(function(item, index, object) {
             if (item.itemOrderID == ev) {
               object.splice(index, 1);
@@ -528,6 +602,89 @@ bestDrinks: any[] =[
           });
           this.getTotal()
    }
+
+   productCreate(ev){
+     //add to databse
+    console.log(ev);
+
+
+   }
+
+    voucherCreate(ev){
+     //add to databse
+    console.log(ev);
+
+
+   }
+    productUpdate = {};
+    productUpdater(ev){
+     //update databse
+        this.obj.productSample.forEach(a=>{
+            if(a.id == ev.id){
+               a.title = ev.title,
+               a.description = ev.description,
+               a.size.opts[0].price = ev.pMedium,
+               a.size.opts[1].price = ev.pLarge,
+               a.size.opts[2].price = ev.pXLarge,
+               a.imgpath = ev.clink
+            }
+
+        });
+         // console.log(this.obj.productSample.find((item) => item.id == ev.id)) 
+           console.log(ev.pLarge);
+   }
+
+   voucherUpdater(ev?,eve?){
+     //update databse
+         var getVoucherDetails
+            // get Value from db
+            if(eve=='read'){
+            getVoucherDetails = this.promos.filter(a=> a.promoCode === ev)[0];
+           return getVoucherDetails;
+            }
+            else{
+              console.log(ev);
+
+
+            }
+           
+   }
+
+
+
+   // remove to Menu 
+   productRemover(ev){
+        this.obj.productSample.forEach(function(item, index, object) {
+            if (item.id == ev) {
+              object.splice(index, 1);
+            }
+          });
+   }
+   // remove voucher
+   voucherRemover(ev){
+        this.promos.forEach(function(item, index, object) {
+            if (item.promoCode == ev) {
+              object.splice(index, 1);
+            }
+          });
+   }
+
+   productEditor(ev){
+     //get selected Product 
+      this.productUpdate = this.obj.productSample.filter(a => a.id === ev)[0];
+      return this.productUpdate;
+     
+   }
+   //voucher status 
+   voucherStatus(ev){
+     this.promos.forEach(a=>{
+       if(a.id == ev){
+         a.status = !a.status
+       }
+     });
+   }
+ 
+
  
     editOrder(ev){
       this.myFunction();
@@ -564,23 +721,84 @@ bestDrinks: any[] =[
         myFunction(){
        this.view = false;
        this.sizeKey = '';
+
         this.resetValues();
-       // this.viewOrderExtras = [];
-       // this.viewTitle = ''
-       // this.viewPrice = ''
-       // this.sizeKey = a.itemSizeKey;
-       // this.iceKey = a.itemIceLevel;
-       // this.honeyKey= a.itemHoneyLevel;
-       // this.specialInstruction = a.itemInstruction;
-       // this.viewDescription = a.itemDescription;
+      
+    }
+    discountTitle: "";
+    vSuccess: boolean = false;
+    voucherFinder(ev?){    
+        if(ev!='edit'){
+              if(this.promos.find((item) => item.promoCode == this.vcode && item.avail!=0)){
+                 this.voucherVerify = true;
+                 this.vSuccess = true;
+          }
+          else if(this.promos.find((item) => item.promoCode == this.vcode && item.avail==0) ){ 
+                  this.verifyMessage = 'Voucher no longer available'; 
+                }
+          else{
+              this.verifyMessage = 'Invalid Code'; 
+          }
+
+        }
+        else{
+            this.voucherVerify = false;
+        }
+        
+    }
+    idValue= 0;
+    tempValue:any[]  =[];
+
+    confirmOder(){
+      //db connect
+      var date = new Date();
+      var request;
+          if(this.vSuccess){
+                  this.promos.forEach(a=>{
+                  if(this.vcode==a.promoCode && a.avail!=0){
+                       a.avail = a.avail-1;
+                      if(a.promoType.key=='disc'){
+                          this.discountedValue =    this.getTotalValue -  ((a.promoType.discount/100) * this.getTotalValue);
+                           this.discountTitle = a.promoTitle;
+                           this.idValue = this.idValue + 1;
+                           request = {
+                                genId: String(date.getMonth()) + String(date.getDate()) + String(date.getFullYear()) + this.idValue,
+                                 products: this.customerOrder,
+                                 promoID: a.promoCode
+                                    }
+                                    this.tempValue = request;
+                    }
+                }
+               
+              });
+              
+          }
+          else{
+                request = {
+                          genId: 'Order'+this.idValue,
+                          products: this.customerOrder
+                            }
+                              console.log(request);
+          }
+             
+
+
+
+    }
+    aCategory = '';
+    itemCreate(){
+
+      console.log
     }
 
-   	addToCart(ev){
-   		this.GrandTotal = this.GrandTotal+ev.cartDefaults[1];
- 		this.customerOrder.push({itemId : ev.cartItems[0].id, itemPrice: ev.cartItems[0].price, itemTitle:ev.cartItems[0].title, 
- 			itemCode: ev.cartItems[0].category_code, itemTotal:ev.cartDefaults[0],itemTotalPrice:ev.cartDefaults[1],itemPath:ev.cartItems[0].imgpath,
- 			itemGrandTotal:this.GrandTotal}); 
-    }	
+
+
+   // 	addToCart(ev){
+   // 		this.GrandTotal = this.GrandTotal+ev.cartDefaults[1];
+ 		// this.customerOrder.push({itemId : ev.cartItems[0].id, itemPrice: ev.cartItems[0].price, itemTitle:ev.cartItems[0].title, 
+ 		// 	itemCode: ev.cartItems[0].category_code, itemTotal:ev.cartDefaults[0],itemTotalPrice:ev.cartDefaults[1],itemPath:ev.cartItems[0].imgpath,
+ 		// 	itemGrandTotal:this.GrandTotal}); 
+   //  }	
 
 
 
@@ -590,6 +808,8 @@ bestDrinks: any[] =[
       map(value => this._filter(value))
     );
   }
+
+
 
      private _filter(value: string): string[] {
     const filterValue = this._normalizeValue(value);

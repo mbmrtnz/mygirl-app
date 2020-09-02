@@ -1,4 +1,4 @@
-import { Component, OnInit,Input,ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Component, OnInit,Input,ChangeDetectorRef, OnDestroy,ViewEncapsulation,ViewChild ,AfterViewInit} from '@angular/core';
 import mixitup from 'mixitup';
 import { UtilService } from '../../_services/util.service';
 import {MediaMatcher} from '@angular/cdk/layout';   
@@ -7,29 +7,35 @@ import {Observable} from 'rxjs';
 import {startWith, map} from 'rxjs/operators';
 import {ConfirmationService} from 'primeng/api';
 import {Message} from 'primeng/api';
+import { MatSidenav } from '@angular/material';
 
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.css'],
+  encapsulation: ViewEncapsulation.None,
    providers: [ConfirmationService]
 })
 
+
 export class ShopComponent implements OnInit {
+  @ViewChild('myCart') public service: MatSidenav;
+
+
   teaSize: any = null;
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
   isShow = true;
   searchShow = true;
-  checkout: boolean = true;
-  displayBasic: boolean;
+  checkout: boolean = false;
+
   displayConfirm: boolean;
   category="All Category";
   e1 : '';
   msgs: Message[] = [];
   position: string;
-
+  addVoucher:boolean = false;
 
 
 
@@ -134,6 +140,7 @@ export class ShopComponent implements OnInit {
   }
 
   orderForm: FormGroup;
+  contactForm: FormGroup;
   submitted: boolean = false;
   constructor(public event: UtilService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
             private formBuilder: FormBuilder,private confirmationService: ConfirmationService) {
@@ -143,9 +150,13 @@ export class ShopComponent implements OnInit {
     this.mobileQuery.addListener(this._mobileQueryListener);
 
    }
+   openVoucher(){
+       this.addVoucher = true;
+
+   }
 
 
-
+   
     toggleDisplay() {
     this.isShow = !this.isShow;
   }
@@ -158,31 +169,92 @@ export class ShopComponent implements OnInit {
   }
 
 
-    showBasicDialog() {
-        this.displayBasic = true;
-    }
+  
     showConfirmDialog() {
         this.displayConfirm = true;
+
     }
     showCheckout() {
         this.checkout = true;
-        console.log(this.event.customerOrder);
-    }
+            }
 
   
+   submitAdd:boolean = false;
+    ngAfterViewInit() {
+      // if(this.mobileQuery.matches){
+      //   // this.event.sideNavToggleSubject.subscribe(() => {
+      //   //   this.service.toggle(!this.service['_opened']);
+      //   //   console.log(this.service);
+      //   // });
+      //   this.event.openedCart = false;
+
+      // }
+
+      this.event.openedCart = !this.mobileQuery.matches;
+      
+        // this returns null
+    }
 
   ngOnInit() {
+
+    
+
+
+
     this.orderForm = this.formBuilder.group({
       mgSize: ['', Validators.required]
     })
-    this.event.autoComplete();
- 
-  }
 
+    this.contactForm = this.formBuilder.group({
+      cnumber: ['', [Validators.required, Validators.pattern(new RegExp("^((\\+63-?)|0)?[0-9]{10}"))]],
+      tnumber: ['', Validators.pattern(new RegExp("^((\\+02-?)|0)?[0-9]{10}"))],
+      street: ['', Validators.required],
+      city: ['', Validators.required],
+    })
+
+  
+    this.event.autoComplete();
+   
+
+  }
+  get details() {
+    // console.log(this.contactForm.controls);
+    return this.contactForm.controls;
+  }
   get f() {
     return this.orderForm.controls;
   }
+    customerDetails: any[]= [];
+     cnumber: string = "";
+     tnumber: string = "";
+     street: string ="";
+     city: string = "";
 
+     submitAddress() {
+        
+    var customer;
+
+    this.submitAdd = true;
+
+    if(this.contactForm.valid){
+      customer = {
+               cnumber: this.cnumber,
+               tnumber: this.tnumber,
+               street: this.street,  
+               city: this.city
+               }
+               this.customerDetails = customer;
+               this.event.addressWrapper = false;
+               //call database function 
+    }
+  }
+
+
+    myF(){
+      this.event.addressWrapper = false;
+      this.addVoucher = false;
+
+    }
   onFormSubmit() {
     this.submitted = true;
 
@@ -210,6 +282,7 @@ export class ShopComponent implements OnInit {
             }
         });
     }
-
+    
+   
 
 }

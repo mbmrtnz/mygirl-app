@@ -1,10 +1,11 @@
 
 .aboutHeader{
-	height: 100%;
-	 background-image: url('/app/resources/img/AboutHeader.jpg'); 
+	background-image: url('/app/resources/img/Header2.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position:center 35%;
+	height: 400px;
 	
-	 background-size: cover;
-	 background-repeat: no-repeat;
 	/* filter: blur(10px);*/
 
 
@@ -26,34 +27,41 @@
 
 }
 .imgText{
-	color:white;
-	  text-shadow: 2px 2px black;
+	color:black;
+	 
 
 
 }
 
 .storeHours{
 	text-align: center;
-	 /*background-image: url('/app/resources/img/announcement.jpg'); */
-	padding: 50px;
+	 background-image: url('/app/resources/img/BG3.jpg');
+
 	margin: 0px !important;
 	  background-position: center;
 	  background-repeat: no-repeat;
 	  background-size: cover;
-	  position: initial;
-	  	/* filter: blur(10px);*/
+
+	  padding: 50px;
+	}
+	.location{
+	
+	 background-image: url('/app/resources/img/BG1.jpg');
+
+	  background-position: center;
+	  background-repeat: no-repeat;
+	  background-size: cover;
+
 	}
 .storeHoursText{
-	color: black;
-		  text-shadow: 1px 1px white;
-
+	color: white;
 
 }
 
 .storeHoursBorder{
   border-radius: 15px;
 	  border: 5px solid white;
-	  background-color: rgba(255,255,255,0.3);
+	 	
 
 }
 #followTab{

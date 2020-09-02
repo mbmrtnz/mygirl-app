@@ -1,6 +1,6 @@
 <div>
   <ng-container *ngIf="admin">
-
+ 
 
 
     <header class="header ">
@@ -13,51 +13,47 @@
 
             <div class="col-lg-2" style="height: 80%" class="MyGirl_Logo">
 
-              <!-- kinomment ni reid -->
-              <!-- cause: Property 'selectedTab' does not exist on type 'AppComponent'. -->
-       <!--    <a [routerLink]="['/home']"><img (click)="selectedTab = 1" src="app/resources/img/header-logo-temp.png" alt="header-logo-temp.png" style="max-height: 100%; object-fit:contain; padding: 0px !important; margin: 0px !important"><h1 class="MyGirl_Text" style="display: inline-block; color: white; margin-left: 10px;">MyGirl Milktea </h1></a>
-       -->
        <!-- temp -->
        <a [routerLink]="['/home']"><img src="app/resources/img/header-logo-temp.png" alt="header-logo-temp.png" style="max-height: 100%; object-fit:contain; padding: 0px !important; margin: 0px !important"><h1 class="MyGirl_Text" style="display: inline-block; color: white; margin-left: 10px;">MyGirl Milktea </h1></a>
        <!-- temp end -->
 
-    <!-- <div class="container" style="max-width: 1400px !important;">
-        <div class="row">
-            <div class="col-lg-2">
-                <div class="header__logo">
-                    <a [routerLink]="['/home']"><img src="app/resources/img/header-logo-temp.png" alt="header-logo-temp.png" style="max-width: 75%;"></a>
-                  </div> -->
 
                 </div>
-                <div class="col-6"></div>
+               
+                     <div class="col-6 " style="text-align: right;">
+                    
+                  <span class="p-overlay-badge p-mr-5 shopCart" style=" margin-right: 25px;"  mat-icon-button (click)="clickMenu()">
+                        <i class="pi pi-shopping-cart" style="font-size: 1em; color: white;"></i>
+                        <span class="p-badge " *ngIf="service.customerOrder.length" style="background-color: red;">{{service.customerOrder.length}}</span>
+                  </span>
+             
+
+                </div>
                 <div class="col-lg-1">
                   <nav class="header__menu">
                     <ul>
                       <li [routerLinkActive]="['active']"><a class="defaultMenu"  [routerLink]="['/home']">Home</a></li>
                       <li [routerLinkActive]="['active']"><a class="defaultMenu" [routerLink]="['/shop']">Shops</a></li>
-                      <li [routerLinkActive]="['active']"><a class=" defaultMenu" [routerLink]="['/promos']">Order</a></li>
+                      <li [routerLinkActive]="['active']"><a class=" defaultMenu" [routerLink]="['/promos']">Promos</a></li>
                       <li [routerLinkActive]="['active']"><a class="defaultMenu" [routerLink]="['/about']">About Us</a></li>
+
                     </ul>
                   </nav>
                 </div>
-           <!--  <div class="col-lg-3">
-                <div class="header__cart">
-                    <ul>
-                        <li><a><i class="fas fa-heart"></i> <span>1</span></a></li>
-                        <li><a (click)="cartMdl.openMdl()" (click)="openCart()"><i class="fas fa-shopping-cart"></i> <span>{{orderList?.length}}</span></a></li>
-                    </ul>
-                    <div class="header__cart__price">Price: <span>{{orderList[orderList.length-1]?.itemGrandTotal}}</span></div>
-                </div>
-              </div> -->
+         
             </mat-toolbar>
           </div>
+
           <div class="humberger__open">
+
             <button class="btn btn-link" style="color: white; outline: none;border: none; padding: 0px; border:0px; " menuOpen="true" mat-button [matMenuTriggerFor]="menu">  <i class="fa fa-bars"></i></button>
             <mat-menu  #menu="matMenu">
+            
               <li mat-menu-item [routerLinkActive]="['active']"><a class="mobileMenuText" [routerLink]="['/home']">Home</a></li>
               <li mat-menu-item [routerLinkActive]="['active']"><a class="mobileMenuText" [routerLink]="['/shop']">Shop</a></li>
-              <li mat-menu-item [routerLinkActive]="['active']"><a class="mobileMenuText" [routerLink]="['/shop']">Order</a></li>
+              <li mat-menu-item [routerLinkActive]="['active']"><a class="mobileMenuText" [routerLink]="['/promos']">Promos</a></li>
               <li mat-menu-item [routerLinkActive]="['active']"><a class="mobileMenuText" [routerLink]="['/about']">About Us</a></li>
+
             </mat-menu>
           </div>
 
@@ -66,6 +62,7 @@
         </div>
 
       </header>
+
     </ng-container>
 
     <router-outlet></router-outlet>
@@ -73,11 +70,7 @@
 
   <app-modal #cartMdl class="d-none">
     <div header style="max-width: 50% !important;">
-      <!-- kinomment ni reid -->
-      <!-- cause: Property 'TotalPrice' does not exist on type 'AppComponent'. -->
-      <!-- <h5 class="modal-title" id="exampleModalLabel">Your Shopping Cart {{TotalPrice}}</h5>  -->
 
-      <!-- temp -->
       <h5 class="modal-title" id="exampleModalLabel">Your Shopping Cart </h5>
       <!-- temp end -->
     </div>
@@ -121,13 +114,33 @@
      <div class="modal-footer border-top-0 d-flex justify-content-between">
       <button type="button" class="btn btn-secondary" (click)="cartMdl.closeMdl()" >Close</button>
 
-      <!-- kinomment ni reid -->
-      <!-- cause: Property 'quantityCalc' does not exist on type 'AppComponent'. -->
-      <!-- <button type="button" class="btn btn-success" (click)="quantityCalc('submitOrder')">Add to Cart</button> -->
-
-      <!-- temp -->
+   
       <button type="button" class="btn btn-success">Add to Cart</button>
       <!-- temp end -->
     </div>
   </div>
 </app-modal>
+
+
+<p-dialog header="Best Seller!"   [(visible)]="service.displayPosition" styleClass="bestSellerDialog"  [position]="service.position"  [style]="{overflow: 'hidden'}" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false">
+   
+    <a class="" [routerLink]="['/shop']">
+   <ngx-slick-carousel class="carousel" 
+  #slickModal="slick-carousel" 
+  [config]="service.slideConfig">
+  <div style="overflow: hidden;"  ngxSlickItem *ngFor="let milktea of service.obj.productSample" [ngClass]="" (click)="service.selectItem(milktea.id, 'best')">
+        <div class="BestSellerNavWrapper set-bg">
+          <div class="BestSellerNav set-bg"  style="background-size: cover; background-repeat: no-repeat; height: 200px; margin:0px !important; padding: 0px !important; "  [ngStyle]="{'background-image': 'url('+ milktea.imgpath +')'}">
+          </div>
+          <div class="BestSellerNavDesc">
+            <h1 class=""><a href="#" style="color: black; font-family: happy monkey">{{milktea.title}}</a></h1>
+           
+          </div>
+        </div>
+  
+  </div>
+</ngx-slick-carousel>
+       </a> 
+</p-dialog>
+

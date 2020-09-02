@@ -24,3 +24,57 @@
 .defaultMenu{
 		color:white;
 	}
+
+.BestSellerNav {
+
+  position: relative;
+  overflow: hidden;
+  background-position: center center;
+
+  border-top-right-radius:  5px;
+  border-top-left-radius: 5px;
+}
+
+.BestSellerNavWrapper {
+  height: 255px;
+  position: relative;
+  overflow: hidden;
+}
+
+.BestSellerNavDesc {
+  text-align: center;
+  padding-top: 15px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+
+
+}
+
+/*@media only screen and (min-width: 992px) {
+	.bestSellerDialog{
+				width: 15vw;
+
+		}
+}
+@media only screen and (min-width: 1200px) {
+		.bestSellerDialog{
+				width: 15vw;
+
+		}
+
+}
+@media only screen and (min-width: 600px) {
+		.bestSellerDialog{
+				width: 100%;
+
+		}
+
+}
+@media only screen and (min-width: 486px) {
+		.bestSellerDialog{
+				width: 100%;
+
+		}
+
+}*/
+

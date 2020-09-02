@@ -5,11 +5,14 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { environment } from '../../../environments/environment';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
+import {MessageService} from 'primeng/api';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  providers: [MessageService]
 })
 export class HomeComponent implements OnInit, OnDestroy {
   txtAreaMsg: string = '';
@@ -17,12 +20,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   topic: string = "/user/queue/order-update";
   stompClient: any;
   userId: string = 'user';
-
+   options: any;
+     addressB: boolean  = true;
+    overlays: any[];
   myObj: object = {};
   public innerWidth: any;
    private _mobileQueryListener: () => void;
    mobileQuery: MediaQueryList;
-  constructor(public utilS: UtilService,config: NgbCarouselConfig,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher)
+  constructor(public utilS: UtilService,config: NgbCarouselConfig,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,private messageService: MessageService)
    {   config.interval = 6000;  
     config.wrap = true;  
     config.keyboard = false;  
@@ -65,16 +70,57 @@ export class HomeComponent implements OnInit, OnDestroy {
      images = [1,2,3].map((n) => `/app/resources/img/Header${n}.jpg`);
 
   ngOnInit() {
-  
+     this.options = {
+            center: {lat: 36.890257, lng: 30.707417},
+            zoom: 12
+        };
 
     this.innerWidth = Number(window.innerWidth)-1015;
     this.userId = this.userId + (Math.random() * 100000).toFixed(0);
     // this.wsConnect();
   }
+  formattedAddress ="";
+  mapoptions = {
+    componentRestrictions:{
+      country: ['PH'],
+      fields: ['place_id','geometry','name']
+    }
+  }
+    inputAdd ="";
+  //   check=false;
+  // handleAddressChange(ev: any) {
+  //       this.formattedAddress =  ev.formattedAddress;
+  //       console.log(ev);
+  //       console.log(ev.geometry);
+  //       // bale problem mo, hindi nababasa kapag hindi valid sa input?
+     
+  //   }
+  
+     showError() {
+        this.messageService.add({key: 'c', sticky: true,severity:'error', summary: 'Error', detail: 'Please select a delivery Location'});
+    }
+    
+      showErrorOne() {
+        this.messageService.add({key: 'c', sticky: true,severity:'error', summary: 'Error', detail: 'Ebnggkkk'});
+    }
+
+
+    
+    clear() {
+        this.messageService.clear();
+    }
+   
 
   ngOnDestroy(): void {
     // this.wsDisconnect();
   }
+
+  // ngDoCheck() {
+  //   // console.log('hey');
+  //   if(this.check) {
+  //     console.log('hey');
+  //   }
+  // }
 
   wsConnect() {
       let ws = new SockJS(this.webSocketEndPoint);

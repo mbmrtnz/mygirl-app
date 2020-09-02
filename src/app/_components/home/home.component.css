@@ -1,11 +1,15 @@
+.mapInput{
+	height: 60px !important;
 
+
+}
 .covertText{
 /*  position: absolute;*/
-  bottom: 0px;
+
  padding: 0px !important;
  margin-bottom: 0px !important;
   color:white;
-	 background-color:  rgba(0, 0, 0, 0.5);
+	 
 	width: 100%;
 	text-align: center;
 

@@ -23,9 +23,15 @@ export class AppComponent {
   	private ms: NgbModal,
     public service: UtilService
   ) { }
-
+  
   ngOnInit() {
   	this.ts.setTitle('Welcome');
+    
+  }
+  clickMenu() { 
+    // console.log(this.service);
+    // this.service.toggle();
+    this.service.openedCart = !this.service.openedCart;
   }
 
   openCart() {

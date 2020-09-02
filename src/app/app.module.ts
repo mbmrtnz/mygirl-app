@@ -14,6 +14,7 @@ import { SampleParentComponent } from './_components/common/sample-parent/sample
 import { SampleChildComponent } from './_components/common/sample-child/sample-child.component';
 import { ShoplistComponent } from './_components/common/shoplist/shoplist.component';
 import { AnnouncementComponent } from './_components/common/announcement/announcement.component';
+import { PromosComponent } from './_components/promos/promos.component';
 import { ShopComponent } from './_components/shop/shop.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { Pipe, PipeTransform } from '@angular/core';
@@ -41,8 +42,17 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { TableModule } from 'primeng/table';
 import { CardModule } from 'primeng/card';
 import { LoginComponent } from './_components/login/login.component';
-import { PromosComponent } from './_components/promos/promos.component';
+import { TooltipModule } from 'primeng/tooltip';
+import { ToastModule } from 'primeng/toast';
+import { InputMaskModule } from 'primeng/inputmask';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
+import {InputSwitchModule} from 'primeng/inputswitch';
+import {CalendarModule} from 'primeng/calendar';
 
+//Google Map
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import {GMapModule} from 'primeng/gmap';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -91,6 +101,14 @@ export class SafePipe implements PipeTransform {
     CardModule,
     ConfirmDialogModule,
     MessagesModule,
+    TooltipModule,
+    GooglePlaceModule,
+    ToastModule,
+    InputTextModule,
+    InputSwitchModule,
+    RadioButtonModule,
+    CalendarModule
+
 
   ],
   providers: [
