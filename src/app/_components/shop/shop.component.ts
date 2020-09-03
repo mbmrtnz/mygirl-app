@@ -174,9 +174,21 @@ export class ShopComponent implements OnInit {
         this.displayConfirm = true;
 
     }
+      cols: any[];
+    tempArray: any[] = [];
     showCheckout() {
+      var data
         this.checkout = true;
-            }
+          this.tempArray = this.event.customerOrder;
+          console.log(this.tempArray);
+        this.cols = [
+            { field: 'itemTitle', header: 'Flavor' },
+            { field: 'itemComputed', header: 'Price' },
+            { field: 'itemTotal', header: 'Total' },
+            { field: 'itemGrandTotal', header: '' }
+           ];
+       }
+            
 
   
    submitAdd:boolean = false;

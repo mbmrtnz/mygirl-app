@@ -26,6 +26,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 	@ViewChild('tabGroup') tabGroup;
 	AddItemForm: FormGroup;
 	addVoucherForm:FormGroup;
+  deliveryForm:FormGroup;
 	mobileQuery: MediaQueryList;
 	private _mobileQueryListener: () => void;
 	activeTab = 1;
@@ -88,6 +89,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 	filterProducts: any[] = ['title', 'category_code'];
 	filterFields: any[] = ['orderId', 'orderNum', 'orderDate', 'totalAmt'];
 	filterVoucher: any[] = ['promoTitle', 'promoCode', 'promoDescription', 'promoType'];
+	filterPlace: any[] = ['place'];
 	tblLoader: boolean = false;
 	txtAreaMsg: string = '';
 	username: string = '';
@@ -116,6 +118,12 @@ export class AdminComponent implements OnInit, OnDestroy {
       tAvail: ['', [Validators.required,Validators.pattern("^[0-9]*$")]]
     });
 
+   this.deliveryForm = this.formBuilder.group({
+      dPlace: ['', Validators.required ],
+      dminPrice: ['', [Validators.required,Validators.pattern("^[0-9]*$")]],
+      dmaxPrice: ['', [Validators.required,Validators.pattern("^[0-9]*$")]]
+    });
+
 
 
 	}
@@ -123,12 +131,15 @@ export class AdminComponent implements OnInit, OnDestroy {
 
 
 	get details() {
-
+      // For Menu 
     return this.AddItemForm.controls;
   }
-
+  	get dDetails() {
+        // for delivery fee
+    return this.deliveryForm.controls;
+  }
     get vDetails() {
-
+        // for voucher
     return this.addVoucherForm.controls;
   }
 	submitted = false;
@@ -195,6 +206,36 @@ export class AdminComponent implements OnInit, OnDestroy {
 		}
 	}
 	
+  }
+  	deliverySubmit = false;
+  onDeliverySubmit(ev?) {
+    this.deliverySubmit = true;
+
+    if(this.deliveryForm.valid){
+    	this.messageService.add({severity:'success', summary: 'Item created', detail: 'Item successfully adedd'});
+    	
+        if(ev==null){
+              this.getDeliverFee('add'); 
+
+        }
+        else{
+            this.getDeliverFee(ev);
+        }
+    		this.deliveryModal = false;
+   
+    }
+	else{
+		if(this.dDetails.dPlace.errors!=null){
+			this.messageService.add({severity:'error', summary: 'Title', detail: 'Please add place'});
+		}
+		if(this.dDetails.dminPrice.errors!=null){
+			this.messageService.add({severity:'error', summary: 'Quantity', detail: 'Please Enter Numeric Value'});
+		}
+	
+		 if(this.dDetails.dmaxPrice.errors!=null){
+			 this.messageService.add({severity:'error', summary: 'Description', detail: 'Please Enter Numeric Value'});
+		}
+	}
   }
 
 
@@ -361,7 +402,16 @@ export class AdminComponent implements OnInit, OnDestroy {
 		this.cLink = '';
 		this.AddItemForm.reset();
 		this.submitted = false;
-
+     // delivery Fee Modal
+     this.deliveryModal = false;
+     this.dPlace ='';
+     this.dminPrice = null;
+     this.dmaxPrice = null;
+     this.dId  = 20;
+     this.deliveryArray = {};
+     this.deliveryView = false;
+     this.deliveryForm.reset();
+     this.deliverySubmit =false;
 
 
 
@@ -410,6 +460,7 @@ export class AdminComponent implements OnInit, OnDestroy {
             reject: () => {
                 // this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
                   this.deleteBox = false;
+
             }
         });
     }
@@ -431,14 +482,154 @@ export class AdminComponent implements OnInit, OnDestroy {
             key: "vDelete"
         });
     }
+    imageBox: boolean = false;
+    	 confirmImage(ev) {
+        this.confirmationService.confirm({
+            message: 'Are you sure that you want to proceed?',
+            icon: 'pi pi-exclamation-triangle',
+            defaultFocus: 'none',
+            accept: () => {
+
+            	// save to DB
+                
+            },
+            reject: () => {
+            	this.imageBox = false;
+                this.imageEdit = false;
+            },
+            key: "vImage"
+        });
+    }
+    imageBoxStatus = false;
+    imageStatus = false;
+    //image status enable/disable
+     statusImage(ev) {
+        this.confirmationService.confirm({
+            message: 'Are you sure that you want to enable/disable this image?',
+            icon: 'pi pi-exclamation-triangle',
+            defaultFocus: 'none',
+            accept: () => {
+
+            	this.event.carouselCrud(ev);
+
+                
+            },
+            reject: () => {
+            	this.imageBoxStatus = false;
+                this.imageStatus = false;
+            },
+            key: "vImageStatus"
+        });
+    }
+
+    	deliveryBox = false;
+
+      dView = false; //check whether add or update record
+      deliveryCon(ev) {
+        this.confirmationService.confirm({
+            message: 'Are you sure that you want to proceed?',
+            icon: 'pi pi-exclamation-triangle',
+            defaultFocus: 'none',
+            accept: () => {
+            	this.event.deliveryCrud('delete',ev); 
+            },
+            reject: () => {
+            	this.deliveryBox = false;
+             
+            },
+            key: "delivery"
+        });
+    }
+
+
+    imageEdit: boolean = false;
+    imageLink: string = '';
+    //get carousel images
+    CarouselImages: any = {};
+   	deliveryFee:any={};
+  
+  
+
+     imageCrud(ev?){
+     	this.imageEdit = !this.imageEdit;
+    }
+     getImage(){
+    	this.CarouselImages = this.event.carouselCrud('read');
+
+    }	
+    deliveryModal: boolean = false;
+    dPlace: string ='';
+    dminPrice: number;
+    dmaxPrice: number;
+    dId:number = 20;
+    deliveryArray: any ={};
+     deliveryView: boolean = false;
+    getDeliverFee(ev?,eve?){
+      var deliveryData;
+    	if(ev=='read'){
+        //read for table
+    			this.deliveryFee = this.event.deliveryCrud('read');
+    	}
+ 
+    	else if(ev=='addView'){
+         // toggle modal 
+          this.deliveryModal = !this.deliveryModal;
+
+         if(eve!=null){
+        this.deliveryArray = this.event.deliveryCrud('read',eve);
+           this.dId = this.deliveryArray.id; 
+           this.deliveryView = true;
+          this.dPlace = this.deliveryArray.place;
+          this.dminPrice = this.deliveryArray.priceMin;
+          this.dmaxPrice = this.deliveryArray.priceMax;
+          
+         }
+        
+    			
+          
+
+    	}
+      else if(ev=='add'){
+         this.dId = this.dId+1; // temporary id, get last index from DB
+            deliveryData={
+              id: 'DF'+this.dId, 
+              deliveryPlace: this.dPlace,
+              minimumPrice: this.dminPrice,
+              maximumPrice: this.dmaxPrice
+            }
+              console.log(deliveryData)
+            this.event.deliveryCrud('add',deliveryData);
+
+      }
+      else{
+        alert(ev);
+            this.deliveryModal = !this.deliveryModal;
+            deliveryData={
+                id: ev,
+                deliveryPlace: this.dPlace,
+                minimumPrice: this.dminPrice,
+                maximumPrice: this.dmaxPrice,
+            }
+         this.event.deliveryCrud('edit',deliveryData );
+          
+      }
+
+    	
+
+    }
+
+
 
 	ngOnInit() {
+			 this.getImage();
+			 this.getDeliverFee('read');
 		// this.wsConnect();
 		// this.username = localStorage.getItem('token');
 
 	}
 
 	ngOnDestroy(): void {
+
 		// this.wsDisconnect();
 		// this.mobileQuery.removeListener(this._mobileQueryListener);
 	}

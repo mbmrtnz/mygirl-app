@@ -357,7 +357,113 @@
 
 
 				  </mat-tab>
-				  <mat-tab label="Site Variable"> Content 3 </mat-tab>
+				  <mat-tab label="Site Variable">
+				  	<div class="container-fluid">
+					  	<div class="row">
+					  		<div class="tableHeader" style="" > <p class="TableCaption">Home page images</p> </div>
+					  		<p-table [responsive]="true" [columns]="cols" [rows]="" [value]="CarouselImages" styleClass="p-datatable-responsive-demo">
+					  		
+					  		    <ng-template pTemplate="header" let-columns>
+					  		        <tr>
+					  		            <th>
+					  		           		Thumbnail
+					  		            </th>
+					  		             <th >
+					  		            	Link 
+					  		             </th>
+					  		             <th>
+					  		             	Action
+					  		             </th>
+					  		        </tr>
+					  		    </ng-template>
+					  		    <ng-template pTemplate="body" let-rowData let-columns="columns">
+					  		        <tr>
+					  		            <td><a [href]="rowData.link" target="_blank"> <img [src]="rowData.link" class="tableImage"></a> </td>
+					  		            <td><span class="p-column-title">Link </span> 
+					  		            	<input type="text" pInputText [value]="rowData.link" (change)="imageLink = rowData.link"/>
+					  		           <!--  {{rowData.link}} -->
+					  		            </td>
+					  		            <td> 
+
+
+					  		            	<button pButton pRipple icon="pi pi-pencil" [style.display]="imageEdit ? 'none':''" (click)="imageCrud(rowData.id)" class="p-button-rounded p-button-success tblActionBTN" ></button>
+
+					  		            	<button pButton pRipple [icon]="rowData.status? 'pi pi-eye' : 'pi pi-eye-slash'" [style.display]="imageEdit ? 'none':''" (click)="statusImage(rowData.id)" class="p-button-rounded  tblActionBTN" [ngClass]="rowData.status? 'p-button-warning':'p-button-danger'" ></button>
+
+					  		            	<button pButton pRipple (click)="confirmImage(rowData.id)" icon="pi pi-save" [style.display]="imageEdit ? '':'none'"   class="p-button-rounded p-button-success tblActionBTN" ></button>
+					  		            	<button pButton pRipple icon="pi pi-times" [style.display]="imageEdit ? '':'none'" (click)="imageCrud()" class="p-button-rounded p-button-danger tblActionBTN" ></button>
+					  		            	</td>                  					  
+					  		        </tr>
+					  		    </ng-template>
+					  		</p-table>
+					  			<div class="tableHeader" style="" > <p class="TableCaption">  Estimated delivery fee </p> </div>
+					  			<p-table  [globalFilterFields]="filterPlace" [responsive]="true" #placetable [columns]="cols" [rows]="5" [paginator]="true" [value]="deliveryFee" styleClass="p-datatable-responsive-demo">
+					  		
+					  			   <ng-template pTemplate="caption">
+				  			<div class="row">
+						    				<div class="col-11">
+						    					<input type="text" pInputText size="40" placeholder="Search" (input)="placetable.filterGlobal($event.target.value, 'contains')" class="col-sm-2">
+					    						<i class="pi pi-search" style="margin: 15px 0 0 -25px; position: absolute;"></i>
+
+					    						
+						    				</div>
+						    				<div class="col-1">
+						    					   <p-button label="Add" (click)="getDeliverFee('addView')" icon="pi pi-plus" styleClass="p-button-success p-button-sm" ></p-button>
+						    				</div>
+						    			</div>
+									    </ng-template>
+					  		    <ng-template pTemplate="header" let-columns>
+					  		        <tr>
+					  		            <th>
+					  		           		Location
+					  		            </th>
+					  		             <th >
+					  		            	Minimum Fee
+					  		             </th>
+					  		               <th >
+					  		            	Maximum Fee
+					  		             </th>
+					  		             <th>
+					  		             	Action
+					  		             </th>
+					  		        </tr>
+					  		    </ng-template>
+					  		    <ng-template pTemplate="body" let-rowData let-columns="columns">
+					  		        <tr>
+					  		            <td>
+					  		            	<span class="p-column-title">Place </span>  {{rowData.place}} 
+					  		            </td>
+					  		            <td>
+					  		            	<span class="p-column-title">Minimum Price </span> 
+					  		              {{rowData.priceMin}} PHP
+					  		
+					  		            </td>
+					  		             <td>
+					  		            	<span class="p-column-title">Maximum Price </span> 
+					  		            	 {{rowData.priceMax}} PHP
+					  		    
+					  		            </td>
+					  		            <td> 
+
+
+					  		            	<button pButton pRipple (click)="getDeliverFee('addView',rowData.id)" icon="pi pi-pencil" class="p-button-rounded p-button-success tblActionBTN" ></button>
+
+					  		            
+					  		            	<button pButton pRipple (click)="deliveryCon(rowData.id)" icon="pi pi-times"  class="p-button-rounded p-button-danger tblActionBTN" ></button>
+					  		            	</td>                  					  
+					  		        </tr>
+					  		    </ng-template>
+					  		     <ng-template pTemplate="emptymessage">
+									        <tr>
+									            <td [attr.colspan]="cols.length">
+									                No records found
+									            </td>
+									        </tr>
+									    </ng-template>
+					  		</p-table>
+					  	</div> 
+				  	</div>
+				 </mat-tab>
 				</mat-tab-group>
 	    	</ng-container>
 
@@ -545,8 +651,53 @@
    </p-footer>
 
 </p-dialog>
+<!-- delivery form -->
+<p-dialog position="top" [style]="{width: mobileQuery.matches? '100vw': '40vw'}" (onHide)="resetOnhide()" [draggable]="false" [resizable]="false"  header="Add estimated Delivery" [(visible)]="deliveryModal"  modal="true"  [baseZIndex]="10000">
+	<form [formGroup]="deliveryForm">
+		<div class="row">
+				<div class="col-12">
+					<span class="p-float-label " style="margin-top: 20px;">
+					    <input formControlName="dPlace" [(ngModel)]="dPlace"
+					     [ngClass]="dDetails.dPlace.errors!=null && deliverySubmit==true? 'errorBorder':''"
+					      id="deliveryPlace" style="width: 100%; " type="text" pInputText > 
+					    <label for="deliveryPlace">Place/Location </label>
+					</span>
+				</div>
+				<div class="col-6">
+					<span class="p-float-label " style="margin-top: 20px;">
+					    <input [(ngModel)]="dminPrice"
+					     [ngClass]="dDetails.dminPrice.errors!=null && deliverySubmit==true? 'errorBorder':''"
+					     formControlName="dminPrice"
+					      id="min" style="width: 100%; " type="text" pInputText > 
+					    <label for="min">Minimum Delivery Charge </label>
+					</span>
+				</div>
+				<div class="col-6">
+					<span class="p-float-label " style="margin-top: 20px;">
+					    <input [(ngModel)]="dmaxPrice"
+					     [ngClass]="dDetails.dmaxPrice.errors!=null && deliverySubmit==true? 'errorBorder':''"
+					     formControlName="dmaxPrice"
+					      id="max" style="width: 100%; " type="text" pInputText > 
+					    <label for="max">Maximum Delivery Charge </label>
+					</span>
+				</div>
+		</div>
+			</form>
+	<p-footer>
+		<div class="col-12 text-right flex">
+
+				<button pButton pRipple type="button" [style.display]="deliveryView ? 'none':''" label="Add" 
+				(click)="onDeliverySubmit()"   class="p-button-success" style="margin: 10px;"></button>
 
 
+				<button pButton pRipple type="button" label="Update" (click)="onDeliverySubmit(dId)"  [style.display]="deliveryView ? '':'none'"  class="p-button-success" style="margin: 10px;"></button>
+
+
+				<button pButton pRipple type="button" (click)="getDeliverFee('addView')" label="Cancel" class="p-button-danger" style="margin: 10px;"></button>
+		</div>
+
+	</p-footer>
+</p-dialog>
 
 <!-- confirmation modals -->
   <!-- Delete Voucher -->
@@ -562,3 +713,16 @@
 <!-- confirm voucher status -->
   <p-confirmDialog [draggable]="false" key="voucherBox"  position="top" header="Voucher Status" [(visible)]="voucherBox" closable="true"  [style]="{width: mobileQuery.matches ? '100%' : '20%'}" [baseZIndex]="10000">
   </p-confirmDialog>
+
+  <!-- confirm image edit for carousel-->
+   <p-confirmDialog [draggable]="false" key="vImage"  position="top" header="Save new image" [(visible)]="imageBox" closable="true"  [style]="{width: mobileQuery.matches ? '100%' : '20%'}" [baseZIndex]="10000">
+   </p-confirmDialog>
+
+   <!-- confirm disable image for carousel -->
+    <p-confirmDialog [draggable]="false" key="vImageStatus"  position="top" header="Image Carousel status" [(visible)]="imageBoxStatus" closable="true"  [style]="{width: mobileQuery.matches ? '100%' : '20%'}" [baseZIndex]="10000">
+   </p-confirmDialog>
+   	<!-- confirm dialog for delivery charge -->
+     <p-confirmDialog [draggable]="false" key="delivery"  position="top" header="Delivery Charge" [(visible)]="deliveryBox" closable="true"  [style]="{width: mobileQuery.matches ? '100%' : '20%'}" [baseZIndex]="10000">
+   </p-confirmDialog>
+
+

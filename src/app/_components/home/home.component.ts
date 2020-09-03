@@ -70,10 +70,7 @@ export class HomeComponent implements OnInit, OnDestroy {
      images = [1,2,3].map((n) => `/app/resources/img/Header${n}.jpg`);
 
   ngOnInit() {
-     this.options = {
-            center: {lat: 36.890257, lng: 30.707417},
-            zoom: 12
-        };
+  
 
     this.innerWidth = Number(window.innerWidth)-1015;
     this.userId = this.userId + (Math.random() * 100000).toFixed(0);

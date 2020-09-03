@@ -99,7 +99,7 @@
 <mat-sidenav-content style="min-height: 500px;" >
 <!--   <app-announcement [mobileView]="mobileQuery.matches" ></app-announcement>  -->
   <section class="featured spad">
- <div class="scroller">
+ <div class="scroller" [style.display]="mobileQuery.matches ? '' : 'none'">
   <div class="hero__categoriesmv hero__categoriesmvs">
   <ul id="inner" class="matnav" style="clear: both;" style="overflow:scroll">
    
@@ -255,7 +255,7 @@
       <div class="IceOption smBorder">
            <span style="font-family: happy monkey;">Ice Level </span> <br>
          
-           <label  style="font-family: happy monkey;" *ngFor="let ice of event.iceLevel" for="ice.key" class="radio-inline ">
+           <label style="font-family: happy monkey;" *ngFor="let ice of event.iceLevel" for="ice.key" class="radio-inline ">
 
              <input type="radio" [value]="ice.key" name="ice.name" style="font-family: happy monkey; margin-right: 5px !important; margin-left: 5px !important;" [(ngModel)]="event.iceKey" />   
               <span> {{ice.name}}  </span> <br>
@@ -312,13 +312,13 @@
 </p-dialog>
 
 <!-- Checkout Modal -->
-<p-dialog [draggable]="false" [resizable]="false" header="Checkout" (onHide)="myF()" modal="true" position="center" [(visible)]="checkout" [style]="{width: mobileQuery.matches ? '100%' : '30vw'}" [baseZIndex]="10000">
+<p-dialog [draggable]="false" [resizable]="false" header="Checkout" (onHide)="myF()" modal="true" position="center" [(visible)]="checkout" [style]="{width: mobileQuery.matches ? '100%' : '45vw'}" [baseZIndex]="10000">
   <div class="container-fluid">
   
        <div id="Modal Wrapper" [style.display]="event.addressWrapper? 'none':''"> 
        <div class="checkoutTable " style="overflow-x:auto;">
       
-<table class="table table-striped" style="font-family: happy monkey; ">
+<!-- <table class="table table-striped" style="font-family: happy monkey; ">
   <thead>
   <tr>
        <th scope="col">Details</th>
@@ -357,7 +357,58 @@
         
       </tr>
   </tbody>
-</table>
+</table> -->
+
+<p-table [columns]="cols" [responsive]="true" [value]="tempArray" styleClass="p-datatable-responsive-demo">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th scope="col">Details</th>
+            <th scope="col">Title</th>
+            <th scope="col">Total Per Item</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <td><span class="p-column-title">View Details</span>
+                <i class="pi pi-external-link btn btn-link" (click)="event.showBasicDialog()"  (click)="event.editOrder(rowData.itemOrderID)" ></i>
+            </td>
+            <td>
+              <span class="p-column-title">Flavor</span>
+              {{rowData.itemTitle}}
+            </td>
+            <td>
+              <span class="p-column-title">Price per Item</span>
+              {{rowData.itemComputed}}
+            </td>
+            <td><span class="p-column-title">Quantity</span>
+                <div class="row">
+                 <div class="col-2">
+                    <button [style.display]="rowData.itemTotal == 1 ? 'none':'' " type="button"  value="-" class="button-minus btn btn-link" (click)="event.quantityControl('s-min',rowData.itemOrderID)" data-field="quantity">
+                        <i class=" blackFont fa fa-minus"></i>
+                   </button>
+                  <button [style.display]="rowData.itemTotal == 1 ? '':'none' "  type="button"  value="-" class="button-minus btn btn-link"  (click)="confirmDelete(rowData.itemOrderID)"  data-field="quantity">
+                    <i  class=" blackFont fa fa-trash"></i>
+                  </button>
+                    </div>
+                      <div class="col-3" style="padding-top: 7px;left: 21px;">
+                <!--   <input type="number" style="
+                  outline: none; background: transparent; border: none;" disabled="true" [(ngModel)]="rowData.itemTotal" name="quantity" class="quantity-field">  -->
+                  <span style="bottom: 5px;">{{rowData.itemTotal}}</span>
+                </div>
+                <div class="col-4">
+                  <button type="button" value="+" class="button-plus btn btn-link" data-field="quantity" (click)="event.quantityControl('s-add',rowData.itemOrderID)" ><i class=" blackFont fa fa-plus"></i></button>
+                </div>
+
+            </div>
+
+            </td>
+                    <td >
+                      <span class="p-column-title">Total</span>{{rowData.itemGrandTotal}}</td>
+        </tr>
+    </ng-template>
+</p-table>
 
        </div>
        <div class="row" style="margin-top: 20px;"> 

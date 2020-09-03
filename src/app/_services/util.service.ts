@@ -179,6 +179,21 @@ bestDrinks: any[] =[
   {key: 'e4', name: 'Oats', price: 15, selected: false}];
    test: any[] = [];
 
+   deliveryCharge: any = [
+   {id:'DF01',place:'Sampaloc,Manila',priceMin:30,priceMax:76},
+   {id:'DF02',place:'Tondo I,Manila',priceMin:31,priceMax:77},
+   {id:'DF03',place:'Tondo II,Manila',priceMin:32,priceMax:78},
+   {id:'DF04',place:'Pandacan,Manila',priceMin:33,priceMax:79},
+   {id:'DF05',place:'Paranaque',priceMin:34,priceMax:80},
+   {id:'DF06',place:'Quezon City',priceMin:35,priceMax:81},
+   {id:'DF07',place:'Caloocan,Manila',priceMin:36,priceMax:82},
+   {id:'DF08',place:'Lorem,Ipusm',priceMin:37,priceMax:83},
+   {id:'DF09',place:'Mandaluyong City',priceMin:38,priceMax:84},
+   {id:'DF010',place:'Lorem, Ipsum',priceMin:39,priceMax:85},
+   {id:'DF011',place:'Ipmsum, lorem',priceMin:40,priceMax:86},
+   {id:'DF012',place:'Place,Where',priceMin:41,priceMax:87},
+   {id:'DF013',place:'Trial,Place',priceMin:42,priceMax:88}]
+
 
 
    obj: any = {
@@ -316,6 +331,11 @@ bestDrinks: any[] =[
     }]
 
   }
+
+  homeCarouselImages = [
+  {id: 'CI0', status: true, link:'https://i.imgur.com/G70jxLz.jpg'},
+  {id: 'CI1', status: false, link:'https://i.imgur.com/QSMlhxL.jpg'},
+  {id: 'CI2', status: true, link:'https://i.imgur.com/Kx1Xnbh.jpg'}]
 
   addresses = [{userID:'01244',
                 street:'19 Maginoo St.',
@@ -610,6 +630,7 @@ bestDrinks: any[] =[
 
    }
 
+
     voucherCreate(ev){
      //add to databse
     console.log(ev);
@@ -683,7 +704,8 @@ bestDrinks: any[] =[
        }
      });
    }
- 
+
+
 
  
     editOrder(ev){
@@ -788,8 +810,79 @@ bestDrinks: any[] =[
     aCategory = '';
     itemCreate(){
 
-      console.log
+   
     }
+    // crud for image link - carousel
+    carouselCrud(ev?){
+      if(ev=='read'){
+        return this.homeCarouselImages;
+      }
+      else{
+
+        this.homeCarouselImages.forEach(a=> {
+          if(a.id == ev){
+            a.status = !a.status;
+
+          }
+
+        });
+      }
+
+      
+      
+    }
+    deliveryTemp: any= {};
+    deliveryCrud(ev?,eve?){
+
+        if(ev=='read'){
+          //get from database
+          if(eve!=null){
+              // read for edit
+             this.deliveryTemp =  this.deliveryCharge.filter(a => a.id === eve)[0];
+           
+          }
+          else{
+              this.deliveryTemp = this.deliveryCharge;
+
+          }
+
+
+
+           return this.deliveryTemp;
+        }
+        else if(ev=='delete'){
+              this.deliveryCharge.forEach(function(item, index, object) {
+            if (item.id == eve) {
+              object.splice(index, 1);
+            }
+          });
+
+        }
+        else if(ev=='add'){
+            // add to database -- 'eve' contains data
+            console.log(eve);
+        }
+        else if(ev=='edit'){
+            //edit in db
+            //this.deliveryTemp = eve;
+            this.deliveryCharge.forEach(a=> {
+                if(a.id == eve.id){
+                  //update DB here
+                    a.place = eve.deliveryPlace;
+                    a.priceMin = eve.minimumPrice;
+                    a.priceMax = eve.maximumPrice;
+                }
+            });
+
+
+
+
+
+        }
+
+
+    }
+
 
 
 
