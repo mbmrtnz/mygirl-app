@@ -1,6 +1,40 @@
+.bg{
+  background-image: url('/app/resources/img/Header2.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position:center 35%;
+  height: 400px;
+}
+
+.deliveryFee {
+  position: relative;
+  bottom: 0px;
+  background-color: black;
+  resize: vertical;
+}
+
+.deliveryFee1 {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  background-color: rgba(0,0,0,0.3);
+}
+.dot {
+  height: 25px;
+  width: 25px;
+ background: linear-gradient(135deg, #ff875e 1%, #fc629d 100%);
+  border-radius: 50%;
+  display: inline-block;
+  border: 3px solid white;
+}
+
 .mapInput{
 	height: 60px !important;
 
+
+}
+.TextWrapper{
+	padding-top: 300px;
 
 }
 .covertText{
@@ -9,7 +43,7 @@
  padding: 0px !important;
  margin-bottom: 0px !important;
   color:white;
-	 
+	 font-size: 50px !important;
 	width: 100%;
 	text-align: center;
 
@@ -42,6 +76,7 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 
+
 }
 .myGirlBannerLogo{
 	height: 50%;
@@ -69,8 +104,27 @@
 }
 .coverText{
   color:white;
-  font-family:kozuka gothic pro;
-  font-size:2vw; 
+  font-size:3vw; 
+  text-shadow: 2px 2px black; 
+  font-family: happy monkey; 
+  font-weight: bold;
+  height: 300px;
+}
+
+.coverTextMyGirl{
+  text-shadow: 2px 2px black; 
+  color: #ff8000
+}
+.coverSubText{
+	font-size: 1vw;
+	color: white;
+	 text-shadow: 2px 2px black;
+
+}
+.orderButton{
+	background-color: red;
+	font-family: happy monkey;
+
 }
 .myGirlPicLeft{ 
   
@@ -263,5 +317,28 @@
 .footerSocialIcon{
 	height: 30px;
 	margin-right: 10px;
+
+}
+
+.mvTextWrapper{
+	position: relative;
+	font-size: 30px;
+	top: 30%;
+	
+}
+.mvcoverText{
+  color:white;
+  font-size:5vw; 
+  text-shadow: 2px 2px black; 
+  font-family: happy monkey; 
+  font-weight: bold;
+  height: 300px;
+}
+
+.mvcoverSubText{
+	font-size: 3vw;
+	color: white;
+	 text-shadow: 2px 2px black;
+	 display: block;
 
 }

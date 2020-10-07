@@ -68,13 +68,37 @@ export class HomeComponent implements OnInit, OnDestroy {
   { 'breakpoint': 1000, 'settings': { 'slidesToShow': 3, 'slidesToScroll': 3, 'dots':true,} }, 
   { 'breakpoint': 600, 'settings': { 'slidesToShow': 1, 'slidesToScroll': 1, 'dots':true,} }]};
      images = [1,2,3].map((n) => `/app/resources/img/Header${n}.jpg`);
-
+  dotColor: string;
+   dotX: number;
+  dotY: number;
+  dotZ: number;
+  deliveryArray: any = {};
   ngOnInit() {
-  
 
+    this.deliveryArray = this.utilS.deliveryCrud('read');
+    var x = Math.floor(Math.random() * 256);
+    var y = Math.floor(Math.random() * 256);
+    var z = Math.floor(Math.random() * 256);
+    var bgColor = "rgb(" + x + "," + y + "," + z + ")";
+    this.dotColor = bgColor;
     this.innerWidth = Number(window.innerWidth)-1015;
     this.userId = this.userId + (Math.random() * 100000).toFixed(0);
+
+     var x = Math.floor(Math.random() * 256);
+    var y = Math.floor(Math.random() * 256);
+    var z = Math.floor(Math.random() * 256);
+    var bgColor = "rgb(" + x + "," + y + "," + z + ")";
+    this.dotColor = bgColor;
+    this.dotX = x;
+    this.dotY = y;
+    this.dotZ = z;
     // this.wsConnect();
+  }
+ 
+  colorRandom(){
+   
+
+
   }
   formattedAddress ="";
   mapoptions = {

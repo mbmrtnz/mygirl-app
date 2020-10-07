@@ -418,6 +418,66 @@ export class AdminComponent implements OnInit, OnDestroy {
 
 	}
 
+  onclickSendMenu(){
+   var param = {
+      'MenuID': 'drop down values not yet available',
+      'MenuItemId':'BS',
+      'MenuItemName': this.cTitle,
+      'description': this.cDescription,
+       'thumbnail': this.cLink,
+       'createUser': '',
+       'updateUser': '',
+      'menuItemPriceList': [{
+        'sizeCd': 'M',
+        'price': this.cPriceM,
+        'createUser':'',
+        'updateUser': ''
+      },
+      {
+        'sizeCd': 'L',
+        'price': this.cPriceL,
+        'createUser':'',
+        'updateUser': ''
+
+      },
+      {
+        'sizeCd': 'XL',
+        'price': this.cPriceXL,
+        'createUser':'',
+        'updateUser': ''
+
+      },
+      ] 
+
+    }
+
+
+  }
+
+
+   onclickSendVoucher(){
+   var param = {
+     'promoCd': '',
+     'promoName': this.tTitle,
+     'promoType': 'RadioButton not working -admin.html Line 600',
+     'discountPct': 'PENDING',
+     // 'minOrder':'',
+     'availableQuantity':this.tAvail,
+     'promoDesc': '',
+     'validFrom': this.tStartdate,
+     'validTo': this.tEndDate,
+     'createUser':'',
+     'updateUser': ' ',
+     'promoBranchList': [{
+       'branchId': 1,
+       'createUser': 'myGirl'
+     }]
+
+
+    
+
+  }
+}  
 	voucherToggle(){
 
 		// alert('test');

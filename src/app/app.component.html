@@ -22,7 +22,7 @@
                
                      <div class="col-6 " style="text-align: right;">
                     
-                  <span class="p-overlay-badge p-mr-5 shopCart" style=" margin-right: 25px;"  mat-icon-button (click)="clickMenu()">
+                  <span [routerLink]="['/shop']" class="p-overlay-badge p-mr-5 shopCart" style=" margin-right: 25px;"  mat-icon-button (click)="clickMenu()">
                         <i class="pi pi-shopping-cart" style="font-size: 1em; color: white;"></i>
                         <span class="p-badge " *ngIf="service.customerOrder.length" style="background-color: red;">{{service.customerOrder.length}}</span>
                   </span>

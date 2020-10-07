@@ -108,6 +108,15 @@
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
+
+
+.coverBackground{
+	background-repeat: no-repeat;
+	background-size: cover;
+	min-height: 600px;
+	
+
+}
 		.mvDrinksCarousel{
 			margin-left: auto;
 			margin-right: auto;

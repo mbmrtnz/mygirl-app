@@ -9,40 +9,46 @@
 <!--First tab-->
 <div class="container-fluid">
 		<div class="row">
+			<div class="container-fluid text-center"  [style.display]="mobileQuery.matches ? '':'none'" [ngClass]="mobileQuery.matches ? 'bg' : ''">	
+				<div class="mvTextWrapper" style="">
+			    			    	 	<span class="mvcoverText" style="">Drink best rich your taste with 
+			    			    	    	<span class="coverTextMyGirl">MYGIRL MILKTEA</span>  
+			    			    	    </span>
+			    			    	    <span class="mvcoverSubText">Our Delivery system makes it easier for you</span><br>
+			    			    	    <button class="orderButton btn" [routerLink]="['/shop']">Order now</button>
+			    			    	 </div>	
+			</div>
 			<div class="col-12" style="padding: 0px !important">
+				<div [style.display]="mobileQuery.matches ? 'none':''">
 					<ngb-carousel *ngIf="images">
 			  		  	<ng-template ngbSlide *ngFor="let ads of images" >
 			    			<div [ngStyle]="{'height': innerWidth+'px','background-image': 'url('+ads+')','text-align': 'center'} " class="coverBackground" >
 			    			    <!-- <img [src]="ads" alt="MyGirl PH"  width="100%" style="margin: 0px !important; padding: 0px !important; "> -->
 			    			<!--      <div class="" style=" background-size:cover; height: 100%; background-repeat: no-repeat;background-position: center center;"   [ngStyle]="{'background-image': 'url('+ads+')'}"></div>  -->
 			    		<!-- 	<img src="app/resources/img/LOGO.png" class="myGirlBannerLogo mvmyGirlBannerLogo"> -->
-
-
 			    					
-			    			    	 <div class="" style="padding-top: 300px;"><span class="coverText " style="text-shadow: 2px 2px black; font-family: happy monkey; font-weight: bold;">Drink best rich your taste with <span style="text-shadow: 2px 2px black; color: #ff8000">MYGIRL MILKTEA</span>  </span></div>	
-			    			    	 <h6 style="color: white;">Our Delivery system makes it easier for you</h6>
+			    			    	 <div class="TextWrapper" style="">
+			    			    	 	<span class="coverText" style="">Drink best rich your taste with 
+			    			    	    	<span class="coverTextMyGirl">MYGIRL MILKTEA</span>  
+			    			    	    </span>
+			    			    	 </div>	
+			    			    	 <span class="coverSubText">Our Delivery system makes it easier for you</span><br>
+			    			    	 <button class="orderButton btn">Order now</button>
 			      		 	</div>
 
 						 </ng-template>
 					</ngb-carousel>	
+				</div>
+				<div class="deliveryFee">
 
-	 <div class="search" style="  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);">
-<!-- 
-      <span class=" mapInput searchMap">
-        <i class="fa fa-map-pin" style="color: black;" aria-hidden="true"></i>
-     </span>
-      <input ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places"  (onAddressChange)="handleAddressChange($event)"  type="text" class="searchLocation mapInput" placeholder="Enter Your Location Here!">
-      <button  style="width: 150px !important; "  class=" mapInput searchButton"  >
-        GO TO MENU
-     </button>
-   </div> -->
-		<!-- 	<div class="search">
-			    						
-			  <input type="text" placeholder="Find your favorites here!" class="coverInput searchIcon mvcoverInput" value="">
-			    					</div> -->
+					<h3 style="color:white;" class="text-center">Delivery Fee</h3>
+					<div *ngFor="let d of deliveryArray" style="display: inline-block; margin-right: 10px;">
+						<span class="dot" style=" margin-right: 10px; "></span>
+						<h5 style="display: inline-block; color: white;"> {{d.place}} | ₱ {{d.priceMin}} - ₱ {{d.priceMax}} </h5> 
+					</div>
+
+
+				</div> 
 			</div>
 	
 <!--second tab-->

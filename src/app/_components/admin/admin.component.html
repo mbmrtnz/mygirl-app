@@ -597,7 +597,18 @@
    			    <label for="float-input2">Quantity </label>
    			</span>
    		</div>
-   		<div class="col-4" style="margin-top: 20px;">
+   		<div class="col-2">
+   			<span class="p-float-label " style="margin-top: 20px;">
+
+   			    <input [(ngModel)]="tAvail"
+   			     [ngClass]="vDetails.tAvail.errors!=null && submittedVoucher==true? 'errorBorder':''"
+   			      formControlName="tAvail" 
+   			      id="float-input2" style="width: 100%; " type="text" pInputText > 
+
+   			    <label for="float-input2">Percentage </label>
+   			</span>
+   		</div>
+   		<div class="col-2" style="margin-top: 20px;">
    			<div class="p-grid" style="">
    			    <div class="p-col-12"><p-radioButton name="group1" value="Discount" label="Discount"  inputId="opt1"></p-radioButton></div>
    			    <div class="p-col-12"><p-radioButton name="group2" value="Others" label="Others"  inputId="opt2"></p-radioButton></div>

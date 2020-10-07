@@ -312,7 +312,7 @@
 </p-dialog>
 
 <!-- Checkout Modal -->
-<p-dialog [draggable]="false" [resizable]="false" header="Checkout" (onHide)="myF()" modal="true" position="center" [(visible)]="checkout" [style]="{width: mobileQuery.matches ? '100%' : '45vw'}" [baseZIndex]="10000">
+<p-dialog [draggable]="false" [modal]="true" [resizable]="false" header="Checkout" (onHide)="myF()" modal="true" position="center" [(visible)]="checkout" [style]="{width: mobileQuery.matches ? '100%' : '45vw'}" [baseZIndex]="10000">
   <div class="container-fluid">
   
        <div id="Modal Wrapper" [style.display]="event.addressWrapper? 'none':''"> 

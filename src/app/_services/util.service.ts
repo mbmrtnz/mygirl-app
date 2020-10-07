@@ -749,6 +749,7 @@ bestDrinks: any[] =[
     }
     discountTitle: "";
     vSuccess: boolean = false;
+    OrderVariables:any[]  =[];
     voucherFinder(ev?){    
         if(ev!='edit'){
               if(this.promos.find((item) => item.promoCode == this.vcode && item.avail!=0)){
@@ -793,16 +794,19 @@ bestDrinks: any[] =[
                 }
                
               });
-              
+                console.log('test', request.promoID);
+               
           }
           else{
                 request = {
                           genId: 'Order'+this.idValue,
                           products: this.customerOrder
                             }
-                              console.log(request);
+                              console.log('test 2', request);
           }
              
+             this.OrderVariables = request;
+             console.log(this.OrderVariables[0].promoID);
 
 
 

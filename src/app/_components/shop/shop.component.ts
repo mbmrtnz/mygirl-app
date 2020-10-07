@@ -294,7 +294,55 @@ export class ShopComponent implements OnInit {
             }
         });
     }
-    
+      
+   onClickSend() {
+    var param = {
+      'customerId': sessionStorage.getItem('email'),
+      'paytMethodCd': 'COD',
+      'items': this.event.OrderVariables.map(a=> {
+        return{
+          'menuItemId': a.products.itemId,
+          'sizeCd': a.products.itemSizeKey,
+          'quantity': a.products.itemTotal,
+          'iceLevelCd': a.products.itemIceLevel, 
+
+        }
+
+      })
+    }
+
+
+    this.stompClient.send('/app/order-placement', {}, JSON.stringify({
+                                                                       'customerId': sessionStorage.getItem('email'),
+                                                                       'paytMethodCd': 'COD',
+                                                                       'branchId': 1,
+                                                                       'promoCd': this.event.OrderVariables[0].promoID,
+                                                                       'addressId': null,
+                                                                       'contactId': null,
+                                                                       'rawAddress': this.street +','+ this.city,
+                                                                       'rawContact': this.tnumber,
+                                                                       'items': [
+                                                                         {
+                                                                           'menuItemId': 'MT-ASD',
+                                                                           'sizeCd': 'M',
+                                                                           'quantity': 2,
+                                                                           'iceLevelCd': 'L4'
+                                                                         },
+                                                                         {
+                                                                           'menuItemId': 'MT-ZXC',
+                                                                           'sizeCd': 'L',
+                                                                           'quantity': 1,
+                                                                           'addonCd': 1,
+                                                                           'iceLevelCd': 'L4'
+                                                                         }
+                                                                       ]
+                                                                     }));
+    this.txtAreaMsg = '';
+    // this.utilS.signinWithFacebook().subscribe(data => {
+    //   console.log(data);
+    // });
+    this.stompClient.send('/app/order-placement', {}, JSON.stringify(param));
+  }
    
 
 }
